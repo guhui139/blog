@@ -15,3 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//路由组的设置
+Route::group(['middleware'=>'login'],function(){
+
+	//后台
+});
+
+Route::group(['middleware'=>'login'],function(){
+
+	// 前台
+
+});
+
