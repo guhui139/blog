@@ -18,6 +18,15 @@ Route::get('/', function () {
 Route::get('/admin/login','loginsController@index');
 Route::post('/admin/dologin','loginsController@add');
 
+/*前台登录*/
+Route::get('/home/index','home\LoginController@index');
+Route::get('/home/code','home\LoginController@code');
+Route::post('/home/dologin','home\LoginController@dologin');
+
+/*前台注册*/
+Route::get('/home/sendcode','home\RegisterController@sendcode');
+Route::resource('/home','home\RegisterController');
+
 //路由组的设置
 Route::group(['prefie'=>'admin','middleware'=>'login'],function(){
 

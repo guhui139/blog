@@ -1,0 +1,10 @@
+ #dvs{
+        width:400px;
+        height:40px;
+        border:solid 2px blue;
+        font-size:30px;
+        line-height:40px;
+        text-align:center;
+        font-family:'Microsoft Yahei';
+        color:pink;
+    }
