@@ -15,15 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin/login','loginsController@index');
+Route::post('/admin/dologin','loginsController@add');
+
 //路由组的设置
-Route::group(['middleware'=>'login'],function(){
+Route::group(['prefie'=>'admin','middleware'=>'login'],function(){
 
 	//后台
+	
 });
 
-Route::group(['middleware'=>'login'],function(){
+Route::group(['prefie'=>'home','middleware'=>'login'],function(){
 
 	// 前台
 
 });
+
+
 
