@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 Route::get('/admin/login','loginsController@index');
 Route::post('/admin/dologin','loginsController@add');
 
@@ -27,10 +28,16 @@ Route::post('/home/dologin','home\LoginController@dologin');
 Route::get('/home/sendcode','home\RegisterController@sendcode');
 Route::resource('/home','home\RegisterController');
 
+=======
+//后台
+	Route::resource('admin/user','admin\UserController');
+	Route::resource('admin/artical','admin\ArticalController');
+>>>>>>> b6d1107f34f10986f3ca69daf77662364397baa7
 //路由组的设置
-Route::group(['prefie'=>'admin','middleware'=>'login'],function(){
+Route::group(['prefie'=>'admin','namespace'=>'admin','middleware'=>'login'],function(){
 
 	//后台
+
 	
 });
 
