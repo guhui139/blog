@@ -1,5 +1,3 @@
-
-
 @extends('layout.home')
 
 @section('title','wdyBlog')
@@ -122,4 +120,3 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 
 @endsection
-
