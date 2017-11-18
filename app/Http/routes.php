@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 Route::get('/admin/login','loginsController@index');
 Route::post('/admin/dologin','loginsController@add');
+Route::resource('/list','home\ListController');
 
+Route::resource('/home','home\BlogController');
 //路由组的设置
 Route::group(['prefie'=>'admin','middleware'=>'login'],function(){
 
