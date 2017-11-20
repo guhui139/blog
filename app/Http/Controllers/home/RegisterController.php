@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use Hash;
-use DB;
+use App\Http\Model\User;
 use Cookie;
 
 class RegisterController extends Controller
@@ -22,7 +21,7 @@ class RegisterController extends Controller
     public function index()
     {
         //
-        return ('1234');
+        //return ('欢迎来到前台主页');
         
     }
 
@@ -50,32 +49,32 @@ class RegisterController extends Controller
         $res = $request->except('_token','repassword');
        
         
-        $phones = DB::table('user')->where('tel',$res['tel'])->first();
+        $phones = user::where('tel',$res['tel'])->first();
     
         if($phones){
 
             return redirect('/home/create')->with('msg','您输入的手机号已注册');
+            
         }
-
-        
 
         if(Cookie::get('codes') != $res['code']){
 
             return redirect('/home/create')->with('msg','验证码错误');
 
         }
-         
-        //存session
-        //$request->session()->put('uid',$phones->id);
+
         $ress = $request->except('_token','repassword','code');
         $ress['password'] = Hash::make($ress['password']);
-        $data = DB::table('user')->insert($ress);
+        
+        $data = user::insert($ress);
+        $req = user::where('tel',$ress['tel'])->first();
 
-        return redirect('/home/index')->with('msg','注册成功,请登录');
+        //存session
+        $request->session()->put('uid',$req->id);
         
-        
-        
-        
+       // register();
+        return redirect('/home/index')->with('msg','注册成功,请登录');      
+       
     }
 
     /**

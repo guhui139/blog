@@ -18,7 +18,7 @@
 
 <link rel="stylesheet" type="text/css" href="/Homes/css/mws-theme.css" media="screen">
 
-<title>前台登录</title>
+<title>密码修改页</title>
 
 </head>
 
@@ -26,7 +26,7 @@
 
     <div id="mws-login-wrapper">
         <div id="mws-login">
-            <h1>登录</h1>
+            <h1>修改</h1>
             <div class="mws-login-lock"><i class="icon-lock"></i></div>
             <div id="mws-login-form">
                 
@@ -39,7 +39,7 @@
                         </div>
                     @endif
 
-                <form class="mws-form" action="/home/dologin" method="post">
+                <form class="mws-form" action="/homed" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
                             <input type="text" name="tel" class="mws-login-username required" placeholder="请输入手机号">
@@ -47,24 +47,20 @@
                     </div>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="password" name="password" class="mws-login-password required" placeholder="请输入密码">
-                        </div>
+                            <input type="password" name="password" class="mws-login-username required" placeholder="请输入新密码">
                     </div>
-
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="text" name="code" class="mws-login required" placeholder="请输入验证码" style='width:120px;height:35px;margin-right:20px'>
-                            <img src="/home/code" alt=""  class="img-rounded" onclick="this.src = this.src += '?1'">
+                            <input type="text" name="code" class="mws-login required" placeholder="请输入验证码" style='width:120px;height:35px;margin-right:20px' value="">         
+                            <input class="img-rounded" style='width:100px;height:32px;margin-right:20px' type="button" value="发送验证码">                          
                         </div>
-                    </div>
-                    
+                    </div> 
                     <div class="mws-form-row">
                         {{csrf_field()}}
-
-                        <input type="submit" value="登录" class="btn btn-success mws-login-button">
-                        <a href="/register/create" style="width:50px;margin-left:50px">去注册</a>          
-                        <a href="/homed" style="width:50px;margin-left:80px">忘记密码?</a>                      
-                     </div>
+                        {{method_field('PUT')}}
+                        <input type="submit" value="修改" class="btn btn-success mws-login-button">                 
+                     </div> 
+                     {{csrf_field()}}   
                 </form>
             </div>
         </div>
@@ -89,6 +85,15 @@
         $('.mws-form-message').delay(3000).slideUp(1000);
     </script>
 
-    
+    <script type="text/JavaScript">       
+        $('.img-rounded').click(function(){
+            var tels = $('.mws-login-username').val();
+            $.get('{{ url("/homed") }}',{_token:'{{ csrf_token() }}',tel:tels},function(data){
+                console.log(data);
+            });
+            
+        });
+    </script>
+
 </body>
 </html>

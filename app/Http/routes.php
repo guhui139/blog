@@ -30,6 +30,12 @@ Route::post('/home/dologin','home\LoginController@dologin');
 Route::get('/home/sendcode','home\RegisterController@sendcode');
 Route::resource('/register','home\RegisterController');
 
+/*前台的用户信息*/
+
+Route::get('/homed','home\LoginController@edit');
+Route::post('/homed','home\LoginController@update');
+Route::resource('/home/user','home\UserController');
+
 /*前台主页*/
 Route::resource('/home','home\BlogController');
 

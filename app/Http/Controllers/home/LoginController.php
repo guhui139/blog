@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\home;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\user;
+use App\Http\Model\User;
+use App\Http\Model\info;
 use Gregwar\Captcha\CaptchaBuilder;
 use Session;
+use Cookie;
 use Hash;
-use DB;
+use Flc\Dysms\Client;
+use Flc\Dysms\Request\SendSms;
+
 class LoginController extends Controller
 {
     /**
@@ -19,18 +21,16 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home.login');
-        
+    {   
+
+        return view('home.login');      
     }
 
     public function dologin(Request $request)
     {
-        $res = $request->except('_token');
 
-        $tels = DB::table('user')->where('tel',$res['tel'])->first();
-        //$tels = user::where('tel',$res['tel'])->first();
-        //var_dump($tels);die;
+        $res = $request->except('_token');
+        $tels = user::where('tel',$res['tel'])->first();
         
         if(!$tels){
 
@@ -49,11 +49,15 @@ class LoginController extends Controller
         }
 
         //存session
-        // session(['uid'=>$uname->id]);
+        
         $request->session()->put('uid',$tels->id);
-
-
-        return view('welcome');
+        $data = info::insert(['user_id'=>$tels->id]);
+        //login();
+        if($data){
+           
+             return view('home.index');
+        }
+    
     }
    
     public function code()
@@ -78,4 +82,41 @@ class LoginController extends Controller
     }
 
    
+    public function edit(Request $request)
+    {   
+        $res = $request->input('tel');
+       
+        $config = [
+                'accessKeyId'    => 'LTAIglltnURip7gN',
+                'accessKeySecret' => 'NNBfufyZetEkX25Kn5PWQ4bn6drXYC',
+            ];
+
+        $client  = new Client($config);
+        $sendSms = new SendSms;
+        $sendSms->setPhoneNumbers($res);
+        $sendSms->setSignName('言梦');
+        $sendSms->setTemplateCode('SMS_110835228');
+        $code = rand(100000, 999999);
+        $sendSms->setTemplateParam(['code' =>$code ]);
+        $sendSms->setOutId('demo');
+
+        $resp = $client->execute($sendSms);          
+        Cookie::queue('codes',$code,300);
+        Cookie::queue('tel',$res,300);
+        return view('home.user.edit');
+    }
+
+     public function update(Request $request)
+    {      
+      
+        $res = $request->except('_token','code','tel');
+       
+        $ress = user::where('tel',Cookie::get('tel'))->update($res);
+        
+        if($ress){
+            
+            return redirect('/home/index')->with('msg','密码修改成功,请登录');
+
+        }      
+    }
 }
