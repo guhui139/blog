@@ -27,9 +27,7 @@
                     <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">
                             文章类别
-                            <span class="tpl-form-line-small-title">
-                                type
-                            </span>
+                            
                         </label>
                         <div class="am-u-sm-9">
                             <select name="type_id" data-am-selected="{searchBox: 1}" style="display: none;">

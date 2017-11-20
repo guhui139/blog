@@ -1,0 +1,289 @@
+[1mdiff --cc resources/views/home/index.blade.php[m
+[1mindex ca3ba73,799dd9d..0000000[m
+[1m--- a/resources/views/home/index.blade.php[m
+[1m+++ b/resources/views/home/index.blade.php[m
+[36m@@@ -1,125 -1,165 +1,122 @@@[m
+[31m- [m
+[31m- [m
+[31m -<!DOCTYPE html>[m
+[31m -<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->[m
+[31m -<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->[m
+[31m -<!--[if IE 8]><html class="ie ie8"><![endif]-->[m
+[31m -<!--[if IE 9]><html class="ie ie9"><![endif]-->[m
+[31m -<!--[if !IE]><!--> <html> <!--<![endif]-->[m
+[32m +@extends('layout.home')[m
+  [m
+[31m -<head>[m
+[31m -  <meta charset="utf-8">[m
+[31m -  <meta http-equiv="X-UA-Compatible" content="IE=Edge">[m
+[31m -  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">[m
+[32m +@section('title','wdyBlog')[m
+  [m
+[31m -  <!-- Start of Baidu Transcode -->[m
+[31m -  <meta http-equiv="Cache-Control" content="no-siteapp" />[m
+[31m -  <meta http-equiv="Cache-Control" content="no-transform" />[m
+[31m -  <meta name="applicable-device" content="pc,mobile">[m
+[31m -  <meta name="MobileOptimized" content="width"/>[m
+[31m -  <meta name="HandheldFriendly" content="true"/>[m
+[31m -  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/sign_in">[m
+[31m -  <!-- End of Baidu Transcode -->[m
+  [m
+[31m -    <meta name="description"  content="加入简书，开启你的创作之路，来这里接收世界的赞赏。">[m
+[31m -[m
+[31m -  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8" />[m
+[31m -  <meta property="wb:webmaster" content="294ec9de89e7fadb" />[m
+[31m -  <meta property="qc:admins" content="104102651453316562112116375" />[m
+[31m -  <meta property="qc:admins" content="11635613706305617" />[m
+[31m -  <meta property="qc:admins" content="1163561616621163056375" />[m
+[31m -  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" />[m
+[31m -  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" />[m
+[31m -  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/sign_in">[m
+[31m -[m
+[31m -  <!-- Apple -->[m
+[31m -  <meta name="apple-mobile-web-app-title" content="简书">[m
+[31m -[m
+[31m -  [m
+[31m -[m
+[31m -    <title>登录 - 简书</title>[m
+[31m -[m
+[31m -  <meta name="csrf-param" content="authenticity_token" />[m
+[31m -<meta name="csrf-token" content="NC3A1ny7d0YuKtfNLByRH9d2IcA4xL3kucFMvqtMBTJD/dpbCJ1kUPAlO+LmOJDKrdenm+2h6HPR88oqVFRr1w==" />[m
+[31m -[m
+[31m -  <link rel="stylesheet" media="all" href="/Admins/css/web-096a5331e66d587e2ffe.css" />[m
+[31m -  [m
+[31m -  <link rel="stylesheet" media="all" href="/Admins/css/entry-27463f2882f8ebd9e811.css" />[m
+[31m -[m
+[31m -  <link href="//cdn2.jianshu.io/assets/favicons/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">[m
+[31m -      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57" />[m
+[31m -      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/72-fb9834bcfce738fd7b9c5e31363e79443e09a81a8e931170b58bc815387c1562.png" sizes="72x72" />[m
+[31m -      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/76-49d88e539ff2489475d603994988d871219141ecaa0b1a7a9a1914f4fe3182d6.png" sizes="76x76" />[m
+[31m -      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/114-24252fe693524ed3a9d0905e49bff3cbd0228f25a320aa09053c2ebb4955de97.png" sizes="114x114" />[m
+[31m -      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/120-1bb7371f5e87f93ce780a5f1a05ff1b176828ee0d1d130e768575918a2e05834.png" sizes="120x120" />[m
+[31m -      <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/152-bf209460fc1c17bfd3e2b84c8e758bc11ca3e570fd411c3bbd84149b97453b99.png" sizes="152x152" />[m
+[31m -[m
+[31m -  <!-- Start of 访问统计 -->[m
+[31m -  <script>[m
+[31m -  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){[m
+[31m -  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),[m
+[31m -  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)[m
+[31m -  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');[m
+[31m -[m
+[31m -  ga('create', 'UA-35169517-1', 'auto');[m
+[31m -  ga('send', 'pageview');[m
+[31m -</script>[m
+[31m -[m
+[31m -<script>[m
+[31m -  var _hmt = _hmt || [];[m
+[31m -  (function() {[m
+[31m -    var hm = document.createElement("script");[m
+[31m -    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";[m
+[31m -    var s = document.getElementsByTagName("script")[0];[m
+[31m -    s.parentNode.insertBefore(hm, s);[m
+[31m -  })();[m
+[31m -</script>[m
+[31m -[m
+[31m -  <!-- End of 访问统计 -->[m
+[31m -</head>[m
+[31m -[m
+[31m -<body class="no-padding reader-black-font" lang="zh-CN">[m
+[31m -  <div class="sign">[m
+[31m -    <div class="logo"><a href="/"><img src="/Admins/picture/logo.png" alt="Logo" /></a></div>[m
+[31m -    <div class="main">[m
+[31m -      [m
+[31m -[m
+[31m -<h4 class="title">[m
+[31m -  <div class="normal-title">[m
+[31m -    <a class="active" href="/sign_in">登录</a>[m
+[31m -    <b>·</b>[m
+[31m -    <a id="js-sign-up-btn" class="" href="/sign_up">注册</a>[m
+[31m -  </div>[m
+[31m -</h4>[m
+[31m -<div class="js-sign-in-container">[m
+[31m -  <form id="new_session" action="/sessions" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="LB8HLYMNGDSB62xSkocUiPOyUMwgsYTe//RTiLeW/LFbzx2g9ysLIl/kgH1YoxVdiRPWl/XU0UmXxtUcSI6SVA==" />[m
+[31m -[m
+[31m -    <!-- 正常登录登录名输入框 -->[m
+[31m -      <div class="input-prepend restyle js-normal">[m
+[31m -        <input placeholder="手机号或邮箱" type="text" name="session[email_or_mobile_number]" id="session_email_or_mobile_number" />[m
+[31m -        <i class="iconfont ic-user"></i>[m
+[31m -      </div>[m
+[31m -[m
+[31m -    <!-- 海外登录登录名输入框 -->[m
+[31m -[m
+[31m -    <div class="input-prepend">[m
+[31m -      <input placeholder="密码" type="password" name="session[password]" id="session_password" />[m
+[31m -      <i class="iconfont ic-password"></i>[m
+[31m -    </div>[m
+[31m -    <input value="false" type="hidden" name="session[oversea]" id="session_oversea" />[m
+[31m -    <div class="geetest-placeholder">验证按钮加载中</div>[m
+[31m -    <div class="js-geetest-captcha"></div>[m
+[31m -    <div class="remember-btn">[m
+[31m -      <input type="checkbox" value="true" checked="checked" name="session[remember_me]" id="session_remember_me" /><span>记住我</span>[m
+[31m -    </div>[m
+[31m -    <div class="forget-btn">[m
+[31m -      <a class="" data-toggle="dropdown" href="">登录遇到问题?</a>[m
+[31m -      <ul class="dropdown-menu">[m
+[31m -        <li><a href="/users/password/mobile_reset">用手机号重置密码</a></li>[m
+[31m -        <li><a href="/users/password/email_reset">用邮箱重置密码</a></li>[m
+[31m -        <li><a target="_blank" href="/p/9058d0b8711d">无法用海外手机号登录</a></li>[m
+[31m -        <li><a target="_blank" href="/p/498a9fa7da08">无法用 Google 帐号登录</a></li>[m
+[31m -      </ul>[m
+[31m -    </div>[m
+[31m -    <input type="submit" name="commit" value="登录" class="sign-in-button" data-disable-with="登录" />[m
+[31m -</form>[m
+[31m -  <!-- 更多登录方式 -->[m
+[31m -  <div class="more-sign">[m
+[31m -    <h6>社交帐号登录</h6>[m
+[32m +@section('content')[m
+[32m +<div class="banner">[m
+[32m +  <section class="box">[m
+[32m +    <ul class="texts">[m
+[32m +      <p>打了死结的青春，捆死一颗苍白绝望的灵魂。</p>[m
+[32m +      <p>为自己掘一个坟墓来葬心，红尘一梦，不再追寻。</p>[m
+[32m +      <p>加了锁的青春，不会再因谁而推开心门。</p>[m
+[32m +    </ul>[m
+[32m +    <div class="avatar"><a href="#"><span>兄弟连</span></a> </div>[m
+[32m +  </section>[m
+[32m +</div>[m
+[32m +<div class="template">[m
+[32m +  <div class="box">[m
+[32m +    <h3>[m
+[32m +      <p><span>个人博客</span>模板 Templates</p>[m
+[32m +    </h3>[m
+      <ul>[m
+[31m -  <li><a class="weibo" target="_blank" href="/users/auth/weibo"><i class="iconfont ic-weibo"></i></a></li>[m
+[31m -  <li><a class="weixin" target="_blank" href="/users/auth/wechat"><i class="iconfont ic-wechat"></i></a></li>[m
+[31m -  <li><a class="qq" target="_blank" href="/users/auth/qq_connect"><i class="iconfont ic-qq_connect"></i></a></li>[m
+[31m -    <li class="js-more-method"><a href="javascript:void(0);"><i class="iconfont ic-more"></i></a></li>[m
+[31m -    <li class="js-hide-method hide"><a class="douban" target="_blank" href="/users/auth/douban"><i class="iconfont ic-douban"></i></a></li>[m
+[31m -</ul>[m
+[31m -[m
+[32m +      <li><a href="/"  target="_blank"><img src="../homes/images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>[m
+[32m +      <li><a href="/" target="_blank"><img src="../homes/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>[m
+[32m +      <li><a href="/"  target="_blank"><img src="../homes/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>[m
+[32m +      <li><a href="/" target="_blank"><img src="../homes/images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>[m
+[32m +      <li><a href="/"  target="_blank"><img src="../homes/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>[m
+[32m +      <li><a href="/"  target="_blank"><img src="../homes/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>[m
+[32m +    </ul>[m
+    </div>[m
+  </div>[m
+[31m -[m
+[31m -    </div>[m
+[32m +<article>[m
+[32m +  <h2 class="title_tj">[m
+[32m +    <p>文章<span>推荐</span></p>[m
+[32m +  </h2>[m
+[32m +  <div class="bloglist left">[m
+[32m +    <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>[m
+[32m +    <figure><img src="../homes/images/001.png"></figure>[m
+[32m +    <ul>[m
+[32m +      <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>[m
+[32m +      <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>[m
+[32m +    </ul>[m
+[32m +    <p class="dateview"><span>2013-11-04</span><span>作者：兄弟连</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>[m
+[32m +    <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>[m
+[32m +    <figure><img src="../homes/images/001.png"></figure>[m
+[32m +    <ul>[m
+[32m +      <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>[m
+[32m +      <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>[m
+[32m +    </ul>[m
+[32m +    <p class="dateview"><span>2013-11-04</span><span>作者：兄弟连</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>[m
+[32m +    <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>[m
+[32m +    <figure><img src="../homes/images/001.png"></figure>[m
+[32m +    <ul>[m
+[32m +      <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>[m
+[32m +      <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>[m
+[32m +    </ul>[m
+[32m +    <p class="dateview"><span>2013-11-04</span><span>作者：兄弟连</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>[m
+[32m +    <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>[m
+[32m +    <figure><img src="../homes/images/001.png"></figure>[m
+[32m +    <ul>[m
+[32m +      <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>[m
+[32m +      <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>[m
+[32m +    </ul>[m
+[32m +    <p class="dateview"><span>2013-11-04</span><span>作者：兄弟连</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>[m
+[32m +    <h3>程序员请放下你的技术情节，与你的同伴一起进步</h3>[m
+[32m +    <figure><img src="../homes/images/001.png"></figure>[m
+[32m +    <ul>[m
+[32m +      <p>如果说掌握一门赖以生计的技术是技术人员要学会的第一课的话， 那么我觉得技术人员要真正学会的第二课，不是技术，而是业务、交流与协作，学会关心其他工作伙伴的工作情况和进展...</p>[m
+[32m +      <a title="/" href="/" target="_blank" class="readmore">阅读全文>></a>[m
+[32m +    </ul>[m
+[32m +    <p class="dateview"><span>2013-11-04</span><span>作者：兄弟连</span><span>个人博客：[<a href="/news/life/">程序人生</a>]</span></p>[m
+    </div>[m
+[31m -[m
+[31m -  <!-- Javascripts[m
+[31m -  ================================================== -->[m
+[31m -  <!-- Placed at the end of the document so the pages load faster -->[m
+[31m -  <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"other","read_mode":"day","read_font":"font2"}</script>[m
+[31m -  <script type="application/json" data-name="flash">{"flash":{"alert":"继续操作前请注册或者登录."}}</script>[m
+[31m -  <script src="js/web-base.js" crossorigin="anonymous"></script>[m
+[31m -<script src="js/web.js" crossorigin="anonymous"></script>[m
+[31m -<script src="js/entry.js" crossorigin="anonymous"></script>[m
+[31m -  <script>[m
+[31m -  (function(){[m
+[31m -      var bp = document.createElement('script');[m
+[31m -      var curProtocol = window.location.protocol.split(':')[0];[m
+[31m -      if (curProtocol === 'https') {[m
+[31m -          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';[m
+[31m -      }[m
+[31m -      else {[m
+[31m -          bp.src = 'http://push.zhanzhang.baidu.com/push.js';[m
+[31m -      }[m
+[31m -      var s = document.getElementsByTagName("script")[0];[m
+[31m -      s.parentNode.insertBefore(bp, s);[m
+[31m -  })();[m
+[31m -</script>[m
+[31m -[m
+[31m -</body>[m
+[31m -</html>[m
+[32m +  <aside class="right">[m
+[32m +    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>[m
+[32m +    <div class="news">[m
+[32m +    <h3>[m
+[32m +      <p>最新<span>文章</span></p>[m
+[32m +    </h3>[m
+[32m +    <ul class="rank">[m
+[32m +      <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>[m
+[32m +      <li><a href="/" title="with love for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>[m
+[32m +      <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>[m
+[32m +      <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>[m
+[32m +      <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>[m
+[32m +      <li><a href="/" title="建站流程篇——教你如何快速学会做网站" target="_blank">建站流程篇——教你如何快速学会做网站</a></li>[m
+[32m +      <li><a href="/" title="box-shadow 阴影右下脚折边效果" target="_blank">box-shadow 阴影右下脚折边效果</a></li>[m
+[32m +      <li><a href="/" title="打雷时室内、户外应该需要注意什么" target="_blank">打雷时室内、户外应该需要注意什么</a></li>[m
+[32m +    </ul>[m
+[32m +    <h3 class="ph">[m
+[32m +      <p>点击<span>排行</span></p>[m
+[32m +    </h3>[m
+[32m +    <ul class="paih">[m
+[32m +      <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>[m
+[32m +      <li><a href="/" title="withlove for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>[m
+[32m +      <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>[m
+[32m +      <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>[m
+[32m +      <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>[m
+[32m +    </ul>[m
+[32m +    <h3 class="links">[m
+[32m +      <p>友情<span>链接</span></p>[m
+[32m +    </h3>[m
+[32m +    <ul class="website">[m
+[32m +      <li><a href="http://www.houdunwang.com">兄弟连</a></li>[m
+[32m +      <li><a href="http://bbs.houdunwang.com">兄弟连论坛</a></li>[m
+[32m +    </ul> [m
+[32m +    </div>  [m
+[32m +    <!-- Baidu Button BEGIN -->[m
+[32m +    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>[m
+[32m +    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> [m
+[32m +    <script type="text/javascript" id="bdshell_js"></script> [m
+[32m +    <script type="text/javascript">[m
+[32m +document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)[m
+[32m +</script> [m
+[32m +    <!-- Baidu Button END -->   [m
+[32m +    </aside>[m
+[32m +</article>[m
+[32m +@endsection[m
+[32m +[m
+[32m +@section('js')[m
+[32m +[m
+[32m +[m
+[31m- @endsection[m
+[31m- [m
+[32m++@endsection[m
