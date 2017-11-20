@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
-
+use App\Http\Model\User;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -16,6 +16,7 @@ class BlogController extends Controller
      */
     public function index()
     {
+        //$res = user::where('user_id',session('uid'))->first();['res'=>$res]
         return view('home.index');
     }
 

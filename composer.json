@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "gregwar/captcha": "v1.1.3",
         "flc/alidayu": "^2.0",
-        "flc/dysms": "^1.0"
+        "flc/dysms": "^1.0",
+        "predis/predis": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -26,7 +27,12 @@
         },
         "files": [
             "app/MK/MK.php"
+        ],
+        "Captcha": [
+            "Gregwar/Captcha/CaptchaBuilder"
         ]
+        
+
     },
     "autoload-dev": {
         "classmap": [

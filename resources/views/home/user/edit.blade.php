@@ -58,7 +58,7 @@
                     <div class="mws-form-row">
                         {{csrf_field()}}
                         {{method_field('PUT')}}
-                        <input type="submit" value="修改" class="btn btn-success mws-login-button">                 
+                        <input type="submit" value="修改" class="btn btn-success mws-login-button">               
                      </div> 
                      {{csrf_field()}}   
                 </form>
@@ -94,6 +94,7 @@
             
         });
     </script>
+    
 
 </body>
 </html>

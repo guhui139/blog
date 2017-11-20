@@ -12,6 +12,7 @@ use Cookie;
 use Hash;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
+use DB;
 
 class LoginController extends Controller
 {
@@ -78,6 +79,7 @@ class LoginController extends Controller
         header("Cache-Control: no-cache, must-revalidate");
         header('Content-Type: image/jpeg');
         $builder->output();
+        
 
     }
 
@@ -111,7 +113,7 @@ class LoginController extends Controller
       
         $res = $request->except('_token','code','tel');
        
-        $ress = user::where('tel',Cookie::get('tel'))->update($res);
+        $ress = DB::table('user')->where('tel',Cookie::get('tel'))->update($res);
         
         if($ress){
             

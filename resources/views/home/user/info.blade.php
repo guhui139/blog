@@ -54,6 +54,7 @@
           {{ csrf_field()}}
           
           <input type="submit" class="btn btn-danger" value="设置">
+          <a href="/home" class="btn btn-danger">返回主页</a>   
         </div>
       </form>
   </div>      

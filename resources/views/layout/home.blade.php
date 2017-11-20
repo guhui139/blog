@@ -27,10 +27,10 @@
 <body>
 <header>
   <div id="logo"><a href="/"></a></div>
-  @if(Session::get('info_id'))
+  @if(Session::get('uid'))
   <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span>
     <span class="en">Protal</span></a>
-    <a href="about.html"><span>我的个人中心</span>
+    <a href="/home/user"><span>我的个人中心</span>
       <span class="en">About</span>
     </a>
     <a href="newlist.html"><span>写文章</span>
@@ -59,7 +59,8 @@
 
 @show
 <footer>
-  <p>Design by 兄弟连 <a href="http://www.itxdl.cn/" target="_blank">http:///www.itxdl.cn</a> <a href="/">网站统计</a></p>
+  <p>Design by 兄弟连 <a href="http://www.itxdl.cn/" target="_blank"></a> <a href="/">网站统计</a></p>
+
 </footer>
 @section('js')
             

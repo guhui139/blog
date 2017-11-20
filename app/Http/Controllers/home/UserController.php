@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
+use DB;
 
 class UserController extends Controller
 {
@@ -67,14 +68,13 @@ class UserController extends Controller
             //移动图片
             $request->file('img')->move('./Upload',$name.'.'.$suffix);
 
-            $res['img'] = '/Upload/'.$name.'.'.$suffix;
+            
         }
-
+        
         $res = $request->except('_token','img');
-      
         $res['user_id'] = session('uid');
-
-        $datas = info::where('user_id',$res['user_id'])->update($res);
+        $res['img'] = '/Upload/'.$name.'.'.$suffix;
+        $datas = DB::table('info')->where('user_id',$res['user_id'])->update($res);
         if($datas){
 
             return redirect('/home/user')->with('msg','设置成功');
