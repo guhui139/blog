@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\home;
+// echo "<pre>";
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Model\Type;
+use App\Http\model\lists;
+use App\Http\model\list_content;
+use App\Http\model\Type;
 
-class BlogController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +19,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-
-        $type = Type::all();
-        return view('home.index', ['type' => $type]);
+        //
     }
 
     /**
@@ -50,7 +51,11 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        
+        $tp = Type::where('id',$id)->first();
+        $res = lists::where('type_id',$id)->get();
+        // $cont = list_content::where('list_id',$id)->first();
+        // var_dump($cont);
+        return view('home.list',['tp'=>$tp,'res'=>$res]);
     }
 
     /**

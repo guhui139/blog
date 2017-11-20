@@ -34,13 +34,15 @@
     <p>文章<span>推荐</span></p>
   </h2>
   <div class="bloglist left">
-    <h3>type</h3>
-    <figure>img</figure>
+    
+    @foreach($type as $k=>$v)
+    <h3>{{$v->name}}</h3>
+    <figure><img src="{{$v->img}}" alt=""></figure>
     <ul>
-      <p>keyword</p>
-      <a title="/" href="/{id}" target="_blank" class="readmore">查看分区</a>
+      <p>{{$v->keywords}}</p>
+      <a title="/" href="/type/{{$v->id}}" target="_blank" class="readmore">查看专题</a>
     </ul>
-    <p class="dateview"><span>最新文章发表时间</span><span>最新文章发表作者</span>
+    @endforeach
   </div>
   <aside class="right">
     <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>

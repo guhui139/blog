@@ -11,13 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/','home\BlogController');
 
 
 Route::get('/admin/login','loginsController@index');
 Route::post('/admin/dologin','loginsController@add');
+
 Route::resource('/list','home\ListController');
 
 
@@ -30,8 +29,8 @@ Route::post('/home/dologin','home\LoginController@dologin');
 Route::get('/home/sendcode','home\RegisterController@sendcode');
 Route::resource('/register','home\RegisterController');
 
-/*前台主页*/
-Route::resource('/home','home\BlogController');
+/*前台分区*/
+Route::resource('/type','home\TypeController');
 
 //后台
 	Route::resource('admin/user','admin\UserController');

@@ -11,7 +11,7 @@
 
             </div>
             <div class="widget-body am-fr">
-                <form class="am-form tpl-form-border-form tpl-form-border-br" method="post" action="{{url('/list')}}">
+                <form class="am-form tpl-form-border-form tpl-form-border-br" method="post" action="{{url('/list')}}" enctype="multipart/form-data">
                     <div class="am-form-group">
                         <label for="user-name" class="am-u-sm-3 am-form-label">
                             标题
@@ -19,6 +19,27 @@
                         <div class="am-u-sm-9">
                             <input name="title" type="text" class="tpl-form-input" id="user-name" placeholder="请填写标题文字10-20字左右">
                             
+                        </div>
+                    </div>
+                    <div class="widget-head am-cf">
+
+                    </div>
+                    <div class="am-form-group">
+                        <label class="am-u-sm-3 am-form-label" for="user-weibo">
+                            封面图
+                        </label>
+                        <div class="am-u-sm-9">
+                            <div class="am-form-group am-form-file">
+                                <div class="tpl-form-file-img">
+                                    <img alt="" src="assets/img/a5.png">
+                                </div>
+                                <button class="am-btn am-btn-danger am-btn-sm" type="button">
+                                    <i class="am-icon-cloud-upload">
+                                    </i>
+                                    添加图片（非必选）
+                                </button>
+                                <input type="file" multiple="" id="doc-form-file" name="cimg">
+                            </div>
                         </div>
                     </div>
                     <div class="widget-head am-cf">
@@ -56,7 +77,7 @@
                     <div class="am-form-group">
                     	{{csrf_field()}}
                         <div class="am-u-sm-9 am-u-sm-push-3">
-                            <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">
+                            <button type="submit" id="tj" class="am-btn am-btn-primary tpl-btn-bg-color-success ">
                                 提交
                             </button>
                         </div>
@@ -75,7 +96,7 @@
 <script src="../homes/js/app.js"></script>
 <script src="../layer/layer.js"></script>
 <script type="text/javascript">
-	$('button').on('click', function(){
+	$('#tj').on('click', function(){
     	layer.msg('发表成功');
  	});
 </script>

@@ -26,31 +26,38 @@
 </head>
 <body>
 <header>
-  <div id="logo"><a href="/"></a></div>
+  <div id="logo"><a href="/home"></a></div>
   @if(Session::get('info_id'))
-  <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span>
-    <span class="en">Protal</span></a>
+  <nav class="topnav" id="topnav">
+    <a href="/home"><span>首页</span>
+      <span class="en">Protal</span>
+    </a>
     <a href="about.html"><span>我的个人中心</span>
-      <span class="en">About</span>
+      <span class="en">Personal</span>
     </a>
     <a href="newlist.html"><span>写文章</span>
-      <span class="en">Life</span>
+      <span class="en">Issue</span>
     </a>
     <a href="moodlist.html"><span>留言板</span>
-      <span class="en">Doing</span>
+      <span class="en">Leave word</span>
     </a>
     <a href="share.html"><span>模板分享</span>
       <span class="en">Share</span>
     </a>
+    <a href="share.html"><span style="color:red">退出</span>
+      <span class="en">Sign out</span>
+    </a>
   </nav>
   @else
-  <nav class="topnav" id="topnav"><a href="index.html"><span>首页</span>
-    <span class="en">Protal</span></a>
+  <nav class="topnav" id="topnav">
+    <a href="/home"><span>首页</span>
+      <span class="en">Protal</span>
+    </a>
     <a href="/home/index"><span>登录</span>
-      <span class="en">About</span>
+      <span class="en">Sign in</span>
     </a>
     <a href="/register/create"><span>注册</span>
-      <span class="en">Life</span>
+      <span class="en">Register</span>
     </a>
   </nav>
   @endif
