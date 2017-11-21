@@ -6,20 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Model\type;
 
-use Flc\Dysms\Client;
-use Flc\Dysms\Request\SendSms;
-
-class LoginController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin/user/login');
+        $res=type::where('name','like','%'.$request->input('search').'%')->
+            orderBy('id','asc')->
+            paginate($request->input('num',2));
+        return view('admin.type.index',['res'=>$res,'request'=>$request,'search'=>$request->input('search')]);
     }
 
     /**
@@ -29,7 +30,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.type.add');
     }
 
     /**
@@ -40,20 +41,25 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        $config = [
-        'accessKeyId'    => 'LTAICHqEMujWvxvJ',
-        'accessKeySecret' => 'C6nSnyPPiuUIFh4lrC74pu6YYJ6SBn',
-        ];
+        //
+        if($request->hasFile('img')){
 
-        $client  = new Client($config);
-        $sendSms = new SendSms;
-        $sendSms->setPhoneNumbers('17600738993');
-        $sendSms->setSignName('小小');
-        $sendSms->setTemplateCode('SMS_77670013');
-        $sendSms->setTemplateParam(['code' => rand(100000, 999999)]);
-        $sendSms->setOutId('demo');
+            $res = $request->except('_token','repass','img');
+            $name = rand(1111,9999).time();
+            $suffix = $request->file('img')->getClientOriginalExtension();
+            $request->file('img')->move('./Uploads/',$name.'.'.$suffix);
+        }
+            $res['img']='Uploads/'.$name.'.'.$suffix;
+            // dd($res);
 
-        print_r($client->execute($sendSms));
+
+          $bool=type::insert($res);
+          // dd($bool);
+          if($bool){
+            return redirect()->route('admin.type.index');
+        }else{
+             return redirect()->route('admin.type.exit');
+        }
     }
 
     /**
@@ -76,6 +82,10 @@ class LoginController extends Controller
     public function edit($id)
     {
         //
+        $res=type::where('id',$id)->first();
+        
+       
+        return view('admin.type.edit',['res'=>$res]);
     }
 
     /**
@@ -88,6 +98,7 @@ class LoginController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**

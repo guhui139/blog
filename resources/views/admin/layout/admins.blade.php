@@ -265,28 +265,42 @@
                     <button type="submit" class="mws-search-submit"><i class="icon-search"></i></button>
                 </form>
             </div>
+
             
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
                     
                     <li>
-                        <a href="#"><i class="icon-list"></i>用户管理</a>
-                        <ul>
+                        <a href="#"><i class="icon-user"></i>用户管理</a>
+                        <ul class="closed">
                             <li><a href="/admin/user">用户列表</a></li>
                             <li><a href="/admin/user/create">用户添加</a></li>
                         </ul>
                     </li>
 
                      <li>
-                        <a href="#"><i class="icon-list"></i>文章管理</a>
-                        <ul>
+                        <a href="#"><i class="icon-align-left"></i>文章管理</a>
+                        <ul class="closed">
                             <li><a href="/admin/artical">文章列表</a></li>
-                            <li><a href="/admin/artical/create">文章类型</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="icon-list"></i>类型管理</a>
+                        <ul class="closed">
+                            <li><a href="/admin/type">类型列表</a></li>
+                            <li><a href="/admin/type/create">文章类型添加</a></li>
                         </ul>
                     </li>
                     
-                    
+                    <li>
+                        <a href="#"><i class="icon-unlink"></i>友情链接</a> 
+                        <ul class="closed">
+                            <li><a href="/admin/link">浏览链接</a></li>
+                            <li><a href="/admin/link/create">添加链接</a></li>
+                        </ul>           
+                    </li>
                 </ul>
             </div>         
         </div>

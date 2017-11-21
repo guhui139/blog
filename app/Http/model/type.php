@@ -4,7 +4,7 @@ namespace App\Http\model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class lists extends Model
+class type extends Model
 {
-    protected $table = 'lists';
+    protected $table = 'type';
 }
