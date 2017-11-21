@@ -53,7 +53,7 @@
     <a href="/index"><span>登录</span>
       <span class="en">Sign in</span>
     </a>
-    <a href="/register/create"><span>注册</span>
+    <a href="/register"><span>注册</span>
       <span class="en">Register</span>
     </a>
   </nav>
