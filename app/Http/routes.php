@@ -26,9 +26,6 @@ Route::resource('/','home\BlogController');
 Route::resource('/info','home\InfoController');
 
 
-Route::get('/admin/login','loginsController@index');
-Route::post('/admin/dologin','loginsController@add');
-
 Route::resource('/list','home\ListController');
 
 /*前台注册*/
@@ -40,17 +37,17 @@ Route::resource('/type','home\TypeController');
 
 //后台
 	Route::resource('admin/login','admin\LoginsController');
+
+
+
+//路由组的设置
+Route::group(['middleware'=>'login'],function(){
+
+	//后台
 	Route::resource('admin/user','admin\UserController');
 	Route::resource('admin/artical','admin\ArticalController');
 	Route::resource('admin/type','admin\TypeController');
 	Route::resource('admin/link','admin\LinkController');
-
-
-//路由组的设置
-Route::group(['prefie'=>'admin','namespace'=>'admin','middleware'=>'login'],function(){
-
-	//后台
-	
 	
 });
 

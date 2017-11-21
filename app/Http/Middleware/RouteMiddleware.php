@@ -15,13 +15,13 @@ class RouteMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('id')) {
+        if($request->session()->has('uid')) {
 
                 return $next($request);
 
             } else {
 
-            return redirect('/login');
+            return redirect('/admin/login');    
 
         }
     }
