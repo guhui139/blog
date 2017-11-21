@@ -25,6 +25,18 @@
 
                     </div>
                     <div class="am-form-group">
+                        <label for="user-name" class="am-u-sm-3 am-form-label">
+                            文章摘要
+                        </label>
+                        <div class="am-u-sm-9">
+                            <input name="abstract" type="text" class="tpl-form-input" id="user-name" placeholder="文章说明">
+                            
+                        </div>
+                    </div>
+                    <div class="widget-head am-cf">
+
+                    </div>
+                    <div class="am-form-group">
                         <label class="am-u-sm-3 am-form-label" for="user-weibo">
                             封面图
                         </label>
@@ -99,6 +111,12 @@
 	$('#tj').on('click', function(){
     	layer.msg('发表成功');
  	});
+</script>
+<script type="text/javascript">
+    var ue = UE.getEditor('container');
+    ue.ready(function() {
+        ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
+    });
 </script>
  
 @endsection

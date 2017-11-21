@@ -39,7 +39,7 @@
                         </div>
                     @endif
 
-                <form class="mws-form" action="/home" method="post">
+                <form class="mws-form" action="/register" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
                             <input type="text" name="tel" class="mws-login-username required" placeholder="请输入手机号">

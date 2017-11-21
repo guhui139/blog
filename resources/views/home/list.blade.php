@@ -9,7 +9,7 @@
                 <a href="/" class="n1">
                     网站首页
                 </a>
-                <a href="/" class="n2">
+                <a href="/type/{{$tp->id}}" class="n2">
                     {{$tp->name}}
                 </a>
                 <p>
@@ -45,17 +45,19 @@
                     <p>
                         {{$v->abstract}}
                     </p>
-                    <a title="/" href="/" target="_blank" class="readmore">
+                    <a title="/" href="/list/{{$v->id}}" target="_blank" class="readmore">
                         阅读全文>>
                     </a>
                 </ul>
-                @endforeach
+                
                 <div class="line">
                 </div>
+
                 <div class="line">
                 </div>
                 <div class="blank">
                 </div>
+                @endforeach 
                 <div class="ad">
                     <img src="../homes/images/ad.png">
                 </div>

@@ -13,4 +13,9 @@ class UserController extends Controller
     {
     	return view('home.user');
     }
+
+    public function add()
+    {
+    	
+    }
 }

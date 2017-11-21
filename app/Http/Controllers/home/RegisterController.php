@@ -22,8 +22,7 @@ class RegisterController extends Controller
     public function index()
     {
         //
-        return ('1234');
-        
+        return view('home.register');
     }
 
     /**
@@ -34,8 +33,6 @@ class RegisterController extends Controller
     public function create()
     {
         
-        return view('home.register');
-
     }
 
     /**
@@ -54,14 +51,14 @@ class RegisterController extends Controller
     
         if($phones){
 
-            return redirect('/home/create')->with('msg','您输入的手机号已注册');
+            return redirect('/register')->with('msg','您输入的手机号已注册');
         }
 
         
 
         if(Cookie::get('codes') != $res['code']){
 
-            return redirect('/home/create')->with('msg','验证码错误');
+            return redirect('/register')->with('msg','验证码错误');
 
         }
          
@@ -71,7 +68,7 @@ class RegisterController extends Controller
         $ress['password'] = Hash::make($ress['password']);
         $data = DB::table('user')->insert($ress);
 
-        return redirect('/home/index')->with('msg','注册成功,请登录');
+        return redirect('/')->with('msg','注册成功,请登录');
         
         
         

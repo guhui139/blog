@@ -5,45 +5,207 @@
 
 @section('content')
 <article class="blogs">
-  <h1 class="t_nav"><span>您当前的位置：<a href="/index.html">首页</a>&nbsp;&gt;&nbsp;<a href="/news/s/">慢生活</a>&nbsp;&gt;&nbsp;<a href="/news/s/">日记</a></span><a href="/" class="n1">网站首页</a><a href="/" class="n2">日记</a></h1>
+  <h1 class="t_nav"><span>您当前的位置：<a href="/">首页</a>--><a href="/type">{{$tp->name}}</a>--><a href="#">{{$ls->title}}</a></span></h1>
   <div class="index_about">
-    <h2 class="c_titile">爱情不容有错，即使错了那就重来</h2>
-    <p class="box_c"><span class="d_time">发布时间：2016-09-08</span><span>编辑：兄弟连</span><span>查看次数：2323</span></p>
+    <h2 class="c_titile">{{trim('.'.$ls->abstract)}}</h2>
+    <p class="box_c"><span class="d_time">发布时间:{{$ls->time}}</span>&nbsp;&nbsp;<span>编辑:{{$ls->info_id}}</span>&nbsp;&nbsp;<span>查看次数:x</span></p>
     <ul class="infos">
-      <p>进一好友空间，再一次看到她置顶的那一篇《他和她的故事》爱情在他俩的生活中经历了不少分分合合，但最后俩人还是走在了一起。当今天再一次阅读的时候，我没有第一次那么感性，我注重他们俩曲折的过程，其中出现过第三者...</p>
-      <p>如果我是她，对于他当初的脚踏两只船、尽管仍然说爱但亦然离开而选择别人，我很肯定我是无法原谅他的，也许你会说是因为我不是真正爱他吧，我也不知道，这是不是因为爱得不够深，不能包容他的过错...我是很小气的人，就像很多人说的那样，一年365天，你364天对她好，只要有一天对她不好，她也会在n天也许n年后提出来，你哪天对我不好。</p>
-      <p><img src="../homes/images/e5e39b1148811261c78b933805d07232.png" alt="分手"></p>
-      <p>大学时跟我分分合合的男朋友，却是这么一个爱犯错的人。跟他交往，会有意无意的伤到我自尊，至今我也那么认为那伤害了我的自尊。在我骨子里有一种骄傲和很强的自尊，而他却偏偏伤了一次又一次。他的朋友都说我小气，我至今也觉得如果我不小气，那就是我傻！</p>
-      <p>我认为大学时的恋爱，是毕业前进入社会的一次恋爱实习。参杂了很多的疑问和抉择。就像工作，从销售到文员到编辑到技术员，最后才知道什么工作适合自己。找一个人陪你恋爱实习，也许很简单，也许很难。</p>
-      <p>这么多年过去了，当初分手都会舍不得那段4年的感情，后来也是时间煮了这段记忆。现在我们各自有了各自的生活，他也找到了他心仪的女孩，我能感觉出他们俩很相爱，当初最后一次分手的过渡时间，无论有多么的不舍与难熬，现在看看都是正确的。</p>
-      <p><img src="../homes/images/1f8aea2172f6eb987c3de3f7ba474eb1.png" alt="分手"></p>
-      <p>为何我会毅然放弃，因为在我心里，那些过去的伤，那些不好的记忆永远都抹不去，我无法面对，哪怕是当初妥协了，我想最后我也一定会再一次选择放弃....</p>
-      <p>我觉得爱情也可以重新来过，只是换换主角罢了...</p>
+      {{$res->content}}
+      <p><img src="{{$ls->cimg}}" alt="分手"></p>
     </ul>
     <div class="keybq">
     <p><span>关键字词</span>：爱情,犯错,原谅,分手</p>
-    
     </div>
     <div class="ad"> </div>
     <div class="nextinfo">
-      <p>上一篇：<a href="/news/s/2013-09-04/606.html">程序员应该如何高效的工作学习</a></p>
-      <p>下一篇：<a href="/news/s/2013-10-21/616.html">柴米油盐的生活才是真实</a></p>
+      @if($pls)
+        <p>上一篇：<a href="/list/{{$pls->id}}">{{$pls->title}}</a></p>
+      @else
+        <p>上一篇：没有了</p>
+      @endif
+
+      @if($nls)
+        <p>下一篇：<a href="/list/{{$nls->id}}">{{$nls->title}}</a></p>
+      @else
+        <p>下一篇：没有了</p>
+      @endif
     </div>
-    <div class="otherlink">
-      <h2>相关文章</h2>
-      <ul>
-        <li><a href="/news/s/2013-07-25/524.html" title="现在，我相信爱情！">现在，我相信爱情！</a></li>
-        <li><a href="/newstalk/mood/2013-07-24/518.html" title="我希望我的爱情是这样的">我希望我的爱情是这样的</a></li>
-        <li><a href="/newstalk/mood/2013-07-02/335.html" title="有种情谊，不是爱情，也算不得友情">有种情谊，不是爱情，也算不得友情</a></li>
-        <li><a href="/newstalk/mood/2013-07-01/329.html" title="世上最美好的爱情">世上最美好的爱情</a></li>
-        <li><a href="/news/read/2013-06-11/213.html" title="爱情没有永远，地老天荒也走不完">爱情没有永远，地老天荒也走不完</a></li>
-        <li><a href="/news/s/2013-06-06/24.html" title="爱情的背叛者">爱情的背叛者</a></li>
-      </ul>
+    <div class="nextinfo">
+     
+       <button>喜欢</button>
+        <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
+       
+    </div>
+  <div>
+    <form class="new-comment">
+      <a class="avatar" href="用户主页">
+        info_img
+      </a>
+      <textarea name="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5" placeholder="写下你的评论..."></textarea> 
+      <div class="write-function-block">
+        <div data-v-b36e9416="" class="emoji-modal-wrap">
+          <a data-v-b36e9416="" class="emoji">
+            <i data-v-b36e9416="" class="iconfont ic-comment-emotions">
+            </i>
+          </a>
+          <!---->
+        </div>
+        <div class="hint">
+          <button>评论</button>
+        </div>
+        <a class="btn btn-send">
+          发送
+        </a>
+        <a class="cancel">
+          取消
+        </a>
+      </div>
+    </form>
+    <!---->
+  </div>
+  <div id="normal-comment-list" class="normal-comment-list">
+    <div>
+      <div>
+        <div class="top-title">
+          <span>
+            评论数 评论id对应文章id数量
+          </span>
+          <a class="author-only">
+            where id = info_id 评论表
+          </a>
+          <a class="close-btn" style="display: none;">
+            关闭评论 隐藏div
+          </a>
+          <div class="pull-right">
+            <a class="active">
+              按喜欢排序 order by zan
+            </a>
+            <a class="">
+              按时间正序 order by time 
+            </a>
+            <a class="">
+              按时间倒序 order by time desc
+            </a>
+          </div>
+        </div>
+      </div>
+      <!---->
+      <!---->
+      <div class="comments-placeholder" style="display: none;">
+        <div class="author">
+          <div class="avatar">
+          </div>
+          <div class="info">
+            <div class="name">
+            </div>
+            <div class="meta">
+            </div>
+          </div>
+        </div>
+        <div class="text">
+        </div>
+        <div class="text animation-delay">
+        </div>
+        <div class="tool-group">
+          <i class="iconfont ic-zan-active">
+          </i>
+          <div class="zan">
+          </div>
+          <i class="iconfont ic-list-comments">
+          </i>
+          <div class="zan">
+          </div>
+        </div>
+      </div>
+      <div id="comment-17623862" class="comment">
+        <div>
+          <div class="author">
+            <a href="/u/3b38a5b61f2a" target="_blank" class="avatar">
+              <img src="//upload.jianshu.io/users/upload_avatars/4314760/407fd2abf8bf.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114">
+            </a>
+            <div class="info">
+              <a href="/u/3b38a5b61f2a" target="_blank" class="name">
+                info_uname
+              </a>
+              <!---->
+              <!---->
+              <div class="meta">
+                <span>
+                  时间正序判断楼层 comment_time
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="comment-wrap">
+            <p>
+              comment_content 
+               <img src="//static.jianshu.io/assets/emojis/smile.png" alt=":smile:" title=":smile:"
+              class="emoji" width="20" height="20">
+              <img src="//static.jianshu.io/assets/emojis/smile.png" alt=":smile:" title=":smile:"
+              class="emoji" width="20" height="20">
+              <img src="//static.jianshu.io/assets/emojis/smile.png" alt=":smile:" title=":smile:"
+              class="emoji" width="20" height="20">
+            </p>
+            <div class="tool-group">
+              <a class="">
+                <i class="iconfont ic-zan">
+                </i>
+                <span>
+                  点赞数 count zan_review_id zan
+                </span>
+              </a>
+              <a class="">
+                <i class="iconfont ic-comment">
+                </i>
+                <span>
+                  评论 comment 
+                </span>
+              </a>
+              <a class="report">
+                <span>
+                  举报
+                </span>
+              </a>
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div class="sub-comment-list">
+          <div id="comment-17624221" class="sub-comment">
+            <p>
+              <a href="/u/e2073c34b346" target="_blank">
+                info_uname
+              </a>
+              ：
+              <span>
+                info_img
+              </span>
+            </p>
+            <div class="sub-tool-group">
+              <span>
+                comment_time
+              </span>
+              <a class="">
+                <i class="iconfont ic-comment">
+                </i>
+                <span>
+                  回复
+                </span>
+              </a>
+              <a class="report">
+                <span>
+                  举报
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <aside class="right">
     <!-- Baidu Button BEGIN -->
-    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
+   
     <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
     <script type="text/javascript" id="bdshell_js"></script> 
     <script type="text/javascript">

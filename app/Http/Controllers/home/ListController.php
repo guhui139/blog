@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\lists;
 use App\Http\Model\list_content;
+use App\Http\Model\Type;
 // use DB;
 class ListController extends Controller
 {
@@ -41,12 +42,8 @@ class ListController extends Controller
     {
         $zu = $request->except('_token','content');
         
-
-        // $res['info_id'] = session('user_id');
-        
         $zu['time'] = date('Y-m-d H:i:s',time());
-        $wen = $request->except('_token','time','title','type_id','cimg');
-        $zu['abstract'] = substr($wen['content'],0,30).'...';
+        $wen = $request->except('_token','time','title','type_id','cimg','abstract');
         // dd($zu);
          //文件上传
         if($request->hasFile('cimg')){
@@ -58,16 +55,16 @@ class ListController extends Controller
             $suffix = $request->file('cimg')->getClientOriginalExtension();
 
             //移动图片
-            $request->file('cimg')->move('./home/Upload',$name.'.'.$suffix);
+            $request->file('cimg')->move('./home/Uploads',$name.'.'.$suffix);
         }
         $zu['cimg'] = '/home/Upload/'.$name.'.'.$suffix; 
-
+        $zu['info_id'] = $request->session()->get('uid');
         $data = lists::insertGetId($zu);
 
         $wen['list_id'] = $data;
         $res = list_content::insert($wen);
         if($data && $res){
-            return redirect('/list');
+            return redirect('/');
         }else{
             return back()->withInput();
         }
@@ -81,7 +78,26 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        return view('home.content');
+        $res = list_content::where('list_id',$id)->first();
+        $ls = lists::where('id',$id)->first();
+        $tp = type::where('id',$ls->type_id)->first();
+
+        $pres = list_content::where('list_id',$id-1)->first();
+        $pls = lists::where(['id'=>$id-1,'type_id'=>$tp->id])->first();
+
+        $nres = list_content::where('list_id',$id+1)->first();
+        $nls = lists::where(['id'=>$id+1,'type_id'=>$tp->id])->first();
+        // dd($nres,$nls);
+        if($pres=null and $pls=null){
+            if($nres=null and $nls=null){
+                $nres = 0;
+                $nls = 0;
+            }
+            $pres = 0;
+            $pls = 0;
+        }
+        
+        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls]);
     }
 
     /**

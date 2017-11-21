@@ -14,10 +14,11 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         $type = Type::all();
+        $request->session()->put('type',$type);
         return view('home.index', ['type' => $type]);
     }
 
@@ -85,5 +86,12 @@ class BlogController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function doLogout(Request $request)
+    {
+        $request->session()->pull('uid',session('uid'));
+        $type = $request->session()->get('type');
+        return view('home.index',['type'=>$type]);
     }
 }

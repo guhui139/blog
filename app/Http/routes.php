@@ -11,19 +11,25 @@
 |
 */
 
+/*前台登录*/
+Route::get('/index','home\LoginController@code');
+Route::get('/index/code','home\LoginController@code');
+Route::resource('/index','home\LoginController');
+
+
+//前台主页
+// Route::get('/','home\BlogController@dologin');
+Route::get('/lol','home\BlogController@dologout');
 Route::resource('/','home\BlogController');
+
+//前台详情
+Route::resource('/info','home\InfoController');
 
 
 Route::get('/admin/login','loginsController@index');
 Route::post('/admin/dologin','loginsController@add');
 
 Route::resource('/list','home\ListController');
-
-
-/*前台登录*/
-Route::get('/home/index','home\LoginController@index');
-Route::get('/home/code','home\LoginController@code');
-Route::post('/home/dologin','home\LoginController@dologin');
 
 /*前台注册*/
 Route::get('/home/sendcode','home\RegisterController@sendcode');

@@ -39,7 +39,7 @@
                         </div>
                     @endif
 
-                <form class="mws-form" action="/home/dologin" method="post">
+                <form class="mws-form" action="/index" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
                             <input type="text" name="tel" class="mws-login-username required" placeholder="请输入手机号">
@@ -54,7 +54,7 @@
                     <div class="mws-form-row">
                         <div class="mws-form-item">
                             <input type="text" name="code" class="mws-login required" placeholder="请输入验证码" style='width:120px;height:35px;margin-right:20px'>
-                            <img src="/home/code" alt=""  class="img-rounded" onclick="this.src = this.src += '?1'">
+                            <img src="/index/code" alt=""  class="img-rounded" onclick="this.src = this.src += '?1'">
                         </div>
                     </div>
                     
