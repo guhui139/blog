@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Model\Type;
+use App\Http\Model\type;
 
 class BlogController extends Controller
 {
@@ -17,7 +17,7 @@ class BlogController extends Controller
     public function index(Request $request)
     {
 
-        $type = Type::all();
+        $type = type::all();
         $request->session()->put('type',$type);
         return view('home.index', ['type' => $type]);
     }

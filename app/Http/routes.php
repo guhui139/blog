@@ -39,15 +39,18 @@ Route::resource('/register','home\RegisterController');
 Route::resource('/type','home\TypeController');
 
 //后台
+	Route::resource('admin/login','admin\LoginsController');
 	Route::resource('admin/user','admin\UserController');
 	Route::resource('admin/artical','admin\ArticalController');
+	Route::resource('admin/type','admin\TypeController');
+	Route::resource('admin/link','admin\LinkController');
 
 
 //路由组的设置
 Route::group(['prefie'=>'admin','namespace'=>'admin','middleware'=>'login'],function(){
 
 	//后台
-
+	
 	
 });
 

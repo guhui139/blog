@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\lists;
 use App\Http\Model\list_content;
-use App\Http\Model\Type;
+use App\Http\Model\type;
 // use DB;
 class ListController extends Controller
 {

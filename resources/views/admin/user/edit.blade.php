@@ -12,17 +12,9 @@
 	        </span>
 	    </div>
 	<div class="mws-panel-body no-padding">
-		@if (count($errors) > 0)
-		    <div class="mws-form-message error">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
+		
 
-		<form class="mws-form" action="/Admin/user/{{$res->id}}" method="post" enctype="multipart/form-data">
+		<form class="mws-form" action="/admin/user/{{$res->id}}" method="post" enctype="multipart/form-data">
 			<div class="mws-form-inline">
 				<div class="mws-form-row">
 					<label class="mws-form-label">用户名</label>
@@ -49,8 +41,8 @@
 					<label class="mws-form-label">状态</label>
 					<div class="mws-form-item clearfix">
 						<ul class="mws-form-list inline">
-							<li><label><input type="radio" name="status" value='1' @if($res->status == 1) checked @endif > 开启</label></li>
-							<li><label><input type="radio" name="status" value='0' @if($res->status == 0) checked @endif > 关闭</label></li>
+							<li><label><input type="radio" name="auth" value='1' @if($res->auth == 1) checked @endif > 开启</label></li>
+							<li><label><input type="radio" name="auth" value='0' @if($res->auth == 0) checked @endif > 关闭</label></li>
 						</ul>
 					</div>
 				</div>
@@ -69,9 +61,3 @@
 @endsection
 
 
-@section('js')
-<script>
-	$('.mws-form-message').delay(3000).slideUp(1000);
-</script>
-
-@endsection

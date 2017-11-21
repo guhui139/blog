@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\home;
+namespace App\Http\Controllers\admin;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\model\lists;
-use App\Http\model\list_content;
-use App\Http\model\type;
 
-class TypeController extends Controller
+use App\Http\Model\admin_info;
+use Hash;
+
+class LoginsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +19,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('home.type');
+        return view('admin.login');
     }
 
     /**
@@ -40,6 +41,32 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         //
+        
+        $res = $request->except('_token');
+         
+       
+          
+          $uname = admin_info::where('uname',$res['uname'])->first();
+
+        //dd($uname);
+        if($uname['uname']!=$res['uname']){
+
+            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
+        }
+
+        if(!Hash::check($res['password'],$uname->password)){
+
+            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
+        }
+
+       
+
+        //存session
+        // session(['uid'=>$uname->id]);
+        $request->session()->put('uid',$uname->id);
+
+
+        return redirect('/admin/user');
     }
 
     /**
@@ -50,11 +77,7 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        $tp = type::where('id',$id)->first();
-        $res = lists::where('type_id',$id)->get();
-        // $cont = list_content::where('list_id',$id)->first();
-        // var_dump($cont);
-        return view('home.list',['tp'=>$tp,'res'=>$res]);
+        //
     }
 
     /**
