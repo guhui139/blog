@@ -63,7 +63,7 @@
                             
                         </label>
                         <div class="am-u-sm-9">
-                            <select name="type_id" data-am-selected="{searchBox: 1}" style="display: none;">
+                            <select name="type_id" data-am-selected="{searchBox: 1}">
                                 <option value="">-=请选择文章类别=-</option>
                                 <option value="1">PHP</option>
                                 <option value="2">Python</option>

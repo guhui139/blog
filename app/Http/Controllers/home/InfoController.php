@@ -72,7 +72,7 @@ class InfoController extends Controller
         $datas = DB::table('info')->where('user_id',$res['user_id'])->update($res);
         if($datas){
 
-            return redirect('/info')->with('msg','设置成功');
+            return redirect('/info')->with('msg','保存成功');
         } else {
 
             return back()->withInput();
