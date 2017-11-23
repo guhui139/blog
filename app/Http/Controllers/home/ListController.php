@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Model\lists;
 use App\Http\Model\list_content;
 use App\Http\Model\Type;
-// use DB;
+use App\Http\Model\info;
+use App\Http\Model\comment;
+use DB;
 class ListController extends Controller
 {
     /**
@@ -29,7 +31,8 @@ class ListController extends Controller
      */
     public function create()
     {
-        return view('/home.add');
+        $res = Type::get();
+        return view('/home.add',['res'=>$res]);
     }
 
     /**
@@ -57,7 +60,7 @@ class ListController extends Controller
             //移动图片
             $request->file('cimg')->move('./home/Uploads',$name.'.'.$suffix);
         }
-        $zu['cimg'] = '/home/Upload/'.$name.'.'.$suffix; 
+        $zu['cimg'] = '/homes/Uploads/'.$name.'.'.$suffix; 
         $zu['info_id'] = $request->session()->get('uid');
         $data = lists::insertGetId($zu);
 
@@ -76,20 +79,38 @@ class ListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $res = list_content::where('list_id',$id)->first();
         $ls = lists::where('id',$id)->first();
         $tp = type::where('id',$ls->type_id)->first();
+        $user = info::where('user_id',$request->session()->get('uid'))->first();
+        
+        $cont = count(comment::where('lid',$id)->get());
+        $request->session()->put('count',$cont);
+        $com = comment::join('info', 'info.user_id', '=', 'comment.uid')
+                        ->join('lists','comment.lid','=','lists.id')
+                        ->select('info.uname','info.img','comment.*')
+                        ->where('lid',$id)
+                        ->get();
+        // dd($com);
+
+
 
         $pres = list_content::where('list_id',$id-1)->first();
         $pls = lists::where(['id'=>$id-1,'type_id'=>$tp->id])->first();
 
         $nres = list_content::where('list_id',$id+1)->first();
         $nls = lists::where(['id'=>$id+1,'type_id'=>$tp->id])->first();
-        // dd($nres,$nls);
+        // dd($com);
         if($pres=null and $pls=null){
             if($nres=null and $nls=null){
+                if($com=null){
+                    if($user=null){
+                        $user = 0;
+                    }
+                    $com = 0;
+                }
                 $nres = 0;
                 $nls = 0;
             }
@@ -97,7 +118,7 @@ class ListController extends Controller
             $pls = 0;
         }
         
-        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls]);
+        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls,'user'=>$user,'cont'=>$cont,'com'=>$com]);
     }
 
     /**

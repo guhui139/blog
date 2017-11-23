@@ -1,20 +1,19 @@
 ﻿@extends('layout.home')
 
-@section('title','文章详情')
+@section('title',$ls->title)
 
 
 @section('content')
 <article class="blogs">
-  <h1 class="t_nav"><span>您当前的位置：<a href="/">首页</a>--><a href="/type">{{$tp->name}}</a>--><a href="#">{{$ls->title}}</a></span></h1>
+  <h1 class="t_nav"><span>您当前的位置：<a href="/">首页</a>--><a href="/type/{{$tp->id}}">{{$tp->name}}</a>--><a href="#">{{$ls->title}}</a></span></h1>
   <div class="index_about">
     <h2 class="c_titile">{{trim('.'.$ls->abstract)}}</h2>
     <p class="box_c"><span class="d_time">发布时间:{{$ls->time}}</span>&nbsp;&nbsp;<span>编辑:{{$ls->info_id}}</span>&nbsp;&nbsp;<span>查看次数:x</span></p>
     <ul class="infos">
       {{$res->content}}
-      <p><img src="{{$ls->cimg}}" alt="分手"></p>
+      <p><img src="../{{$ls->cimg}}" alt="分手" width="200px"></p>
     </ul>
     <div class="keybq">
-    <p><span>关键字词</span>：爱情,犯错,原谅,分手</p>
     </div>
     <div class="ad"> </div>
     <div class="nextinfo">
@@ -31,17 +30,23 @@
       @endif
     </div>
     <div class="nextinfo">
-     
-       <button>喜欢</button>
+       <button id="zan">喜欢</button>
         <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
-       
     </div>
   <div>
-    <form class="new-comment">
+    <form class="new-comment" method="post" action="/review/add" id="form">
       <a class="avatar" href="用户主页">
-        info_img
+        @if($user)
+        <img src="{{$user->img}}" alt="" style="width:100%">
+        @else
+        <img src="../homes/picture/logo.png" alt="" style="width:50%;border-radius:0%:">
+        @endif
       </a>
-      <textarea name="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5" placeholder="写下你的评论..."></textarea> 
+      <textarea id="cont" name="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5" placeholder="写下你的评论..."></textarea> 
+     
+      <input type="hidden" name="uid" value="{{session('uid')}}">
+      <input type="hidden" name="lid" value="{{$ls->id}}">
+
       <div class="write-function-block">
         <div data-v-b36e9416="" class="emoji-modal-wrap">
           <a data-v-b36e9416="" class="emoji">
@@ -51,14 +56,9 @@
           <!---->
         </div>
         <div class="hint">
-          <button>评论</button>
+          {{csrf_field()}}
+          <button id="comment" type="button">评论</button>
         </div>
-        <a class="btn btn-send">
-          发送
-        </a>
-        <a class="cancel">
-          取消
-        </a>
       </div>
     </form>
     <!---->
@@ -67,13 +67,13 @@
     <div>
       <div>
         <div class="top-title">
-          <span>
-            评论数 评论id对应文章id数量
+          <span id="count">
+            共{{$cont}}条评论
           </span>
           <a class="author-only">
-            where id = info_id 评论表
+            只看作者
           </a>
-          <a class="close-btn" style="display: none;">
+          <a class="close-btn" style="">
             关闭评论 隐藏div
           </a>
           <div class="pull-right">
@@ -117,34 +117,29 @@
           </div>
         </div>
       </div>
+        @foreach($com as $key=>$v)
       <div id="comment-17623862" class="comment">
         <div>
           <div class="author">
             <a href="/u/3b38a5b61f2a" target="_blank" class="avatar">
-              <img src="//upload.jianshu.io/users/upload_avatars/4314760/407fd2abf8bf.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/114/h/114">
+              <img src="{{$v->img}}" width="100%">
             </a>
             <div class="info">
-              <a href="/u/3b38a5b61f2a" target="_blank" class="name">
-                info_uname
+              <a href="/" target="_blank" class="name">
+                {{$v->uname}}
               </a>
               <!---->
               <!---->
               <div class="meta">
                 <span>
-                  时间正序判断楼层 comment_time
+                  {{$v->time}}
                 </span>
               </div>
             </div>
           </div>
           <div class="comment-wrap">
             <p>
-              comment_content 
-               <img src="//static.jianshu.io/assets/emojis/smile.png" alt=":smile:" title=":smile:"
-              class="emoji" width="20" height="20">
-              <img src="//static.jianshu.io/assets/emojis/smile.png" alt=":smile:" title=":smile:"
-              class="emoji" width="20" height="20">
-              <img src="//static.jianshu.io/assets/emojis/smile.png" alt=":smile:" title=":smile:"
-              class="emoji" width="20" height="20">
+              {{$v->content}}
             </p>
             <div class="tool-group">
               <a class="">
@@ -170,37 +165,8 @@
             </div>
           </div>
         </div>
-        <div class="sub-comment-list">
-          <div id="comment-17624221" class="sub-comment">
-            <p>
-              <a href="/u/e2073c34b346" target="_blank">
-                info_uname
-              </a>
-              ：
-              <span>
-                info_img
-              </span>
-            </p>
-            <div class="sub-tool-group">
-              <span>
-                comment_time
-              </span>
-              <a class="">
-                <i class="iconfont ic-comment">
-                </i>
-                <span>
-                  回复
-                </span>
-              </a>
-              <a class="report">
-                <span>
-                  举报
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
       </div>
+      @endforeach
     </div>
   </div>
   <aside class="right">
@@ -250,6 +216,21 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 @endsection
 
 @section('js')
-
+  <script>
+   
+    $('#comment').on('click',function(){ var content = $('#cont').val();
+      $.post("{{ url('/review/add')}}",
+        {_token:'{{csrf_token()}}',
+          uid:'{{session("uid")}}',
+          lid:'{{$ls->id}}',
+          content:content  
+        },
+        function(data){
+          $("#comment-17623862").after('<div id="comment-17623862" class="comment"><div><div class="author"><a href="/u/3b38a5b61f2a" target="_blank" class="avatar"><img src="'+data.img+'" width="100%"><a><div class="info"><a href="/" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class=""><i class="iconfont ic-zan"></i><span>点赞数 count zan_review_id zan</span></a><a class=""><i class="iconfont ic-comment"></i><span>评论 comment </span></a><a class="report"><span>举报</span></a></div></div></div></div>')
+          $('#count').html('共'+parseInt(data.cont+1)+'条评论');
+      });
+    })
+      
+  </script>
 
 @endsection

@@ -39,7 +39,7 @@
                     </span>
                 </p>
                 <figure>
-                    <img src="{{$v->cimg}}" width="200px">
+                    <img src="..{{$v->cimg}}" width="200px">
                 </figure>
                 <ul class="nlist">
                     <p>

@@ -18,7 +18,7 @@ Route::resource('/index','home\LoginController');
 
 
 //前台主页
-// Route::get('/','home\BlogController@dologin');
+Route::get('/','home\BlogController@dologin');
 Route::get('/lol','home\BlogController@dologout');
 Route::resource('/','home\BlogController');
 
@@ -37,6 +37,9 @@ Route::resource('/register','home\RegisterController');
 
 /*前台分区*/
 Route::resource('/type','home\TypeController');
+
+/*前台评论*/
+Route::post('/review/add','home\CommentController@add');
 
 //后台
 	Route::resource('admin/user','admin\UserController');

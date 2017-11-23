@@ -63,14 +63,11 @@
                             
                         </label>
                         <div class="am-u-sm-9">
-                            <select name="type_id" data-am-selected="{searchBox: 1}" style="display: none;">
+                            <select name="type_id" data-am-selected="{searchBox: 1}">
                                 <option value="">-=请选择文章类别=-</option>
-                                <option value="1">PHP</option>
-                                <option value="2">Python</option>
-                                <option value="3">H5</option>
-                                <option value="4">Java</option>
-                                <option value="5">UI</option>
-                                <option value="6">云计算</option>
+                                @foreach($res as $k=>$v)
+                                <option value="{{$v->id}}">{{$v->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="../homes/css/app.css">
 <script src="../homes/js/jquery.min.js"></script>
 <script src="../homes/js/theme.js"></script>
-
+<meta name="_token" content="{{ csrf_token() }}"/>
 
 
 <!--[if lt IE 9]>
@@ -53,7 +53,7 @@
     <a href="/index"><span>登录</span>
       <span class="en">Sign in</span>
     </a>
-    <a href="/register/create"><span>注册</span>
+    <a href="/register"><span>注册</span>
       <span class="en">Register</span>
     </a>
   </nav>
