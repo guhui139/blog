@@ -210,15 +210,18 @@
   </script>
   <script type="text/javascript">
     //文赞
-    $('#zan').on('click',function(){ 
+    $('#zan').on('click',function(){
       $.post("{{ url('/like/zan')}}",
       {
           _token:'{{csrf_token()}}',
-          lid:'{{$ls->id}}'
+          lid:'{{$ls->id}}',
+          uid:'{{Session::get("uid")}}'
       },
       function(data){
-        if (data) {
-          $('#conts').html(parseInt(data)+1);
+        if (data.zan_id==1) {
+          $('#conts').html(data.zan+1);
+        }else{
+          $('#conts').html(data.zan-1);
         }
       });
       

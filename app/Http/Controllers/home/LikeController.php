@@ -10,6 +10,7 @@ use App\Http\Model\Type;
 use App\Http\Model\info;
 use App\Http\Model\comment;
 use App\Http\Model\lists;
+use App\Http\Model\zan;
 class LikeController extends Controller
 {
 
@@ -19,12 +20,11 @@ class LikeController extends Controller
     	$zan = $request->except('_token');
 
 		$cont = lists::where('id',$zan['lid'])->first();
-
- 		$res = lists::where('id',$zan['lid'])->update(['zan'=>$cont->zan+1]);
-	    if ($res) {
-	        return  $cont->zan;
-	    } else {
-	        return 'alert("点赞失败,别点了!")';
-	    }
+	 	$res = lists::where('id',$zan['lid'])->update(['zan'=>$cont->zan+1]);
+		    if ($res) {
+		        return  $cont;
+		    } else {
+		        return 'alert("点赞失败,别点了!")';
+		    }
     }
 }

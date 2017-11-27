@@ -3,7 +3,6 @@
 @section('title','wdyBlog')
 
 @section('content')
-    
 <div class="container index">
   <div class="row">
     <!-- Banner -->

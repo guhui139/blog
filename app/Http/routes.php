@@ -26,7 +26,7 @@ Route::resource('/','home\BlogController');
 Route::resource('/info','home\InfoController');
 
 
-Route::resource('/list','home\ListController');
+
 
 /*前台注册*/
 Route::get('/home/sendcode','home\RegisterController@sendcode');
@@ -36,13 +36,12 @@ Route::resource('/register','home\RegisterController');
 Route::resource('/type','home\TypeController');
 
 /*前台评论*/
-Route::post('/review/add','home\CommentController@add');
-/*点赞*/
-Route::post('/like/zan','home\LikeController@zan');
+
 
 //后台
 	Route::resource('admin/login','admin\LoginsController');
 
+	Route::resource('/list','home\ListController');
 
 
 //路由组的设置
@@ -56,10 +55,13 @@ Route::group(['middleware'=>'admin'],function(){
 	
 });
 
-Route::group(['prefie'=>'home','middleware'=>'home'],function(){
+Route::group(['middleware'=>'home'],function(){
 
+	Route::get('/list/create','home\ListController@create');
 	// 前台
-
+	Route::post('/review/add','home\CommentController@add');
+	/*点赞*/
+	Route::post('/like/zan','home\LikeController@zan');
 });
 
 

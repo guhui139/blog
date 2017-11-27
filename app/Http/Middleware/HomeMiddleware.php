@@ -15,7 +15,7 @@ class HomeMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('user_id')) {
+        if($request->session()->has('uid')) {
 
                 return $next($request);
 

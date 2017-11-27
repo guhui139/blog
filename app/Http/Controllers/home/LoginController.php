@@ -49,7 +49,7 @@ class LoginController extends Controller
     {
         $res = $request->except('_token');
 
-        $tels = DB::table('user')->where('tel',$res['tel'])->first();
+        $tels = user::where('tel',$res['tel'])->first();
         //$tels = user::where('tel',$res['tel'])->first();
         //var_dump($tels);die;
         if(!$tels){
@@ -61,11 +61,11 @@ class LoginController extends Controller
             return redirect('/index')->with('msg','您输入的手机号或密码错误');
         }
 
-        if(session('vcode') != $res['code']){
+        // if(session('vcode') != $res['code']){
 
-            return redirect('/index')->with('msg','验证码错误');
+        //     return redirect('/index')->with('msg','验证码错误');
 
-        }
+        // }
 
         //存session
         // session(['uid'=>$uname->id]);
