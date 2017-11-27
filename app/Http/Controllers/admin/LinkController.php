@@ -103,9 +103,10 @@ class LinkController extends Controller
             $name = rand(1111,9999).time();
             $suffix = $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move('./Uploads/',$name.'.'.$suffix);
+            $res['image']='Uploads/'.$name.'.'.$suffix;
         }
 
-            $res['image']='Uploads/'.$name.'.'.$suffix;
+            
               // dd($res);   
       
         $data = link::where('id',$id)->update($res);

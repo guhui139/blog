@@ -1,7 +1,12 @@
 @extends('admin/layout/admins')
 @section('title','用户列表')
 @section('content')
+<!-- <script src="../admins/js/libs/jquery-1.8.3.min.js"></script> -->
+
+<script typet="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/layer/layer.js"></script>
 <div class="mws-panel grid_8">
+
                 	<div class="mws-panel-header">
                     	<span><i class="icon-table"></i>用户管理&nbsp;&nbsp;-&gt;&nbsp;&nbsp;用户列表</span>
                     </div>
@@ -24,26 +29,26 @@
                 </div>
                 <div class="dataTables_filter" id="DataTables_Table_1_filter">
                     <label>
-                        关键字:
+                        关键字: 
                         <input type="text" aria-controls="DataTables_Table_1" name="search" value="{{$search}}">
                     </label>
                    <button>搜索</button>
                     </form>
                 </div>
-                
+                4 ,
                         <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                             <thead>
-                                <tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 157px;">ID</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 209px;">手机号码</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">邮箱</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">昵称</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">头像</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">操作</th></tr>
+                                <tr role="row"><th class="sorting_asc" role=",columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 157px;">ID</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 209px;">手机号码</th><th class=""DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascendisorting" role="columnheader" tabindex="0" aria-controls=ng" style="width: 137px;">邮箱</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">昵称</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">头像</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">操作</th></tr>
                             </thead>
-                            
+                              @foreach($res as $k => $v)
                         <tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd" >
 
-                                    @foreach($res as $k => $v)
-                                    <td class=" ">{{$v->id}}</td>
-                                    <td class=" ">{{$v->phone}}</td>
-                                    <td class=" ">{{$v->email}}</td>
-                                    <td class=" ">{{$v->uname}}</td>
-                                    <td class=" "> <img src="/{{$v->profile}}" alt="" width="100%"></td>
+                                  
+                                    <td class="odd ">{{$v->id}}</td>
+                                    <td class="odd ">{{$v->phone}}</td>
+                                    <td class="odd ">{{$v->email}}</td>
+                                    <td class="odd ">{{$v->uname}}</td>
+                                    <td class="odd "> <img src="/{{$v->profile}}" alt="" width="100%"></td>
                                     
                                     <td class=" " style="width:150px;">
                                    
@@ -54,10 +59,11 @@
                                      
                                      
                                         <form method="post" action="/admin/user/{{$v->id}}"  >
-                                            <button>删除</button>
+                                            <button id='buts'>删除</button>
                                             {{csrf_field()}}
                                             {{method_field('DELETE')}}
-                                        </form>
+                                                
+                                    </form>
                                   
                                     </td>
 
@@ -66,7 +72,17 @@
                                 </tr>
                                  @endforeach
                             </tbody>
-
+                                <script type="text/javascript">
+                                alert($);
+                                $('#buts').on('click', function(){
+                                    layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+                                      time: 20000, //20s后自动关闭
+                                      btn: ['明白了', '知道了', '哦']
+                                    });
+                                  });
+                                // alert(12345);
+                                })
+                                </script>
                              <style>
             .pagination li{
                 background-color: #444444;

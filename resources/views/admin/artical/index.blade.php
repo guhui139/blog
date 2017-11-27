@@ -1,5 +1,5 @@
 @extends('admin/layout/admins')
-@section('title','用户列表')
+@section('title','文章表')
 @section('content')
 <div class="mws-panel grid_8">
                     <div class="mws-panel-header">
@@ -10,18 +10,21 @@
                             <thead>
                                 <tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 157px;">ID</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 209px;">题目</th> 
                                 
-                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">摘要</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">类型</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">发表时间</th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">摘要</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">类型</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">点赞数</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 137px;">发表时间</th>
                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">操作</th></tr>
                             </thead>
-                            
-                        <tbody role="alert" aria-live="polite" aria-relevant="all"><tr class="odd" >
-
-                                    @foreach($res as $k => $v)
+                            @foreach($res as $k => $v)
+                        <tbody role="alert" aria-live="polite" aria-relevant="all">
+                       
+                        <tr class="odd" >
+ 
+                                    
                                     <td class=" ">{{$v->id}}</td>                                
                                     <td class=" ">{{$v->title}}</td>
                                     
                                     <td class=" ">{{$v->abstract}}</td>
                                     <td class=" ">{{$v->name}}</td>
+                                    <td class=" ">{{$v->zan}}</td>
                                     <td class=" ">{{$v->time}}</td>   
                                     <td class=" " style="width:150px;">
                                         <a href="/admin/artical/{{$v->id}}" ><button>查看</button></a>
@@ -35,9 +38,9 @@
                                    
 
                                 </tr>
-                                 @endforeach
+                               
                             </tbody>
-
+ @endforeach 
                              <style>
             .pagination li{
                 background-color: #444444;

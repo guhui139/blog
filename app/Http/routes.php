@@ -52,6 +52,8 @@ Route::group(['middleware'=>'admin'],function(){
 	Route::resource('admin/artical','admin\ArticalController');
 	Route::resource('admin/type','admin\TypeController');
 	Route::resource('admin/link','admin\LinkController');
+	Route::resource('admin/center','admin\CenterController');
+	Route::resource('admin/review','admin\ReviewController');
 	
 });
 

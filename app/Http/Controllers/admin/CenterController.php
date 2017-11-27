@@ -6,11 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use App\Http\Model\admin_info;
-use Hash;
 
-class LoginsController extends Controller
+class CenterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +17,7 @@ class LoginsController extends Controller
      */
     public function index()
     {
-        return view('admin.login');
+        //
     }
 
     /**
@@ -41,36 +39,6 @@ class LoginsController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $res = $request->except('_token');
-         
-       if($res['uname']==null && $res['password']==null){
-         return redirect('/admin/login')->with('msg','您输入的用户名或密码不能为空');
-       }
-          
-          $uname = admin_info::where('uname',$res['uname'])->first();
-
-        //dd($uname);
-        if($uname['uname']!=$res['uname']){
-
-            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
-        }
-
-        if(!Hash::check($res['password'],$uname->password)){
-
-            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
-        }
-
-       
-
-        //存session
-        // session(['uid'=>$uname->id]);
-        $request->session()->put('admin_id',$uname->id);
-
-        
-        
-
-        return redirect('/admin/user');
     }
 
     /**
@@ -93,6 +61,8 @@ class LoginsController extends Controller
     public function edit($id)
     {
         //
+        $res=admin_info::where('id',$id)->first();
+        return view('admin.center.edit',['res'=>$res]);
     }
 
     /**
@@ -105,6 +75,26 @@ class LoginsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+         $res = $request->except('_token','_method');
+
+          if($request->hasFile('profile')){
+
+            $res = $request->except('_token','repass','profile','_method');
+            $name = rand(1111,9999).time();
+            $suffix = $request->file('profile')->getClientOriginalExtension();
+            $request->file('profile')->move('./Uploads/',$name.'.'.$suffix);
+        
+            $res['profile']='Uploads/'.$name.'.'.$suffix;
+        }
+         // dd($res);
+        $data = admin_info::where('id',$id)->update($res);
+        // dd($data);
+        if($data){
+            return redirect('/admin/user');
+        }else{
+            return redirect('/admin/center/edit');
+        }
     }
 
     /**
@@ -116,10 +106,10 @@ class LoginsController extends Controller
     public function destroy(Request $request,$id)
     {
         //
-        $bool=$request->session()->flush();
-     //dd($bool);
-        if($bool==null){
-            return view('admin.login');
-        }
+      // $bool = $request->session()->pull('id', $id);
+        // $bool=$request->session()->forget('id');
+        
+       
+
     }
 }

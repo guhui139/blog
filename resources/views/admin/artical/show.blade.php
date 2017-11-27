@@ -50,11 +50,13 @@
                                                                  
                             </div>
                             <div class="mws-button-row">
-                             {{ csrf_field() }}
-                              <input type="submit" class="btn btn-danger" value="添加">
-                            
+                           
+                             
+                            <a href="/admin/artical"><button>返回</button></a>
                             </div>
                         </form>
+                        
+                        
                     </div>         
                 </div>
 @endsection                

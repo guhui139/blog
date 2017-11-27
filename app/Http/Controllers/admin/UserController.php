@@ -21,7 +21,8 @@ class UserController extends Controller
         
           $res = admin_info::where('uname','like','%'.$request->input('search').'%')->
             orderBy('id','asc')->
-            paginate($request->input('num',10));
+            paginate($request->input('num',5));
+            
              //dd($res);
          return view('admin.user.index',['res'=>$res,'request'=>$request,'search'=>$request->input('search')]);
          

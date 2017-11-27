@@ -3,28 +3,36 @@
 namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
-
+use App\Http\Model\comment;
+use App\Http\Model\info;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
-use App\Http\Model\admin_info;
-use Hash;
-
-class LoginsController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.login');
+        //
+        $res = DB::table('comment')
+        ->join('lists','comment.lid','=','lists.info_id')
+        ->join('info','comment.uid','=','info.user_id')
+        ->where('uname','like','%'.$request->input('search').'%')
+        ->select('comment.id','info.uname','lists.title','comment.time','comment.content','comment.review_zan')
+        ->orderby('id','asc')
+        ->paginate($request->input('num',10));
+        //dd($res);
+        return view('admin.reviews.review',['res'=>$res,'request'=>$request]);
     }
 
     /**
      * Show the form for creating a new resource.
-     *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -41,36 +49,6 @@ class LoginsController extends Controller
     public function store(Request $request)
     {
         //
-        
-        $res = $request->except('_token');
-         
-       if($res['uname']==null && $res['password']==null){
-         return redirect('/admin/login')->with('msg','您输入的用户名或密码不能为空');
-       }
-          
-          $uname = admin_info::where('uname',$res['uname'])->first();
-
-        //dd($uname);
-        if($uname['uname']!=$res['uname']){
-
-            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
-        }
-
-        if(!Hash::check($res['password'],$uname->password)){
-
-            return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
-        }
-
-       
-
-        //存session
-        // session(['uid'=>$uname->id]);
-        $request->session()->put('admin_id',$uname->id);
-
-        
-        
-
-        return redirect('/admin/user');
     }
 
     /**
@@ -93,6 +71,9 @@ class LoginsController extends Controller
     public function edit($id)
     {
         //
+        $res = DB::table('comment')->where('id',$id)->first();
+        //dd($res);
+        return view('admin.reviews.edit',['res'=>$res]);
     }
 
     /**
@@ -105,6 +86,17 @@ class LoginsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $res = $request->except('_token','_method');
+        $data = DB::table('comment')->where('id',$id)->update($res);
+
+        if($data){
+
+            return redirect('/admin/review')->with('msg','修改成功');
+        } else {
+
+            return back();
+        }
+
     }
 
     /**
@@ -113,13 +105,12 @@ class LoginsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy($id)
     {
         //
-        $bool=$request->session()->flush();
-     //dd($bool);
-        if($bool==null){
-            return view('admin.login');
+        $res = DB::table('comment')->where('id',$id)->delete();
+        if($res){
+            return redirect('admin/review')->with('msg','删除成功');
         }
     }
 }

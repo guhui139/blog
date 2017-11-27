@@ -34,7 +34,7 @@
 				</div>
 				<div class="mws-form-row">
 					<label class="mws-form-label">修改图片</label>
-					<div class="mws-form-item">
+					<div class="mws-form-item" style="width:460px">
 					<input class="small" type="file" name="img" value="">
 					</div>
 				</div>
