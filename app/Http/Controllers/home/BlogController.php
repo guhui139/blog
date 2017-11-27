@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Type;
+use App\Http\Model\info;
+use App\Http\Model\list_content;
+use App\Http\Model\lists;
+use Session;
 
 class BlogController extends Controller
 {
@@ -16,10 +20,17 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-
         $type = Type::all();
         $request->session()->put('type',$type);
-        return view('home.index', ['type' => $type]);
+        $user = info::where('user_id',session('uid'))->first();
+        Session::put('info',$user);
+        $cont = lists::join('list_content','list_content.list_id','=','lists.id')
+                        ->join('info','info.user_id','=','lists.info_id')
+                        ->join('type','type.id','=','lists.type_id')
+                        ->select('info.uname','info.img','lists.*','list_content.content','type.name')
+                        ->orderBy('lists.zan','desc')
+                        ->get();
+        return view('home.index', ['type' => $type,'user'=> $user,'cont'=>$cont]);
     }
 
     /**
@@ -90,8 +101,14 @@ class BlogController extends Controller
 
     public function doLogout(Request $request)
     {
-        $request->session()->pull('uid',session('uid'));
+        Session::pull('uid',session('uid'));
         $type = $request->session()->get('type');
-        return view('home.index',['type'=>$type]);
+        $cont = lists::join('list_content','list_content.list_id','=','lists.id')
+                        ->join('info','info.user_id','=','lists.info_id')
+                        ->join('type','type.id','=','lists.type_id')
+                        ->select('info.uname','info.img','lists.*','list_content.content','type.name')
+                        ->orderBy('lists.zan','desc')
+                        ->get();
+        return view('home.index',['type'=>$type,'cont'=>$cont]);
     }
 }

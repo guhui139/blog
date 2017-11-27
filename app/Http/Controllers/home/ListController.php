@@ -11,6 +11,7 @@ use App\Http\Model\list_content;
 use App\Http\Model\Type;
 use App\Http\Model\info;
 use App\Http\Model\comment;
+use Session;
 use DB;
 class ListController extends Controller
 {
@@ -58,7 +59,7 @@ class ListController extends Controller
             $suffix = $request->file('cimg')->getClientOriginalExtension();
 
             //移动图片
-            $request->file('cimg')->move('./home/Uploads',$name.'.'.$suffix);
+            $request->file('cimg')->move('./homes/Uploads',$name.'.'.$suffix);
         }
         $zu['cimg'] = '/homes/Uploads/'.$name.'.'.$suffix; 
         $zu['info_id'] = $request->session()->get('uid');
@@ -84,15 +85,17 @@ class ListController extends Controller
         $res = list_content::where('list_id',$id)->first();
         $ls = lists::where('id',$id)->first();
         $tp = type::where('id',$ls->type_id)->first();
-        $user = info::where('user_id',$request->session()->get('uid'))->first();
+        $user = info::where('user_id',$ls->info_id)->first();
         
         $cont = count(comment::where('lid',$id)->get());
         $request->session()->put('count',$cont);
         $com = comment::join('info', 'info.user_id', '=', 'comment.uid')
                         ->join('lists','comment.lid','=','lists.id')
-                        ->select('info.uname','info.img','comment.*')
+                        ->select('info.uname','info.img','comment.*','info.user_id')
                         ->where('lid',$id)
                         ->get();
+        
+
         // dd($com);
 
 
