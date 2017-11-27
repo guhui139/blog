@@ -63,7 +63,7 @@ class LoginsController extends Controller
 
         //存session
         // session(['uid'=>$uname->id]);
-        $request->session()->put('uid',$uname->id);
+        $request->session()->put('admin_id',$uname->id);
 
 
         return redirect('/admin/user');

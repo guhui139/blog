@@ -39,7 +39,7 @@
         @if($user)
         <img src="{{$user->img}}" alt="" style="width:100%">
         @else
-        <img src="../homes/picture/logo.png" alt="" style="width:50%;border-radius:0%:">
+        <img src="./homes/picture/logo.png" alt="" style="width:50%;border-radius:0%:">
         @endif
       </a>
       <textarea id="cont" name="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5" placeholder="写下你的评论..."></textarea> 
@@ -178,7 +178,6 @@
 document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
 </script> 
     <!-- Baidu Button END -->
-    <div class="blank"></div>
     <div class="news">
       <h3>
         <p>栏目<span>最新</span></p>
@@ -217,7 +216,6 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 
 @section('js')
   <script>
-   
     $('#comment').on('click',function(){ var content = $('#cont').val();
       $.post("{{ url('/review/add')}}",
         {_token:'{{csrf_token()}}',

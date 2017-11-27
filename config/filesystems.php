@@ -81,6 +81,16 @@ return [
             'url_type'  => 'publicURL',
         ],
 
+        'qiniu' => [
+            'driver'  => 'qiniu',
+            'domain' => 'ozwer65ei.bkt.clouddn.com', //你的七牛域名
+            'access_key'=> '5W1AbanC6icA999H_kzZi_x0g_AmtFUkmf6FCUKh',  //AccessKey
+            'secret_key'=> '3ndL_os9PlFjUW68NpiwUBIggNytwJKsB0WnBiNa',  //SecretKey
+            'bucket'    => 'blog192',  //Bucket名字
+            'notify_url'=> 'ozwer65ei.bkt.clouddn.com',  //持久化处理回调地址
+            'access'    => 'public'  //空间访问控制 public 或 private
+        ],
+
     ],
 
 ];

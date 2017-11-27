@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class RouteMiddleware
+class HomeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,13 +15,13 @@ class RouteMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('admin_id')) {
+        if($request->session()->has('user_id')) {
 
                 return $next($request);
 
             } else {
 
-            return redirect('/admin/login');    
+            return redirect('/index');    
 
         }
     }

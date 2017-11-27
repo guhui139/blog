@@ -44,7 +44,7 @@ Route::post('/review/add','home\CommentController@add');
 
 
 //路由组的设置
-Route::group(['middleware'=>'login'],function(){
+Route::group(['middleware'=>'admin'],function(){
 
 	//后台
 	Route::resource('admin/user','admin\UserController');
@@ -54,7 +54,7 @@ Route::group(['middleware'=>'login'],function(){
 	
 });
 
-Route::group(['prefie'=>'home','middleware'=>'login'],function(){
+Route::group(['prefie'=>'home','middleware'=>'home'],function(){
 
 	// 前台
 
