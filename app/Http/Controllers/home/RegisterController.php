@@ -138,11 +138,11 @@ class RegisterController extends Controller
         $code = rand(100000, 999999);
         $sendSms->setTemplateParam(['code' =>$code ]);
         $sendSms->setOutId('demo');
+       
+        return redirect('/home/create');
+       
+    }
 
         $resp = $client->execute($sendSms);          
         Cookie::queue('codes',$code,300);
-        return redirect('/home/create');
-       
-       
-    }
 }

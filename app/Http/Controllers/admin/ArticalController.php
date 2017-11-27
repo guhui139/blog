@@ -23,8 +23,8 @@ class ArticalController extends Controller
      */
     public function index()
     {
-        $res=DB::select('select lists.id,lists.abstract,lists.title,type.name,lists.time 
-            from lists,type where type.id=lists.type_id');
+        $res=DB::select('select lists.id,lists.abstract,lists.zan,lists.title,type.name,lists.time 
+            from lists,type where type.id=lists.type_id order by zan desc');
        // $res=DB::table('lists','type')->where('lists.type_id','type.id')->paginate(3);
             ($res);
         return view('admin.artical.index',['res'=>$res]);

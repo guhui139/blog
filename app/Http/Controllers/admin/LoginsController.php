@@ -44,7 +44,9 @@ class LoginsController extends Controller
         
         $res = $request->except('_token');
          
-       
+       if($res['uname']==null && $res['password']==null){
+         return redirect('/admin/login')->with('msg','您输入的用户名或密码不能为空');
+       }
           
           $uname = admin_info::where('uname',$res['uname'])->first();
 
@@ -65,6 +67,8 @@ class LoginsController extends Controller
         // session(['uid'=>$uname->id]);
         $request->session()->put('uid',$uname->id);
 
+        
+        
 
         return redirect('/admin/user');
     }
@@ -109,8 +113,13 @@ class LoginsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         //
+        $bool=$request->session()->flush();
+     //dd($bool);
+        if($bool==null){
+            return view('admin.login');
+        }
     }
 }

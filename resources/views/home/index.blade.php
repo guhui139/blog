@@ -73,10 +73,18 @@
     <h3 class="links">
       <p>友情<span>链接</span></p>
     </h3>
+    <?php  
+      $res=DB::table('link')->get();
+      dd($res);
+    ?>
+    @foreach($res as $k=>$v){
+
+
     <ul class="website">
-      <li><a href="http://www.houdunwang.com">兄弟连</a></li>
-      <li><a href="http://bbs.houdunwang.com">兄弟连论坛</a></li>
-    </ul> 
+      <li><a href="{{$v->url}}"><img src="{{$v->image}}" alt="">{{$v->link_name}}</a></li>
+    
+    </ul>
+     } 
     </div>  
     <!-- Baidu Button BEGIN -->
     <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>

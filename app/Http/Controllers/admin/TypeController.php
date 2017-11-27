@@ -19,7 +19,8 @@ class TypeController extends Controller
     {
         $res=type::where('name','like','%'.$request->input('search').'%')->
             orderBy('id','asc')->
-            paginate($request->input('num',2));
+            paginate($request->input('num',5));
+            // dd($res);
         return view('admin.type.index',['res'=>$res,'request'=>$request,'search'=>$request->input('search')]);
     }
 
@@ -50,7 +51,7 @@ class TypeController extends Controller
             $request->file('img')->move('./Uploads/',$name.'.'.$suffix);
         }
             $res['img']='Uploads/'.$name.'.'.$suffix;
-            // dd($res);
+          // dd($res);
 
 
           $bool=type::insert($res);
@@ -98,6 +99,25 @@ class TypeController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $res = $request->except('_token','_method');
+
+          if($request->hasFile('img')){
+
+            $res = $request->except('_token','repass','img','_method');
+            $name = rand(1111,9999).time();
+            $suffix = $request->file('img')->getClientOriginalExtension();
+            $request->file('img')->move('./Uploads/',$name.'.'.$suffix);
+        
+            $res['img']='Uploads/'.$name.'.'.$suffix;
+        }
+         // dd($res);
+        $data = type::where('id',$id)->update($res);
+        // dd($data);
+        if($data){
+            return redirect('/admin/type');
+        }else{
+            return redirect('/admin/type');
+        }
 
     }
 
@@ -110,5 +130,12 @@ class TypeController extends Controller
     public function destroy($id)
     {
         //
+        // dd($id);
+        $res=type::where("id",'=',$id)->delete();
+        if($res){
+            return redirect()->route('admin.type.index');
+        }else{
+             return redirect()->route('admin.type.index');
+        }
     }
 }

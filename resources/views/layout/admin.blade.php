@@ -98,11 +98,7 @@
         
             <!-- Notifications -->
             <div id="mws-user-notif" class="mws-dropdown-menu">
-                <a href="#" data-toggle="dropdown" class="mws-dropdown-trigger"><i class="icon-exclamation-sign"></i></a>
-                
-                <!-- Unread notification count -->
-                <span class="mws-dropdown-notif">35</span>
-                
+               
                 <!-- Notifications dropdown -->
                 <div class="mws-dropdown-box">
                     <div class="mws-dropdown-content">
@@ -229,12 +225,12 @@
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello, John Doe
+                        Hello, {{$res->uname}}
                     </div>
                     <ul>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li><a href="index.html">Logout</a></li>
+                        
+                        <li><a href="#">修改密码</a></li>
+                        <li><a href="index.html">退出</a></li>
                     </ul>
                 </div>
             </div>

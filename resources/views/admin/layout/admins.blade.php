@@ -217,24 +217,30 @@
                     </div>
                 </div>
             </div>
-            
+             <?php
+
+                $res = DB::table('admin_info')->where('id',session('uid'))->first();
+
+            ?>
             <!-- User Information and functions section -->
             <div id="mws-user-info" class="mws-inset">
             
                 <!-- User Photo -->
                 <div id="mws-user-photo">
-                    <img src="example/profile.jpg" alt="User Photo">
+                    <a href="/admin/center/{{$res->id}}/edit"><img src="/{{$res->profile}}" alt="User Photo" style="width:100%"></a>
                 </div>
                 
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello, John Doe
+                        Hello, {{$res->uname}}
                     </div>
                     <ul>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Change Password</a></li>
-                        <li><a href="index.html">Logout</a></li>
+                        <form action="/admin/login/{{$res->id}}" method="post">
+                            {{ csrf_field() }}
+                            {{method_field('DELETE')}}
+                         <button>退出</button>
+                         </form>
                     </ul>
                 </div>
             </div>
@@ -265,14 +271,13 @@
                     <button type="submit" class="mws-search-submit"><i class="icon-search"></i></button>
                 </form>
             </div>
-
             
             <!-- Main Navigation -->
             <div id="mws-navigation">
                 <ul>
                     
                     <li>
-                        <a href="#"><i class="icon-user"></i>用户管理</a>
+                        <a href="#"><i class="icon-list"></i>用户管理</a>
                         <ul class="closed">
                             <li><a href="/admin/user">用户列表</a></li>
                             <li><a href="/admin/user/create">用户添加</a></li>
@@ -280,9 +285,10 @@
                     </li>
 
                      <li>
-                        <a href="#"><i class="icon-align-left"></i>文章管理</a>
+                        <a href="#"><i class="icon-list"></i>文章管理</a>
                         <ul class="closed">
                             <li><a href="/admin/artical">文章列表</a></li>
+                           </li>
                         </ul>
                     </li>
 
@@ -290,16 +296,22 @@
                         <a href="#"><i class="icon-list"></i>类型管理</a>
                         <ul class="closed">
                             <li><a href="/admin/type">类型列表</a></li>
-                            <li><a href="/admin/type/create">文章类型添加</a></li>
+                            <li><a href="/admin/type/create">类型添加</a></li>
                         </ul>
                     </li>
-                    
-                    <li>
-                        <a href="#"><i class="icon-unlink"></i>友情链接</a> 
+                      <li>
+                        <a href="#"><i class="icon-list"></i>评论管理</a>
                         <ul class="closed">
+                            <li><a href="/admin/review">评论列表列表</a></li>
+                        </ul>
+                    </li>
+                    <li>
+						
+                        <a href="#"><i class="icon-list"></i>友情链接</a> 
+						<ul class="closed">
                             <li><a href="/admin/link">浏览链接</a></li>
                             <li><a href="/admin/link/create">添加链接</a></li>
-                        </ul>           
+                        </ul>               
                     </li>
                 </ul>
             </div>         
