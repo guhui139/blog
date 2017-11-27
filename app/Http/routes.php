@@ -37,6 +37,8 @@ Route::resource('/type','home\TypeController');
 
 /*前台评论*/
 Route::post('/review/add','home\CommentController@add');
+/*点赞*/
+Route::post('/like/zan','home\LikeController@zan');
 
 //后台
 	Route::resource('admin/login','admin\LoginsController');

@@ -1,96 +1,165 @@
-@extends('layout.home')
+﻿@extends('layout.home')
 
 @section('title','wdyBlog')
 
-
 @section('content')
-<div class="banner">
-  <section class="box">
-    <ul class="texts">
-      <p>打了死结的青春，捆死一颗苍白绝望的灵魂。</p>
-      <p>为自己掘一个坟墓来葬心，红尘一梦，不再追寻。</p>
-      <p>加了锁的青春，不会再因谁而推开心门。</p>
-    </ul>
-    <div class="avatar"><a href="/info"><span>兄弟连</span></a> </div>
-  </section>
-</div>
-<div class="template">
-  <div class="box">
-    <h3>
-      <p><span>个人博客</span>模板 Templates</p>
-    </h3>
-    <ul>
-      <li><a href="/"  target="_blank"><img src="../homes/images/01.jpg"></a><span>仿新浪博客风格·梅——古典个人博客模板</span></li>
-      <li><a href="/" target="_blank"><img src="../homes/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-      <li><a href="/"  target="_blank"><img src="../homes/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-      <li><a href="/" target="_blank"><img src="../homes/images/04.jpg"></a><span>女生清新个人博客网站模板</span></li>
-      <li><a href="/"  target="_blank"><img src="../homes/images/02.jpg"></a><span>黑色质感时间轴html5个人博客模板</span></li>
-      <li><a href="/"  target="_blank"><img src="../homes/images/03.jpg"></a><span>Green绿色小清新的夏天-个人博客模板</span></li>
-    </ul>
-  </div>
-</div>
-<article>
-  <h2 class="title_tj">
-    <p>文章<span>推荐</span></p>
-  </h2>
-  <div class="bloglist left">
     
-    @foreach($type as $k=>$v)
-    <h3>{{$v->name}}</h3>
-    <figure><img src="{{$v->img}}" alt=""></figure>
-    <ul>
-      <p>{{$v->keywords}}</p>
-      <a title="/" href="/type/{{$v->id}}" target="_blank" class="readmore">查看专题</a>
-    </ul>
-    @endforeach
+<div class="container index">
+  <div class="row">
+    <!-- Banner -->
+        <div id="indexCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+
+        <ol class="carousel-indicators">
+
+            <li class="active" data-target="#indexCarousel" data-slide-to="0"></li>
+
+            <li data-target="#indexCarousel" data-slide-to="1"></li>
+
+            <li data-target="#indexCarousel" data-slide-to="2"></li>
+
+            <li data-target="#indexCarousel" data-slide-to="3"></li>      
+            <li data-target="#indexCarousel" data-slide-to="4"></li>      
+            <li data-target="#indexCarousel" data-slide-to="5"></li>      
+            <li data-target="#indexCarousel" data-slide-to="6"></li>      
+
+         </ol>
+          <div class="carousel-inner">
+              <div class="item active">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/8a519448b9d7?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/aad0916d50f59176e2270fb468642e03f760aec4.jpg" alt="540" /></a>
+              </div>
+              <div class="item">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/70bef6809d4d?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/a83382c5357faa5fd5c0e48f03fa078dcb7c5405.jpg" alt="540" /></a>
+              </div>
+              <div class="item">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/e626c105fe8b?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/66b3ebc30ff4b695069b811049675b36a2b4070e.jpg" alt="540" /></a>
+              </div>
+              <div class="item">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/b3ad7d9c9c10?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/c080cdcb20d2a2a4d3799f7b1eda61e5d4f33f6c.png" alt="540" /></a>
+              </div> 
+              <div class="item">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/835b4f118320?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/f150361d64193f9a80b07ee2538e80f1271f6ffc.jpg" alt="540" /></a>
+              </div>
+              <div class="item">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/3d1dbb6e8317?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/08eaa219e4ff7614cb1937f63a6e0f831d5cafd7.jpg" alt="540" /></a>
+              </div>
+              <div class="item">
+                <div class="carousel-caption"></div>
+                <a target="_blank" href="http://www.jianshu.com/p/75270141c0f7?utm_medium=index-banner&amp;utm_source=desktop"><img src="../homes/picture/af1af14d3a9789609d6dee9906c0c3f127a6e28a.jpg" alt="540" /></a>
+              </div>
+            <a class="left carousel-control" href="#indexCarousel" role="button" data-slide="prev"><i class="iconfont ic-previous-s"></i></a>
+            <a class="right carousel-control" href="#indexCarousel" role="button" data-slide="next"><i class="iconfont ic-next-s"></i></a>
+          </div>
+        </div>
+    <!-- Banner -->
+
+    <div class="col-xs-16 main">
+        <div class="recommend-collection">
+          @foreach($type as $k=>$v)
+            <a class="collection" target="_blank" href='{{url("/type/$v->id")}}'>
+              <img src="{{$v->img}}" alt="64" />
+              <div class="name">{{$v->name}}</div>
+            </a>
+          @endforeach
+            <a class="more-hot-collection" target="_blank" href="{{url('/type')}}">
+              更多热门专题 <i class="iconfont ic-link"></i>
+            </a>        
+          </div>
+      <div class="split-line"></div>
+      <div id="list-container">
+        <!-- 文章列表模块 -->
+        <ul class="note-list" infinite-scroll-url="/">
+          
+@foreach($cont as $key=>$val)
+<li id="note-20127267" data-note-id="20127267" class="have-img">
+    <a class="wrap-img" href='{{url("/list/$val->id")}}' target="_blank">
+      <img data-echo="//upload-images.jianshu.io/upload_images/2631784-d79d1d0126029f38.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" class="img-blur-done" src="..{{$val->cimg}}" alt="120" />
+    </a>
+  <div class="content">
+    <div class="author">
+      <a class="avatar" target="_blank" href='{{url("/info/$val->info_id")}}'>
+        <img src="{{$val->img}}" alt="64" />
+</a>      <div class="info">
+        <a class="nickname" target="_blank" href='{{url("/info/$val->info_id")}}'>{{$val->uname}}</a>
+        <span class="time" data-shared-at="">{{$val->time}}</span>
+      </div>
+    </div>
+    <a class="title" target="_blank" href='{{url("/list/$val->id")}}'>{{$val->title}}</a>
+    <p class="abstract">
+      {{$val->abstract}}
+    </p>
+    <div class="meta">
+      <a class="collection-tag" target="_blank" href='{{url("/type/$val->type_id")}}'>{{$v->name}}</a>
+      <a target="_blank" href='{{url("/list/$val->id")}}'>
+          <i class="iconfont ic-list-comments"></i> 
+          {{$val->review}}
+      </a>      
+      <span><i class="iconfont ic-list-like"></i>{{$val->zan}}</span>
+    </div>
   </div>
-  <aside class="right">
-    <div class="weather"><iframe width="250" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=1"></iframe></div>
-    <div class="news">
-    <h3>
-      <p>最新<span>文章</span></p>
-    </h3>
-    <ul class="rank">
-      <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
-      <li><a href="/" title="with love for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
-      <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
-      <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
-      <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
-      <li><a href="/" title="建站流程篇——教你如何快速学会做网站" target="_blank">建站流程篇——教你如何快速学会做网站</a></li>
-      <li><a href="/" title="box-shadow 阴影右下脚折边效果" target="_blank">box-shadow 阴影右下脚折边效果</a></li>
-      <li><a href="/" title="打雷时室内、户外应该需要注意什么" target="_blank">打雷时室内、户外应该需要注意什么</a></li>
-    </ul>
-    <h3 class="ph">
-      <p>点击<span>排行</span></p>
-    </h3>
-    <ul class="paih">
-      <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
-      <li><a href="/" title="withlove for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
-      <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
-      <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
-      <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
-    </ul>
-    <h3 class="links">
-      <p>友情<span>链接</span></p>
-    </h3>
-    <ul class="website">
-      <li><a href="http://www.houdunwang.com">兄弟连</a></li>
-      <li><a href="http://bbs.houdunwang.com">兄弟连论坛</a></li>
-    </ul> 
-    </div>  
-    <!-- Baidu Button BEGIN -->
-    <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
-    <script type="text/javascript" id="bdshell_js"></script> 
-    <script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script> 
-    <!-- Baidu Button END -->   
-    </aside>
-</article>
+</li>
+@endforeach
+        </ul>
+        <!-- 文章列表模块 -->
+      </div>
+    </div>
+    <div class="col-xs-7 col-xs-offset-1 aside">
+      <div class="board">
+          <a target="_blank" href="/recommendations/notes?category_id=56&amp;utm_medium=index-banner-s&amp;utm_source=desktop">
+            <img src="../homes/picture/banner-s-1-b8ff9ec59f72ea88ecc8c42956f41f78.png" alt="Banner s 1" />
+</a>        <a target="_blank" href="/trending/weekly?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-3-7123fd94750759acf7eca05b871e9d17.png" alt="Banner s 3" /></a>
+        <a target="_blank" href="/trending/monthly?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-4-b70da70d679593510ac93a172dfbaeaa.png" alt="Banner s 4" /></a>
+        <a utm_medium="index-banner-s" target="_blank" href="/publications"><img src="../homes/picture/banner-s-5-291e00e9156f30791fe24e3de9c39171.png" alt="Banner s 5" /></a>
+        <a target="_blank" href="/c/e048f1a72e3d?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png" alt="Banner s 6" /></a>
+      </div>
+
+      <!-- 首页右侧 App 下载提示 -->
+      <a class="col-xs-8 download" data-toggle="popover" data-placement="top" data-html="true" data-trigger="hover" data-content="&lt;img src=&quot;//cdn2.jianshu.io/assets/web/download-index-side-qrcode-0a0cf38b7413c60bb8d2627fd9eebd00.png&quot; alt=&quot;Download index side qrcode&quot; /&gt;" href="/apps?utm_medium=desktop&amp;utm_source=index-aside-click">
+        <img class="qrcode" src="../homes/picture/download-index-side-qrcode-0a0cf38b7413c60bb8d2627fd9eebd00.png" alt="Download index side qrcode" />
+        <div class="info">
+          <div class="title">下载简书手机App<i class="iconfont ic-link"></i></div>
+          <div class="description">随时随地发现和创作内容</div>
+        </div>
+</a>
+      <!-- 简书日报 -->
+        <div class="jianshu-daily">
+          <div class="title">
+            简书日报
+            <a target="_blank" href="/c/80e7d5d15e71?utm_medium=index-jianshu-daily-page&amp;utm_source=desktop">查看往期</a>
+          </div>
+            <a target="_blank" class="note" href="/p/d25415e22038?utm_medium=index-jianshu-daily-note&amp;utm_source=desktop">
+                <img src="../homes/picture/610871-9b98481c0cb106c1.png" alt="96" />
+              <div class="note-title">简书学院003：古代的人穿不穿内裤</div>
+</a>            <a target="_blank" class="note" href="/p/4bf9168bdb19?utm_medium=index-jianshu-daily-note&amp;utm_source=desktop">
+                <img src="../homes/picture/5596670-e14771cc34b3b852.jpg" alt="96" />
+              <div class="note-title">简小妹005—“维多利亚的秘密”到底是个啥秘密?</div>
+</a>        </div>
+
+      <!-- 推荐作者 -->
+      <div data-vcomp="recommended-author-list"></div>
+    </div>
+  </div>
+</div>
+<div data-vcomp="side-tool"></div>
+
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"other","read_mode":"day","read_font":"font2"}</script>
+    
+    <script src="../homes/js/babel-polyfill-676833c6a4d68573b4c3.js" crossorigin="anonymous"></script>
+    <script src="../homes/js/web-base-0c13a3e9d81eb5c87721.js" crossorigin="anonymous"></script>
+    <script src="../homes/js/web-d6d7a6e261affc6b480d.js" crossorigin="anonymous"></script>
+    <script src="../homes/js/entry-bd7b9f60dcf73b957304.js" crossorigin="anonymous">
+      
+    </script>
+  </body>
+</html>
 @endsection
-
 @section('js')
-
-
+<script type="text/javascript">
+ 
+</script>
 @endsection

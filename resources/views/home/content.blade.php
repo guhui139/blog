@@ -2,233 +2,235 @@
 
 @section('title',$ls->title)
 
-
 @section('content')
-<article class="blogs">
-  <h1 class="t_nav"><span>您当前的位置：<a href="/">首页</a>--><a href="/type/{{$tp->id}}">{{$tp->name}}</a>--><a href="#">{{$ls->title}}</a></span></h1>
-  <div class="index_about">
-    <h2 class="c_titile">{{trim('.'.$ls->abstract)}}</h2>
-    <p class="box_c"><span class="d_time">发布时间:{{$ls->time}}</span>&nbsp;&nbsp;<span>编辑:{{$ls->info_id}}</span>&nbsp;&nbsp;<span>查看次数:x</span></p>
-    <ul class="infos">
-      {{$res->content}}
-      <p><img src="../{{$ls->cimg}}" alt="分手" width="200px"></p>
-    </ul>
-    <div class="keybq">
-    </div>
-    <div class="ad"> </div>
-    <div class="nextinfo">
-      @if($pls)
-        <p>上一篇：<a href="/list/{{$pls->id}}">{{$pls->title}}</a></p>
-      @else
-        <p>上一篇：没有了</p>
-      @endif
-
-      @if($nls)
-        <p>下一篇：<a href="/list/{{$nls->id}}">{{$nls->title}}</a></p>
-      @else
-        <p>下一篇：没有了</p>
-      @endif
-    </div>
-    <div class="nextinfo">
-       <button id="zan">喜欢</button>
-        <div id="bdshare" class="bdshare_t bds_tools_32 get-codes-bdshare"><a class="bds_tsina"></a><a class="bds_qzone"></a><a class="bds_tqq"></a><a class="bds_renren"></a><span class="bds_more"></span><a class="shareCount"></a></div>
-    </div>
-  <div>
-    <form class="new-comment" method="post" action="/review/add" id="form">
-      <a class="avatar" href="用户主页">
-        @if($user)
-        <img src="{{$user->img}}" alt="" style="width:100%">
-        @else
-        <img src="./homes/picture/logo.png" alt="" style="width:50%;border-radius:0%:">
-        @endif
-      </a>
-      <textarea id="cont" name="content" rows="6" cols="80" onpropertychange="if(this.scrollHeight>80) this.style.posHeight=this.scrollHeight+5" placeholder="写下你的评论..."></textarea> 
-     
-      <input type="hidden" name="uid" value="{{session('uid')}}">
-      <input type="hidden" name="lid" value="{{$ls->id}}">
-
-      <div class="write-function-block">
-        <div data-v-b36e9416="" class="emoji-modal-wrap">
-          <a data-v-b36e9416="" class="emoji">
-            <i data-v-b36e9416="" class="iconfont ic-comment-emotions">
-            </i>
-          </a>
-          <!---->
-        </div>
-        <div class="hint">
-          {{csrf_field()}}
-          <button id="comment" type="button">评论</button>
-        </div>
-      </div>
-    </form>
-    <!---->
-  </div>
-  <div id="normal-comment-list" class="normal-comment-list">
-    <div>
-      <div>
-        <div class="top-title">
-          <span id="count">
-            共{{$cont}}条评论
-          </span>
-          <a class="author-only">
-            只看作者
-          </a>
-          <a class="close-btn" style="">
-            关闭评论 隐藏div
-          </a>
-          <div class="pull-right">
-            <a class="active">
-              按喜欢排序 order by zan
-            </a>
-            <a class="">
-              按时间正序 order by time 
-            </a>
-            <a class="">
-              按时间倒序 order by time desc
-            </a>
-          </div>
-        </div>
-      </div>
-      <!---->
-      <!---->
-      <div class="comments-placeholder" style="display: none;">
+    
+    
+    
+<div class="note">
+  <a target="_blank" href="/apps/download?utm_source=sbc" id="web-note-ad-fixed"><span class="close">&times;</span></a>
+  <div class="post">
+    <div class="article">
+        <h1 class="title">{{$ls->title}}</h1>
+        <!-- 作者区域 -->
         <div class="author">
-          <div class="avatar">
-          </div>
-          <div class="info">
-            <div class="name">
-            </div>
+          <a class="avatar" href="/u/03f6b7ea3544">
+            <img src="{{$user->img}}" alt="96" />
+</a>          <div class="info">
+            <span class="name"><a href="/info/{{$user->id}}">{{$user->uname}}</a></span>
+            <!-- 关注用户按钮 -->
+            <div props-data-classes="user-follow-button-header" data-author-follow-button></div>
+            <!-- 文章数据信息 -->
             <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="最后编辑于 2017.11.24 10:25">{{$ls->time}}</span>
+              <span class="wordage">字数 {{count($res->content)}}</span>
             </div>
           </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
         </div>
-        <div class="text">
-        </div>
-        <div class="text animation-delay">
-        </div>
-        <div class="tool-group">
-          <i class="iconfont ic-zan-active">
-          </i>
-          <div class="zan">
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content class="show-content">
+          <div class="image-package">
+<div class="image-container" style="max-width: 550px; max-height: 308px;">
+<div class="image-container-fill" style="padding-bottom: 56.00000000000001%;"></div>
+<div class="image-view" data-height="308"><img src="..{{$ls->cimg}}" data-original-width='auto' data-original-height="auto" data-original-format="image/jpeg" data-original-filesize="32959"></div>
+</div>
+<div class="image-caption">{{$ls->abstract}}</div>
+</div>
+{{$res->content}}
+</div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="/nb/13730492">
+            <i class="iconfont ic-search-notebook"></i>
+            <span>{{$user->uname}}</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
           </div>
-          <i class="iconfont ic-list-comments">
-          </i>
-          <div class="zan">
+          <div class="modal-wrap" data-report-note>
+            <a id="report-modal">举报文章</a>
           </div>
         </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="/u/03f6b7ea3544">
+            <img src="{{$user->img}}" alt="96" />
+</a>          <div props-data-classes="user-follow-button-footer" data-author-follow-button></div>
+          <a class="title" href="/u/03f6b7ea3544">{{$user->uname}}</a>
+          
+        </div>
+          <div class="signature"></div>
       </div>
-        @foreach($com as $key=>$v)
-      <div id="comment-17623862" class="comment">
-        <div>
-          <div class="author">
-            <a href="/u/3b38a5b61f2a" target="_blank" class="avatar">
-              <img src="{{$v->img}}" width="100%">
+
+      <div class="support-author"></div>
+
+    <div class="meta-bottom">
+      <div  id="zan" class="btn like-group"><div class="btn-like"><a><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/20127267/weibo/image_1d250ec0017f.jpg&#39;, &#39;推荐 亦侵晓 的文章《【红黄蓝虐童案】人人痛恨凶手，有多少人想过孩子的以后？》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/d432bd180ab8?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/20127267/weibo/image_1d250ec0017f.jpg" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content='
+          <ul class="share-list">
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/d432bd180ab8?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 亦侵晓 的文章《【红黄蓝虐童案】人人痛恨凶手，有多少人想过孩子的以后？》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-zone"></i><span>分享到QQ空间</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/d432bd180ab8?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 亦侵晓 的文章《【红黄蓝虐童案】人人痛恨凶手，有多少人想过孩子的以后？》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-twitter"></i><span>分享到Twitter</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/d432bd180ab8?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-facebook"></i><span>分享到Facebook</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/d432bd180ab8?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();"><i class="social-icon-sprite social-icon-google"></i><span>分享到Google+</span></a></li>
+            <li><a href="javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/d432bd180ab8?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;【红黄蓝虐童案】人人痛恨凶手，有多少人想过孩子的以后？&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()"><i class="social-icon-sprite social-icon-douban"></i><span>分享到豆瓣</span></a></li>
+          </ul>
+        '>更多分享</a>
+      </div>
+    </div>
+     
+    <div id="comment-list" class="comment-list">
+    <div>
+        <form class="new-comment">
+            <a class="avatar">
+                <img src="{{$user->img}}">
             </a>
-            <div class="info">
-              <a href="/" target="_blank" class="name">
-                {{$v->uname}}
-              </a>
-              <!---->
-              <!---->
-              <div class="meta">
-                <span>
-                  {{$v->time}}
-                </span>
+            <textarea id="cont" placeholder="写下你的评论..."></textarea>
+            <button class="btn btn-warning" id="comment">发表</button>
+            <!---->
+        </form>
+        <!---->
+    </div>
+    <div id="normal-comment-list" class="normal-comment-list">
+        <div>
+            <!---->
+            <!---->
+            @foreach($com as $k=>$v)
+            <div id="comment-17814686" class="comment">
+                <div>
+                    <div class="author">
+                        <a href="/info/{{$v->user_id}}" target="_blank" class="avatar">
+                            <img src="{{$v->img}}">
+                        </a>
+                        <div class="info">
+                            <a href="/info/{{$v->user_id}}" target="_blank" class="name">
+                              {{$v->uname}}
+                            </a>
+                            <div class="meta">
+                                <span>
+                                    {{$v->time}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-wrap">
+                        <p>
+                            {{$v->content}}
+                        </p>
+                        <div class="tool-group">
+                            <a class="">
+                                <i class="iconfont ic-zan">
+                                </i>
+                                <span>
+                                    赞
+                                </span>
+                            </a>
+                            <a class="wocao">
+                                <i class="iconfont ic-comment">
+                                </i>
+                                <span>
+                                    回复
+                                </span>
+                            </a>
+                            <a class="report">
+                                <span>
+                                    举报
+                                </span>
+                            </a>
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-comment-list hide"> 
+              <div>
+                <form class="new-comment"><!----> 
+                  <textarea placeholder="写下你的评论..."></textarea> 
+                  <div class="write-function-block">
+                    <div data-v-b36e9416="" class="emoji-modal-wrap">
+                      <a data-v-b36e9416="" class="emoji">
+                        <i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i>
+                      </a> <!---->
+                    </div> 
+                    <div class="hint">Ctrl+Return 发表
+                    </div> 
+                    <a class="btn btn-send">发送</a> 
+                      <a class="cancel">取消</a>
+                  </div>
+                </form> <!---->
               </div>
             </div>
-          </div>
-          <div class="comment-wrap">
-            <p>
-              {{$v->content}}
-            </p>
-            <div class="tool-group">
-              <a class="">
-                <i class="iconfont ic-zan">
-                </i>
-                <span>
-                  点赞数 count zan_review_id zan
-                </span>
-              </a>
-              <a class="">
-                <i class="iconfont ic-comment">
-                </i>
-                <span>
-                  评论 comment 
-                </span>
-              </a>
-              <a class="report">
-                <span>
-                  举报
-                </span>
-              </a>
-              <!---->
-            </div>
-          </div>
+            @endforeach
         </div>
-      </div>
-      @endforeach
     </div>
+    <!---->
+    <div>
+        <!---->
+    </div>
+</div>
   </div>
-  <aside class="right">
-    <!-- Baidu Button BEGIN -->
-   
-    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6574585" ></script> 
-    <script type="text/javascript" id="bdshell_js"></script> 
-    <script type="text/javascript">
-document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
-</script> 
-    <!-- Baidu Button END -->
-    <div class="news">
-      <h3>
-        <p>栏目<span>最新</span></p>
-      </h3>
-      <ul class="rank">
-        <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
-        <li><a href="/" title="with love for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
-        <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
-        <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
-        <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
-        <li><a href="/" title="建站流程篇——教你如何快速学会做网站" target="_blank">建站流程篇——教你如何快速学会做网站</a></li>
-        <li><a href="/" title="box-shadow 阴影右下脚折边效果" target="_blank">box-shadow 阴影右下脚折边效果</a></li>
-        <li><a href="/" title="打雷时室内、户外应该需要注意什么" target="_blank">打雷时室内、户外应该需要注意什么</a></li>
-      </ul>
-      <h3 class="ph">
-        <p>点击<span>排行</span></p>
-      </h3>
-      <ul class="paih">
-        <li><a href="/" title="Column 三栏布局 个人网站模板" target="_blank">Column 三栏布局 个人网站模板</a></li>
-        <li><a href="/" title="withlove for you 个人网站模板" target="_blank">with love for you 个人网站模板</a></li>
-        <li><a href="/" title="免费收录网站搜索引擎登录口大全" target="_blank">免费收录网站搜索引擎登录口大全</a></li>
-        <li><a href="/" title="做网站到底需要什么?" target="_blank">做网站到底需要什么?</a></li>
-        <li><a href="/" title="企业做网站具体流程步骤" target="_blank">企业做网站具体流程步骤</a></li>
-      </ul>
-    </div>
-    <div class="visitors">
-      <h3>
-        <p>最近访客</p>
-      </h3>
-      <ul>
-      </ul>
-    </div>
-  </aside>
-</article>
-@endsection
 
+  <div class="vue-side-tool" props-data-props-show-qr-code="0"></div>
+</div>
+<div class="note-bottom">
+  <div class="js-included-collections"></div>
+  
+</div>
+@endsection
 @section('js')
-  <script>
-    $('#comment').on('click',function(){ var content = $('#cont').val();
+<script type="text/javascript">
+    $('#comment').on('click',function(){ 
+      var content = $('#cont').val();
       $.post("{{ url('/review/add')}}",
-        {_token:'{{csrf_token()}}',
+        {
+          _token:'{{csrf_token()}}',
           uid:'{{session("uid")}}',
           lid:'{{$ls->id}}',
           content:content  
         },
-        function(data){
-          $("#comment-17623862").after('<div id="comment-17623862" class="comment"><div><div class="author"><a href="/u/3b38a5b61f2a" target="_blank" class="avatar"><img src="'+data.img+'" width="100%"><a><div class="info"><a href="/" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class=""><i class="iconfont ic-zan"></i><span>点赞数 count zan_review_id zan</span></a><a class=""><i class="iconfont ic-comment"></i><span>评论 comment </span></a><a class="report"><span>举报</span></a></div></div></div></div>')
-          $('#count').html('共'+parseInt(data.cont+1)+'条评论');
+        function(data){$('#comment-17814686').after('<div id="comment-17814686" class="comment"><div><div class="author"><a href="/info/'+data.user_id+'" target="_blank" class="avatar"><img src="'+data.img+'"></a><div class="info"><a href="/info/'+data.user_id+'" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class=""><i class="iconfont ic-zan"></i><span>赞</span></a><a class="wocao"><i class="iconfont ic-comment"></i><span>回复</span></a><a class="report"><span>举报</span></a><!----></div></div></div></div><div class="sub-comment-list hide"> <div><form class="new-comment"><!----> <textarea placeholder="写下你的评论..."></textarea> <div class="write-function-block"><div data-v-b36e9416="" class="emoji-modal-wrap"><a data-v-b36e9416="" class="emoji"><i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i></a> <!----></div> <div class="hint">Ctrl+Return 发表</div> <a class="btn btn-send">发送</a> <a class="cancel">取消</a></div></form> <!----></div></div>');
       });
+      return false;
     })
-      
   </script>
-
+  <script type="text/javascript">
+    //文赞
+    $('#zan').on('click',function(){ 
+      $.post("{{ url('/like/zan')}}",
+      {
+          _token:'{{csrf_token()}}',
+          lid:'{{$ls->id}}'
+      },
+      function(data){
+        if (data) {
+          $('#conts').html(parseInt(data)+1);
+        }
+      });
+      
+    });
+  </script>
+  <script type="text/javascript">
+    $('.wocao').on('click',function(){
+      if($('.sub-comment-list').hasClass('hide')){
+        $('.sub-comment-list').removeClass('hide');
+      }else{
+        $('.sub-comment-list').addClass('hide');
+      }
+    })
+  </script>
 @endsection

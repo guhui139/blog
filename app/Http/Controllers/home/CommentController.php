@@ -19,15 +19,22 @@ class CommentController extends Controller
  		$data = $request->except('_token');
 		$data['time'] = date('Y-m-d H:i:s',time());
 		$cont = count(comment::where('lid',$data['lid'])->get());
+
  		$res = comment::insertGetId($data);
 	    if ($res) {
+
+ 			$comm = comment::where('id',$res)->first();
+ 			$review = lists::where('id',$comm->lid)->first();
+ 			$comment = lists::where('id',$comm->lid)->update(['review'=>$review->review+1]);
+
 	        $data = comment::join('info', 'comment.uid', '=', 'info.user_id')
-                        ->select('info.uname','info.img','comment.*')
+                        ->select('info.uname','info.img','comment.*','info.user_id')
                         ->where('comment.id',$res)
                         ->first();
             $data['cont'] = $cont;
 	        return  $data;
 	    } else {
+
 	        return Redirect::back()->withInput()->withErrors('保存失败！');
 	    }
     	

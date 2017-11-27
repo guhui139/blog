@@ -11,6 +11,11 @@ use Gregwar\Captcha\CaptchaBuilder;
 use Session;
 use Hash;
 use DB;
+use App\Http\Model\Type;
+use App\Http\Model\info;
+use App\Http\Model\list_content;
+use App\Http\Model\lists;
+
 
 class LoginController extends Controller
 {
@@ -66,8 +71,16 @@ class LoginController extends Controller
         // session(['uid'=>$uname->id]);
         $request->session()->put('uid',$tels->id);
         $type = $request->session()->get('type');
-
-        return view('home.index',['type'=>$type]);
+        $user = info::where('user_id',session('uid'))->first();
+        $cont = lists::join('list_content','list_content.list_id','=','lists.id')
+                        ->join('info','info.user_id','=','lists.info_id')
+                        ->join('type','type.id','=','lists.type_id')
+                        ->select('info.uname','info.img','lists.*','list_content.content','type.name')
+                        ->orderBy('lists.zan','desc')
+                        ->get();
+        $user = info::where('user_id',session('uid'))->first();
+        Session::put('info',$user);
+        return view('home.index',['type'=>$type,'user'=>$user,'cont'=>$cont]);
     }
 
     /**
