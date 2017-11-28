@@ -219,7 +219,7 @@
             </div>
              <?php
 
-                $res = DB::table('admin_info')->where('id',session('uid'))->first();
+                $res = DB::table('admin_info')->where('id',session('admin_id'))->first();
 
             ?>
             <!-- User Information and functions section -->
@@ -239,7 +239,7 @@
                         <form action="/admin/login/{{$res->id}}" method="post">
                             {{ csrf_field() }}
                             {{method_field('DELETE')}}
-                         <button>退出</button>
+                         <button class='btn-success'>退出</button>
                          </form>
                     </ul>
                 </div>
