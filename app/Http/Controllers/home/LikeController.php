@@ -10,21 +10,24 @@ use App\Http\Model\Type;
 use App\Http\Model\info;
 use App\Http\Model\comment;
 use App\Http\Model\lists;
+use App\Http\Model\zan;
 class LikeController extends Controller
 {
 
     public function zan(Request $request)
     {
-		$timestamps = false;
     	$zan = $request->except('_token');
+    	$zan['zan_time'] = date('Y-m-d',time());
 
-		$cont = lists::where('id',$zan['lid'])->first();
+		$dz = zan::insert($zan);
+		
+		$cont = lists::where('id',$zan['list_id'])->first();
 
- 		$res = lists::where('id',$zan['lid'])->update(['zan'=>$cont->zan+1]);
-	    if ($res) {
+ 		$res = lists::where('id',$zan['list_id'])->update(['zan'=>$cont->zan+1]);
+	    if ($res and $dz) {
 	        return  $cont->zan;
 	    } else {
-	        return 'alert("点赞失败,别点了!")';
+	        return '赞过了,别点了!';
 	    }
     }
 }

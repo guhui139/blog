@@ -20,7 +20,7 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $type = Type::all();
+        $type = Type::get();
         $request->session()->put('type',$type);
         $user = info::where('user_id',session('uid'))->first();
         Session::put('info',$user);

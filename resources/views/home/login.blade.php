@@ -60,8 +60,8 @@
                     
                     <div class="mws-form-row">
                         {{csrf_field()}}
-                        <input type="submit" value="登录" class="btn btn-success mws-login-button">
-                        }
+                        <button class="btn btn-success mws-login-button" id="tj">登录</button>
+                        
                     </div>
 
                 </form>
@@ -87,7 +87,14 @@
     <script>
         $('.mws-form-message').delay(3000).slideUp(1000);
     </script>
-
+    <script type="text/javascript">
+        $('#tj').on('click', function(){
+            layer.msg('登陆成功');
+            window.parent.location.reload('wdy.cn'); //刷新父页面
+5           var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+6           parent.layer.close(index);  // 关闭layer
+        });
+</script>
     
 </body>
 </html>

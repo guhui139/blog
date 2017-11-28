@@ -23,7 +23,7 @@ Route::get('/lol','home\BlogController@dologout');
 Route::resource('/','home\BlogController');
 
 //前台详情
-Route::resource('/info','home\InfoController');
+
 
 
 Route::get('/admin/login','loginsController@index');
@@ -39,9 +39,9 @@ Route::resource('/register','home\RegisterController');
 Route::resource('/type','home\TypeController');
 
 /*前台评论*/
-Route::post('/review/add','home\CommentController@add');
+
 /*点赞*/
-Route::post('/like/zan','home\LikeController@zan');
+
 
 //后台
 	Route::resource('admin/user','admin\UserController');
@@ -56,9 +56,14 @@ Route::group(['prefie'=>'admin','namespace'=>'admin','middleware'=>'login'],func
 	
 });
 
-Route::group(['prefie'=>'home','middleware'=>'login'],function(){
+Route::group(['middleware'=>'home'],function(){
 
 	// 前台
+	Route::post('/review/add','home\CommentController@add');
+	Route::resource('/info','home\InfoController');
+	
+	Route::post('/list/create','home\ListController@create');
+	Route::post('/like/zan','home\LikeController@zan');
 
 });
 
