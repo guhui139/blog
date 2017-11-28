@@ -23,7 +23,7 @@ Route::get('/lol','home\BlogController@dologout');
 Route::resource('/','home\BlogController');
 
 //前台详情
-Route::resource('/info','home\InfoController');
+
 
 
 
@@ -62,8 +62,11 @@ Route::group(['middleware'=>'home'],function(){
 	Route::get('/list/create','home\ListController@create');
 	// 前台
 	Route::post('/review/add','home\CommentController@add');
-	/*点赞*/
+	Route::resource('/info','home\InfoController');
+	
+	Route::post('/list/create','home\ListController@create');
 	Route::post('/like/zan','home\LikeController@zan');
+
 });
 
 

@@ -16,15 +16,18 @@ class LikeController extends Controller
 
     public function zan(Request $request)
     {
-		$timestamps = false;
     	$zan = $request->except('_token');
+    	$zan['zan_time'] = date('Y-m-d',time());
 
-		$cont = lists::where('id',$zan['lid'])->first();
-	 	$res = lists::where('id',$zan['lid'])->update(['zan'=>$cont->zan+1]);
-		    if ($res) {
-		        return  $cont;
-		    } else {
-		        return 'alert("点赞失败,别点了!")';
-		    }
+		$dz = zan::insert($zan);
+		
+		$cont = lists::where('id',$zan['list_id'])->first();
+
+ 		$res = lists::where('id',$zan['list_id'])->update(['zan'=>$cont->zan+1]);
+	    if ($res and $dz) {
+	        return  $cont->zan;
+	    } else {
+	        return '赞过了,别点了!';
+	    }
     }
 }

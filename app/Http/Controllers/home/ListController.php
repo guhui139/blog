@@ -11,6 +11,7 @@ use App\Http\Model\list_content;
 use App\Http\Model\type;
 use App\Http\Model\info;
 use App\Http\Model\comment;
+use App\Http\Model\zan;
 use Session;
 use DB;
 class ListController extends Controller
@@ -95,11 +96,11 @@ class ListController extends Controller
                         ->where('lid',$id)
                         ->get();
         
-
-        // dd($com);
-
-
-
+        $zan = zan::join('info', 'info.user_id', '=', 'zan.uid')
+                        ->join('lists','zan.list_id','=','lists.id')
+                        ->select('zan.*')
+                        ->where('list_id',$id)
+                        ->first();
         $pres = list_content::where('list_id',$id-1)->first();
         $pls = lists::where(['id'=>$id-1,'type_id'=>$tp->id])->first();
 
@@ -121,7 +122,7 @@ class ListController extends Controller
             $pls = 0;
         }
         
-        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls,'user'=>$user,'cont'=>$cont,'com'=>$com]);
+        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls,'user'=>$user,'cont'=>$cont,'com'=>$com,'zan'=>$zan]);
     }
 
     /**

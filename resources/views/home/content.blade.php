@@ -71,7 +71,15 @@
       <div class="support-author"></div>
 
     <div class="meta-bottom">
-      <div  id="zan" class="btn like-group"><div class="btn-like"><a><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
+      @if(session('uid'))
+        @if($zan==null)
+          <div id="zan" class="btn like-group"><div class="btn-like"><a><i id="zi" class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
+        @else
+          <div class="btn like-group"><div class="btn-like"><a><i id="zi" class="iconfont ic-like"></i>已喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
+        @endif
+      @else
+        <div class="btn like-group"><div class="btn-like"><a href="/index"><i id="zi" class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a href="/index">{{$ls->zan}}</a></div></div>
+      @endif
       <div class="share-group">
         <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
           <i class="iconfont ic-wechat"></i>
@@ -96,6 +104,7 @@
      
     <div id="comment-list" class="comment-list">
     <div>
+      @if(!Session::get('uid')==null)
         <form class="new-comment">
             <a class="avatar">
                 <img src="{{$user->img}}">
@@ -104,12 +113,16 @@
             <button class="btn btn-warning" id="comment">发表</button>
             <!---->
         </form>
+        @else
+            <form class="new-comment"><a class="avatar"><img src="//cdn2.jianshu.io/assets/default_avatar/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="/index" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form>
+            @endif
         <!---->
     </div>
     <div id="normal-comment-list" class="normal-comment-list">
         <div>
             <!---->
             <!---->
+            
             @foreach($com as $k=>$v)
             <div id="comment-17814686" class="comment">
                 <div>
@@ -176,6 +189,7 @@
               </div>
             </div>
             @endforeach
+
         </div>
     </div>
     <!---->
@@ -214,14 +228,17 @@
       $.post("{{ url('/like/zan')}}",
       {
           _token:'{{csrf_token()}}',
-          lid:'{{$ls->id}}',
+          list_id:'{{$ls->id}}',
           uid:'{{Session::get("uid")}}'
       },
       function(data){
-        if (data.zan_id==1) {
-          $('#conts').html(data.zan+1);
+        if (data) {
+          parent.location.reload(); 
+          $('#conts').html(parseInt(data)+1);
+          $('#zi').html('已');
+
         }else{
-          $('#conts').html(data.zan-1);
+          alert(data);
         }
       });
       

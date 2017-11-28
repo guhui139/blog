@@ -27,7 +27,9 @@
   <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" />
   <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" />
   <meta http-equiv="mobile-agent" content="format=html5; url=http://localhost/">
-
+    <link rel="stylesheet" href="../homes/css/amazeui.min.css" />
+    <link rel="stylesheet" href="../homes/css/admin.css">
+    <link rel="stylesheet" href="../homes/css/app.css">
   <!-- Apple -->
   <meta name="apple-mobile-web-app-title" content="简书">
   <title>@yield("title")</title>
@@ -66,12 +68,14 @@
     <a class="logo" href="/"><img src="../homes/picture/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo" /></a>
     <!-- 右上角 -->
       <!-- 未登录显示登录/注册/写文章 -->
-      <a class="btn write-btn" target="_blank" href="/list/create"><i class="iconfont ic-write"></i>写文章</a>
-    @if(Session::get('uid')==null)
+      @if(Session::get('uid')==null)
+      <a class="btn write-btn" target="_blank" href="/index"><i class="iconfont ic-write"></i>写文章</a>
+    
         <a class="btn sign-up" href="/register">注册</a>
         <a class="btn log-in" href="/index">登录</a>
     @else
     <!-- 如果用户登录，显示下拉菜单 -->
+      <a class="btn write-btn" target="_blank" href="/list/create"><i class="iconfont ic-write"></i>写文章</a>
     <div class="user">
       <div data-hover="dropdown">
         <a class="avatar" href="/info/{{Session::get('info')->id}}"><img src="{{Session::get('info')->img}}" alt="120"></a>
