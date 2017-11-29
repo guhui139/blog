@@ -15,11 +15,11 @@ class LinkController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $res=link::get();
+        $res=link::where('link_name','like','%'.$request->input('search').'%')->paginate($request->input('num',5));;
 
-        return view('admin.link.index',['res'=>$res]);
+        return view('admin.link.index',['res'=>$res,'request'=>$request,'search'=>$request->input('search')]);
     }
 
     /**

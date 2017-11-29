@@ -73,15 +73,11 @@
     <h3 class="links">
       <p>友情<span>链接</span></p>
     </h3>
-    <?php  
-      $res=DB::table('link')->get();
-      dd($res);
-    ?>
-    @foreach($res as $k=>$v){
+  
 
 
     <ul class="website">
-      <li><a href="{{$v->url}}"><img src="{{$v->image}}" alt="">{{$v->link_name}}</a></li>
+      <li><a href=""><img src="" alt=""></a></li>
     
     </ul>
      } 

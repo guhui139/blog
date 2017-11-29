@@ -1,10 +1,9 @@
 @extends('admin/layout/admins')
 @section('title','用户列表')
 @section('content')
-<!-- <script src="../admins/js/libs/jquery-1.8.3.min.js"></script> -->
+<!-- <script src="/admins/js/libs/jquery-1.8.3.min.js"></script> -->
 
-<script typet="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/layer/layer.js"></script>
+
 <div class="mws-panel grid_8">
 
                 	<div class="mws-panel-header">
@@ -16,11 +15,11 @@
                     <label>
                         显示
                         <select size="1" name="num" aria-controls="DataTables_Table_1">
-                            <option value="10" @if($request->num == '10') selected="selected"  @endif>
-                                10
+                            <option value="5" @if($request->num == '5') selected="selected"  @endif>
+                                5
                             </option>
-                            <option value="25" @if($request->num == '25') selected="selected" @endif>
-                                25
+                            <option value="10" @if($request->num == '10') selected="selected" @endif>
+                                10
                             </option>
                             
                         </select>
@@ -35,7 +34,7 @@
                    <button>搜索</button>
                     </form>
                 </div>
-                4 ,
+               
                         <table class="mws-datatable-fn mws-table dataTable" id="DataTables_Table_1" aria-describedby="DataTables_Table_1_info">
                             <thead>
                                 <tr role="row"><th class="sorting_asc" role=",columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 157px;">ID</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 209px;">手机号码</th><th class=""DataTables_Table_1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascendisorting" role="columnheader" tabindex="0" aria-controls=ng" style="width: 137px;">邮箱</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">昵称</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">头像</th><th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 101px;">操作</th></tr>
@@ -54,35 +53,25 @@
                                    
                                         <form action="/admin/user/{{$v->id}}/edit" method="get" style="display:inline; float:left">
                                            
-                                            <button>修改</button>
+                                            <button >修改</button>
                                          </form>
                                      
                                      
                                         <form method="post" action="/admin/user/{{$v->id}}"  >
-                                            <button id='buts'>删除</button>
+                                            <button class=''>删除</button>
                                             {{csrf_field()}}
                                             {{method_field('DELETE')}}
-                                                
+                                             
                                     </form>
                                   
                                     </td>
-
-                                   
+                       
 
                                 </tr>
                                  @endforeach
                             </tbody>
-                                <script type="text/javascript">
-                                alert($);
-                                $('#buts').on('click', function(){
-                                    layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
-                                      time: 20000, //20s后自动关闭
-                                      btn: ['明白了', '知道了', '哦']
-                                    });
-                                  });
-                                // alert(12345);
-                                })
-                                </script>
+
+
                              <style>
             .pagination li{
                 background-color: #444444;
@@ -124,10 +113,38 @@
                 margin:0px;
             }
             </style>
-                        </table><div class="dataTables_info" id="DataTables_Table_1_info">Showing 1 to 10 of 57 entries</div><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
+                        </table><div class="dataTables_info" id="DataTables_Table_1_info"></div><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_1_paginate">
                                     {!! $res->render() !!}
                                   
                                 </div></div>
                     </div>
                 </div>
+
+
+
+                <script src="/jquery/jquery-1.9.1.min.js"></script>
+                                <script src="/layer/layer.js"></script>
+
+                                
+                            <script type="text/javascript">
+                                                         
+                                $('.bits').on('click', function(){
+                                    
+                                     
+
+                                   /* layer.confirm('您是如何看待前端开发？', {
+                                      btn: ['重要','奇葩'] //按钮
+                                    }, function(){
+                                      layer.msg('的确很重要', {icon: 1});
+                                    }, function(){
+                                      layer.msg('也可以这样', {
+                                        time: 20000, //20s后自动关闭
+                                        btn: ['明白了', '知道了']
+                                      });
+                                    });
+                              */
+                                })
+                            
+                                </script>
+
 @endsection

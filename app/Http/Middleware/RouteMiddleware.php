@@ -15,7 +15,7 @@ class RouteMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->has('uid')) {
+        if($request->session()->has('admin_id')) {
 
                 return $next($request);
 

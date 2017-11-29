@@ -88,8 +88,8 @@
         <div id="mws-logo-container">
         
             <!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
-            <div id="mws-logo-wrap">
-                <img src="/admins/images/mws-logo.png" alt="mws admin">
+            <div id="mws-logo-wrap" style="color:white">
+                <h2>欢迎来到后台</h2>
             </div>
         </div>
         
@@ -98,10 +98,6 @@
         
             <!-- Notifications -->
             <div id="mws-user-notif" class="mws-dropdown-menu">
-                <a href="#" data-toggle="dropdown" class="mws-dropdown-trigger"><i class="icon-exclamation-sign"></i></a>
-                
-                <!-- Unread notification count -->
-                <span class="mws-dropdown-notif">35</span>
                 
                 <!-- Notifications dropdown -->
                 <div class="mws-dropdown-box">
@@ -157,10 +153,7 @@
             
             <!-- Messages -->
             <div id="mws-user-message" class="mws-dropdown-menu">
-                <a href="#" data-toggle="dropdown" class="mws-dropdown-trigger"><i class="icon-envelope"></i></a>
                 
-                <!-- Unred messages count -->
-                <span class="mws-dropdown-notif">35</span>
                 
                 <!-- Messages dropdown -->
                 <div class="mws-dropdown-box">
@@ -219,7 +212,7 @@
             </div>
              <?php
 
-                $res = DB::table('admin_info')->where('id',session('uid'))->first();
+                $res = DB::table('admin_info')->where('id',session('admin_id'))->first();
 
             ?>
             <!-- User Information and functions section -->
@@ -239,7 +232,7 @@
                         <form action="/admin/login/{{$res->id}}" method="post">
                             {{ csrf_field() }}
                             {{method_field('DELETE')}}
-                         <button>退出</button>
+                         <button style="border:1px #000000 solid">退出</button>
                          </form>
                     </ul>
                 </div>
@@ -266,10 +259,7 @@
             
             <!-- Searchbox -->
             <div id="mws-searchbox" class="mws-inset">
-                <form action="typography.html">
-                    <input type="text" class="mws-search-input" placeholder="Search...">
-                    <button type="submit" class="mws-search-submit"><i class="icon-search"></i></button>
-                </form>
+               
             </div>
             
             <!-- Main Navigation -->
@@ -277,7 +267,7 @@
                 <ul>
                     
                     <li>
-                        <a href="#"><i class="icon-list"></i>用户管理</a>
+                        <a href="#"><i class="icon-github-2"></i>用户管理</a>
                         <ul class="closed">
                             <li><a href="/admin/user">用户列表</a></li>
                             <li><a href="/admin/user/create">用户添加</a></li>
@@ -293,21 +283,21 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="icon-list"></i>类型管理</a>
+                        <a href="#"><i class="icon-bars"></i>类型管理</a>
                         <ul class="closed">
                             <li><a href="/admin/type">类型列表</a></li>
                             <li><a href="/admin/type/create">类型添加</a></li>
                         </ul>
                     </li>
                       <li>
-                        <a href="#"><i class="icon-list"></i>评论管理</a>
+                        <a href="#"><i class="icon-feather"></i>评论管理</a>
                         <ul class="closed">
                             <li><a href="/admin/review">评论列表列表</a></li>
                         </ul>
                     </li>
                     <li>
 						
-                        <a href="#"><i class="icon-list"></i>友情链接</a> 
+                        <a href="#"><i class="icon-link"></i>友情链接</a> 
 						<ul class="closed">
                             <li><a href="/admin/link">浏览链接</a></li>
                             <li><a href="/admin/link/create">添加链接</a></li>
@@ -330,7 +320,7 @@
                        
             <!-- Footer -->
             <div id="mws-footer">
-                Copyright Your Website 2012. All Rights Reserved.
+                兄弟连it教育@2017年11月28日
             </div>
             
         </div>
