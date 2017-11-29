@@ -101,6 +101,7 @@ class ListController extends Controller
                         ->select('zan.*')
                         ->where('list_id',$id)
                         ->first();
+
         $pres = list_content::where('list_id',$id-1)->first();
         $pls = lists::where(['id'=>$id-1,'type_id'=>$tp->id])->first();
 

@@ -16,15 +16,15 @@
                 <label>
                     显示
                     <select name="num" size="1" aria-controls="DataTables_Table_1">
-                       <option value="10" @if($request->num == '20') selected="selected"  @endif>
+                       <option value="5" @if($request->num == '5') selected="selected"  @endif>
                            10
                        </option>
                             
-                        <option value="20" @if($request->num == '20') selected="selected"  @endif>
+                        <option value="10" @if($request->num == '10') selected="selected"  @endif>
                             20
                         </option>
 
-                        <option value="30" @if($request->num == '30') selected="selected"  @endif>
+                        <option value="20" @if($request->num == '20') selected="selected"  @endif>
                             30
                         </option>
                     </select>
@@ -105,7 +105,7 @@
             </tbody>
         </table>
         <div class="dataTables_info" id="DataTables_Table_1_info">
-            Showing 1 to 10 of 57 entries
+           
         </div>
         <style>
             .pagination li{

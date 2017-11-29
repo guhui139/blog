@@ -44,13 +44,13 @@ class LoginsController extends Controller
         
         $res = $request->except('_token');
          
-       if($res['uname']==null && $res['password']==null){
+      
+           if($res['uname']==null && $res['password']==null){
          return redirect('/admin/login')->with('msg','您输入的用户名或密码不能为空');
        }
-          
           $uname = admin_info::where('uname',$res['uname'])->first();
 
-        //dd($uname);
+        // dd($uname);
         if($uname['uname']!=$res['uname']){
 
             return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
@@ -60,7 +60,9 @@ class LoginsController extends Controller
 
             return redirect('/admin/login')->with('msg','您输入的用户名或密码错误');
         }
-
+        if($uname['auth']==0){
+            return redirect('/admin/login')->with('msg','你的权限不够');
+        }
        
 
         //存session

@@ -117,6 +117,7 @@
         <a target="_blank" href="/c/e048f1a72e3d?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png" alt="Banner s 6" /></a>
       </div>
 
+
       <!-- 首页右侧 App 下载提示 -->
       <a class="col-xs-8 download" data-toggle="popover" data-placement="top" data-html="true" data-trigger="hover" data-content="&lt;img src=&quot;//cdn2.jianshu.io/assets/web/download-index-side-qrcode-0a0cf38b7413c60bb8d2627fd9eebd00.png&quot; alt=&quot;Download index side qrcode&quot; /&gt;" href="/apps?utm_medium=desktop&amp;utm_source=index-aside-click">
         <img class="qrcode" src="../homes/picture/download-index-side-qrcode-0a0cf38b7413c60bb8d2627fd9eebd00.png" alt="Download index side qrcode" />

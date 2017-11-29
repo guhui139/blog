@@ -91,8 +91,8 @@
         $('#tj').on('click', function(){
             layer.msg('登陆成功');
             window.parent.location.reload('wdy.cn'); //刷新父页面
-5           var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-6           parent.layer.close(index);  // 关闭layer
+            var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+            parent.layer.close(index);  // 关闭layer
         });
 </script>
     
