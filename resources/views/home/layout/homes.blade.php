@@ -38,9 +38,14 @@
   <meta name="csrf-param" content="authenticity_token">
   <meta name="csrf-token" content="InzyhOE1W+mybk65D9ckyzFH/b00YFgWxPiMKOCPCYTgGPAiVVAAESUXygeZeMkJKDiaYByq5gOzXgWD5VWIXQ==">
 
-  <link rel="stylesheet" media="all" href="/homes/review/web-fa63c74b17a87d74afb5.css">
+  <link rel="stylesheet" media="all" href="../homes/review/web-fa63c74b17a87d74afb5.css">
   
-  <link rel="stylesheet" media="all" href="/homes/review/entry-4022a9cdb8df13d630ea.css">
+  <link rel="stylesheet" media="all" href="../homes/review/entry-4022a9cdb8df13d630ea.css">
+  <link rel="stylesheet" media="all" href="../homes/css/web-fa63c74b17a87d74afb5.css" />
+  
+  <link rel="stylesheet" media="all" href="../homes/css/entry-c39de320ab2c85be4ee5.css" />
+  <link rel="stylesheet" media="all" href="../homes/css/entry-355d9da965e3c43206d6.css" />
+  <link rel="stylesheet" media="all" href="../homes/css/entry-842a8f71e15edbd1cb5d.css" />
 
   <link href="/homes/review/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">
   <link rel="apple-touch-icon-precomposed" href="/homes/review/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57">
@@ -53,6 +58,8 @@
 <!--  <link rel="stylesheet" media="all" href="/homes/review/entry-7b434205f766417bd833.css"> -->
   
   <script src="/homes/js/jquery.min.js"></script>
+  <script src="/homes/js/theme.js"></script>
+  <script src="/homes/js/silder.js"></script>
   <!-- Start of 访问统计 -->
   <script src="/homes/review/push.js"></script><script src="/homes/review/hm.js"></script><script async="" src="/homes/review/analytics.js"></script><script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -87,13 +94,13 @@
     <div class="width-limit">
       <!-- 左上方 Logo -->
      <!--  <a class="logo" href=""><img src="" alt="Logo"></a> -->
-      <h2 style="display:inline">博客</h2>
+      <!-- <h2 style="display:inline">博客</h2> -->
+      <a class="logo" href="/"><img src="/homes/picture/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo" /></a>
       <!-- 右上角 -->
         <!-- 登录显示写文章 -->
         <a class="btn write-btn" target="_blank" href="/list/create">
           <?xml version="1.0" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg t="1511413852062" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1764" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"><defs><style type="text/css"></style></defs><path d="M490.816 698.133333a21.354667 21.354667 0 0 1-4.906667 2.986667l-176.938666 78.442667c-50.133333 19.797333-89.109333-18.773333-70.549334-69.802667l0.917334-2.176 84.138666-170.090667a21.333333 21.333333 0 0 1 3.434667-5.013333c0.896-1.493333 1.984-2.88 3.264-4.16l422.378667-422.4a64 64 0 0 1 90.496 0l75.434666 75.434667a64 64 0 0 1 0 90.517333L496.106667 694.250667a21.333333 21.333333 0 0 1-5.290667 3.882666z m-130.24-139.413333l-82.432 166.656c-5.461333 15.829333-0.234667 20.586667 14.336 14.826667l172.928-76.650667-104.832-104.832z m135.530667 75.178667l316.8-316.778667-105.6-105.6-316.8 316.8 105.6 105.6z m346.944-346.944l45.269333-45.269334a21.333333 21.333333 0 0 0 0-30.165333L812.885333 136.106667a21.333333 21.333333 0 0 0-30.165333 0L737.472 181.333333l105.6 105.6zM896 454.272a21.333333 21.333333 0 0 1 42.666667 0V789.333333a149.333333 149.333333 0 0 1-149.333334 149.333334H234.666667a149.333333 149.333333 0 0 1-149.333334-149.333334V234.666667a149.333333 149.333333 0 0 1 149.333334-149.333334h338.496a21.333333 21.333333 0 1 1 0 42.666667H234.666667a106.666667 106.666667 0 0 0-106.666667 106.666667v554.666666a106.666667 106.666667 0 0 0 106.666667 106.666667h554.666666a106.666667 106.666667 0 0 0 106.666667-106.666667V454.272z" p-id="1765"></path></svg> 写文章
         </a>
-        <a href="/" style="margin-left:1100px;margin-top:5px">首页</a>
       <!-- 如果用户登录，显示下拉菜单 -->
         <div class="user">
 
@@ -125,6 +132,32 @@
           </ul>
         </div>
       </div>
+       <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+          <li class="tab active">
+            <a href="/">
+              <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+            </a>
+          </li>
+            
+          <li class="search">
+            <form target="_blank" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input" />
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+            </form>   
+          </li>
+        </ul>
+      </div>
+    </div>
     </div>
   </nav>
   <div id="list-container">
@@ -139,8 +172,22 @@
   @section('js')
               
   @show  
-  <script src="/homes/js/silder.js"></script>
-
-
-
-  <!----><!----><!----></body></html>
+  <footer class="container">
+  <div class="row">
+    <div class="col-xs-17 main">
+<a target="_blank" href="http://www.jianshu.com/c/jppzD2">关于简书</a><em> · </em><a target="_blank" href="http://www.jianshu.com/contact">联系我们</a><em> · </em><a target="_blank" href="http://www.jianshu.com/c/bfeec2e13990">加入我们</a><em> · </em><a target="_blank" href="http://www.jianshu.com/p/fc1c113e5b6b">简书出版</a><em> · </em><a target="_blank" href="http://www.jianshu.com/press">品牌与徽标</a><em> · </em><a target="_blank" href="http://www.jianshu.com/faqs">帮助中心</a><em> · </em><a target="_blank" href="http://www.jianshu.com/p/cabc8fa39830">合作伙伴</a>      <div class="icp">
+        ©2012-2017 上海佰集信息科技有限公司 / 简书 / 沪ICP备11018329号-5 /  <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402002252">沪公网安备31010402002252号 / </a>
+        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402002252">
+          <img src="/homes/picture/smrz-557fa318122c99a66523209bf9753a27.png" alt="Smrz" />
+</a>        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402002252">沪公网安备31010402002252号 / </a>
+        <a target="_blank" href="http://www.shjbzx.cn/">
+          <img src="/homes/picture/wxb-a216456895eb66c17497dbd3da443cf8.png" alt="Wxb" />
+</a>        举报电话：021-34770013 / 
+        <a target="_blank" href="http://218.242.124.22:8081/businessCheck/verifKey.do?showType=extShow&amp;serial=9031000020171107081457000002158769-SAIC_SHOW_310000-20171115131223587837&amp;signData=MEQCIADWZ5aTcBeER5SOVp0ly+ElvKnwtjczum6Gi6wZ7/wWAiB9MAPM22hp947ZaBobux5PDkd0lfqoCOkVV7zjCYME6g==">
+          <img src="/homes/picture/zggsrz-5695587dccf490ca3e651f4228f7479e.png" alt="Zggsrz" />
+</a>      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

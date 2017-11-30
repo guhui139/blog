@@ -27,16 +27,13 @@
       </ul>
       <div id="list-container">
         <!-- 文章列表模块 -->
-      @foreach($res as $k=>$v)
-      <ul class="note-list" infinite-scroll-url="/u/082b547b6aed?order_by=shared_at">
-       
+     
+      <ul class="note-list">
+        @foreach($res as $k=>$v)
           <li id="note-19437105" data-note-id="19437105" class="">
               <div class="content">
                            
                   <div class="author">
-                      <a class="avatar" target="_blank" href="/home/user/{{$v->id}}">
-                          <img src="{{$v->img}}" alt="" style="width:100%">
-                      </a>
                       <div class="info">
                           <a class="nickname" target="_blank" href="/home/list/{{$v->id}}">
                               {{ $v->uname }}
@@ -71,9 +68,9 @@
                
               </div>        
           </li>
-          
+          @endforeach
       </ul>
-       @endforeach
+       
       <div class="dataTables_paginate paging_full_numbers">
 
             {!! $res->render()!!}

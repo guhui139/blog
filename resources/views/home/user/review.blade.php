@@ -27,7 +27,7 @@
       <div id="list-container">
         <!-- 文章评论模块 -->
       @foreach($res as $k=>$v)
-      <ul class="note-list" infinite-scroll-url="/u/082b547b6aed?order_by=shared_at">
+      <ul class="note-list">
        
           <li id="note-19437105" data-note-id="19437105" class="">
               <div class="content">           
