@@ -25,7 +25,7 @@ class ReviewController extends Controller
         ->where('uname','like','%'.$request->input('search').'%')
         ->select('comment.id','info.uname','lists.title','comment.time','comment.content','comment.review_zan')
         ->orderby('id','asc')
-        ->paginate($request->input('num',5));
+        ->paginate($request->input('num',2));
         //dd($res);
         return view('admin.reviews.review',['res'=>$res,'request'=>$request,'search'=>$request->input('search')]);
     }

@@ -17,15 +17,15 @@
                     显示
                     <select name="num" size="1" aria-controls="DataTables_Table_1">
                        <option value="5" @if($request->num == '5') selected="selected"  @endif>
-                           10
+                           5
                        </option>
                             
                         <option value="10" @if($request->num == '10') selected="selected"  @endif>
-                            20
+                            10
                         </option>
 
                         <option value="20" @if($request->num == '20') selected="selected"  @endif>
-                            30
+                            20
                         </option>
                     </select>
                     条数据
