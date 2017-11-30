@@ -82,8 +82,8 @@
       </div>
       <ul class="dropdown-menu">
         <li>
-          <a href="/info/{{Session::get('info')->id}}">
-            <i class="iconfont ic-navigation-profile"></i><span>我的主页</span></a>
+          <a href="/home/user">
+            <i class="iconfont ic-navigation-profile"></i><span>我的个人中心</span></a>
           </li>
         <li>
           <a rel="nofollow" href="/lol" >
@@ -104,16 +104,18 @@
 
       <div class="collapse navbar-collapse" id="menu">
         <ul class="nav navbar-nav">
-            <li class="tab active">
-              <a href="/">
-                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
-</a>            </li>
+          <li class="tab active">
+            <a href="/">
+              <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+            </a>
+          </li>
             
           <li class="search">
             <form target="_blank" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
               <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input" />
               <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
-</form>          </li>
+            </form>   
+          </li>
         </ul>
       </div>
     </div>

@@ -42,17 +42,17 @@
                 <form class="mws-form" action="/register" method="post">
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="text" name="tel" class="mws-login-username required" placeholder="请输入手机号">
+                            <input type="text" name="tel" class="mws-login-username required" placeholder="请输入手机号" value="">
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="password" name="password" class="mws-login-password required" placeholder="请输入密码">
+                            <input type="password" name="password" class="mws-login-password required" placeholder="请输入密码" value="">
                         </div>
                     </div>
                     <div class="mws-form-row">
                         <div class="mws-form-item">
-                            <input type="password" name="repassword" class="mws-login-password required" placeholder="请确认密码">
+                            <input type="password" name="repassword" class="mws-login-password required" placeholder="请确认密码" value="">
                         </div>
                     </div>
                     <div class="mws-form-row">
@@ -76,30 +76,61 @@
     </div>
 
     <!-- JavaScript Plugins -->
-   <script src="/admins/js/libs/jquery-1.8.3.min.js"></script>
-   <script src="/admins/js/libs/jquery.placeholder.min.js"></script>
-   <script src="/admins/custom-plugins/fileinput.js"></script>
+    <script src="/admins/js/libs/jquery-1.8.3.min.js"></script>
+    <script src="/admins/js/libs/jquery.placeholder.min.js"></script>
+    <script src="/admins/custom-plugins/fileinput.js"></script>
     
     <!-- jQuery-UI Dependent Scripts -->
-   <script src="/admins/jui/js/jquery-ui-effects.min.js"></script>
+    <script src="/admins/jui/js/jquery-ui-effects.min.js"></script>
 
     <!-- Plugin Scripts -->
-   <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
+    <script src="/admins/plugins/validate/jquery.validate-min.js"></script>
 
     <!-- Login Script -->
     <script src="/admins/js/core/login.js"></script>
+    <script src="/layer/layer.js"></script>
 
     <script type="text/JavaScript">
         
         $('.img-rounded').click(function(){
+           var a = 60;
             var tels = $('.mws-login-username').val();
+
             $.get('{{ url("/home/sendcode") }}',{_token:'{{ csrf_token() }}',tel:tels},function(data){
-                console.log(data);
+                if(data){
+                    
+                    var into = setInterval(function(){
+                        $('.img-rounded').val(a);
+                        a--;
+                        if(a < '0'){
+                            layer.alert('验证码已过期');
+                            clearInterval(into);
+                            $('.img-rounded').val('发送验证码'); 
+                        }
+                        
+                    },1000)
+                }
             });
             
-        });
-
-      
+        });  
+    </script>
+    
+    <script>
+        /*定时弹框*/
+        var a = 8;
+        $('.btn').click(function(){
+            
+            var into = setInterval(function(){
+                a--;
+                if(a == '0'){
+                    layer.alert('恭喜,注册成功');
+                    clearInterval(into);
+                }
+                
+            },1000)
+        })
+        
+        
     </script>
 
     <script>

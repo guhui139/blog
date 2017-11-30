@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\home;
 
 use Illuminate\Http\Request;
-
+use App\Http\Model\user;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use Hash;
-use DB;
 use Cookie;
 
 class RegisterController extends Controller
@@ -47,7 +46,7 @@ class RegisterController extends Controller
         $res = $request->except('_token','repassword');
        
         
-        $phones = DB::table('user')->where('tel',$res['tel'])->first();
+        $phones = user::where('tel',$res['tel'])->first();
     
         if($phones){
 
@@ -61,13 +60,11 @@ class RegisterController extends Controller
             return redirect('/register')->with('msg','验证码错误');
 
         }
-         
-        //存session
-        //$request->session()->put('uid',$phones->id);
+           
         $ress = $request->except('_token','repassword','code');
         $ress['password'] = Hash::make($ress['password']);
-        $data = DB::table('user')->insert($ress);
-
+        $data = user::insert($ress);
+        
         return redirect('/')->with('msg','注册成功,请登录');
         
         
@@ -138,11 +135,9 @@ class RegisterController extends Controller
         $code = rand(100000, 999999);
         $sendSms->setTemplateParam(['code' =>$code ]);
         $sendSms->setOutId('demo');
-       
-        return redirect('/home/create');
-       
-    }
 
         $resp = $client->execute($sendSms);          
         Cookie::queue('codes',$code,300);
+        return 'true';
+    }
 }

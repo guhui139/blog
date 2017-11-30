@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\model\user;
+use App\Http\model\info;
+use App\Http\model\lists;
 use Gregwar\Captcha\CaptchaBuilder;
+use Flc\Dysms\Client;
+use Flc\Dysms\Request\SendSms;
 use Session;
+use Cookie;
 use Hash;
-use DB;
-use App\Http\Model\Type;
-use App\Http\Model\info;
-use App\Http\Model\list_content;
-use App\Http\Model\lists;
 
 
 class LoginController extends Controller
@@ -47,29 +47,49 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $res = $request->except('_token');
 
         $tels = user::where('tel',$res['tel'])->first();
-        //$tels = user::where('tel',$res['tel'])->first();
-        //var_dump($tels);die;
+        
         if(!$tels){
+        /*    return $data = [
+            'status'=>'0',
+            'info'=>'请输入正确的手机号'
+            ];*/
             return redirect('/index')->with('msg','请输入正确的手机号');
+       
         }
 
-        if(!$tels and !Hash::check($res['password'],$tels->password)){
+        if(!Hash::check($res['password'],$tels->password)){
 
+            /*return $data = [
+            'status'=>'1',
+            'info'=>'您输入的手机号或密码错误'
+            ];*/
             return redirect('/index')->with('msg','您输入的手机号或密码错误');
         }
+        
+        
+        if(empty($res['code']) && session('vcode') != $res['code']){
 
-        // if(session('vcode') != $res['code']){
-
-        //     return redirect('/index')->with('msg','验证码错误');
-
-        // }
+           /* return $data = [
+            'status'=>'2',
+            'info'=>'验证码错误'
+            ];*/
+            return redirect('/index')->with('msg','验证码错误');
+        }
 
         //存session
-        // session(['uid'=>$uname->id]);
         $request->session()->put('uid',$tels->id);
+        $result = info::where('user_id',$tels->id)->first();
+
+        if(!$result){
+            $data = info::insert(['user_id'=>$tels->id]);
+           
+        }
+
         $type = $request->session()->get('type');
         $user = info::where('user_id',session('uid'))->first();
         $cont = lists::join('list_content','list_content.list_id','=','lists.id')
@@ -81,6 +101,7 @@ class LoginController extends Controller
         $user = info::where('user_id',session('uid'))->first();
         Session::put('info',$user);
         return view('home.index',['type'=>$type,'user'=>$user,'cont'=>$cont]);
+         
     }
 
     /**
@@ -100,21 +121,60 @@ class LoginController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Request $request)
+    {   
+
+        //修改密码时,获取验证码
+        $res = $request->input('tel');
+
+        
+        $config = [
+                'accessKeyId'    => 'LTAIglltnURip7gN',
+                'accessKeySecret' => 'NNBfufyZetEkX25Kn5PWQ4bn6drXYC',
+            ];
+
+        $client  = new Client($config);
+        $sendSms = new SendSms;
+        $sendSms->setPhoneNumbers($res);
+        $sendSms->setSignName('言梦');
+        $sendSms->setTemplateCode('SMS_110835228');
+        $code = rand(100000, 999999);
+        $sendSms->setTemplateParam(['code' =>$code ]);
+        $sendSms->setOutId('demo');
+        Cookie::queue('codes',$code,300);
+        Cookie::queue('tel',$res,300);
+        $resp = $client->execute($sendSms);          
+        
+        return view('home.user.edit');
+        /*return response('')->withCookie(Cookie('codes',$code,300));
+        return response('')->withCookie(Cookie('tel',$res,300));*/
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)
+    {   
+        
+        //执行修改
+        
+        $res = $request->except('_token');
+        $tels = user::where('tel',$res['tel'])->first();
+
+        if(Cookie::get('codes') != $res['code']){
+            return redirect('/homed')->with('msg','验证码错误');
+        }
+
+        if(!$tels){
+            return redirect('/index')->with('msg','请输入正确的手机号');
+        }
+
+        $data = $request->except('_token','code','tel');
+        $data['password'] = Hash::make($res['password']);
+        $datas = user::where('tel',Cookie::get('tel'))->update($data);
+        
+        if($datas){
+            
+            return view('home.user.login')->with('修改成功,请登录');
+
+        }      
     }
 
     /**
@@ -146,4 +206,5 @@ class LoginController extends Controller
         header('Content-Type: image/jpeg');
         $builder->output();
     }
+
 }

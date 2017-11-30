@@ -70,6 +70,7 @@ class InfoController extends Controller
         $res = $request->except('_token','img');
         $res['user_id'] = session('uid');
         $res['img'] = '/Upload/'.$name.'.'.$suffix;
+        
         $datas = DB::table('info')->where('user_id',$res['user_id'])->update($res);
         if($datas){
 

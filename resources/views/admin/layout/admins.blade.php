@@ -302,7 +302,7 @@
                       <li>
                         <a href="#"><i class="icon-list"></i>评论管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/review">评论列表列表</a></li>
+                            <li><a href="/admin/review">评论列表</a></li>
                         </ul>
                     </li>
                     <li>
@@ -329,7 +329,7 @@
             <!-- Inner Container End -->
                        
             <!-- Footer -->
-            <div id="mws-footer">
+            <div id="mws-footer" style="left:80px">
                 Copyright Your Website 2012. All Rights Reserved.
             </div>
             
@@ -372,6 +372,9 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
+   
+@section('js')
 
+@show
 </body>
 </html>
