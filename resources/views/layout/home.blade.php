@@ -56,8 +56,7 @@
   <script src="../homes/js/jquery.min.js"></script>
   <script src="../homes/js/theme.js"></script>
   <script src="/homes/js/silder.js"></script>
-  
-  
+  <script src="../layer/layer.js"></script>
 
   <!-- End of 访问统计 -->
 </head>
@@ -70,7 +69,7 @@
     <a class="logo" href="/"><img src="../homes/picture/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo" /></a>
     <!-- 右上角 -->
       <!-- 未登录显示登录/注册/写文章 -->
-      @if(Session::get('uid')==null)
+    @if(Session::get('uid')==null)
       <a class="btn write-btn" target="_blank" href="/index"><i class="iconfont ic-write"></i>写文章</a>
     
         <a class="btn sign-up" href="/register">注册</a>
@@ -80,7 +79,7 @@
       <a class="btn write-btn" target="_blank" href="/list/create"><i class="iconfont ic-write"></i>写文章</a>
     <div class="user">
       <div data-hover="dropdown">
-        <a class="avatar" href="/info/{{Session::get('info')->id}}"><img src="{{Session::get('info')->img}}" alt="120"></a>
+        <a class="avatar" href="/info/{{$user->id}}"><img src="{{$user->img}}" alt="120"></a>
       </div>
       <ul class="dropdown-menu">
         <a href="/home/user/create">
@@ -139,7 +138,14 @@
 @section('js')
             
 @show  
-
+<script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"other","read_mode":"day","read_font":"font2"}</script>
+    
+    <script src="../homes/js/babel-polyfill-676833c6a4d68573b4c3.js" crossorigin="anonymous"></script>
+    <script src="../homes/js/web-base-0c13a3e9d81eb5c87721.js" crossorigin="anonymous"></script>
+    <script src="../homes/js/web-d6d7a6e261affc6b480d.js" crossorigin="anonymous"></script>
+    <script src="../homes/js/entry-bd7b9f60dcf73b957304.js" crossorigin="anonymous">
+      
+    </script>
 <footer class="container">
   <div class="row">
     <div class="col-xs-17 main">

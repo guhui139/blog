@@ -74,10 +74,12 @@ Route::group(['middleware'=>'home'],function(){
 	Route::get('/list/create','home\ListController@create');
 	// 前台
 	Route::post('/review/add','home\CommentController@add');
+	Route::post('/review/ping','home\CommentController@ping');
 	Route::resource('/info','home\InfoController');
 	
 	Route::post('/list/create','home\ListController@create');
 	Route::post('/like/zan','home\LikeController@zan');
+	Route::post('/like/review_zan','home\LikeController@review_zan');
 
 	
 });

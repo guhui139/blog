@@ -3,9 +3,6 @@
 @section('title',$ls->title)
 
 @section('content')
-    
-    
-    
 <div class="note">
   <a target="_blank" href="/apps/download?utm_source=sbc" id="web-note-ad-fixed"><span class="close">&times;</span></a>
   <div class="post">
@@ -15,7 +12,8 @@
         <div class="author">
           <a class="avatar" href="/u/03f6b7ea3544">
             <img src="{{$user->img}}" alt="96" />
-</a>          <div class="info">
+          </a>
+          <div class="info">
             <span class="name"><a href="/info/{{$user->id}}">{{$user->uname}}</a></span>
             <!-- 关注用户按钮 -->
             <div props-data-classes="user-follow-button-header" data-author-follow-button></div>
@@ -75,7 +73,7 @@
         @if($zan==null)
           <div id="zan" class="btn like-group"><div class="btn-like"><a><i id="zi" class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
         @else
-          <div class="btn like-group"><div class="btn-like"><a><i id="zi" class="iconfont ic-like"></i>已喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
+          <div class="btn like-group active"><div class="btn-like"><a><i id="zi" class="iconfont ic-like"></i>已喜欢</a></div> <div class="modal-wrap"><a id="conts">{{$ls->zan}}</a></div></div>
         @endif
       @else
         <div class="btn like-group"><div class="btn-like"><a href="/index"><i id="zi" class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a href="/index">{{$ls->zan}}</a></div></div>
@@ -113,18 +111,18 @@
             <button class="btn btn-warning" id="comment">发表</button>
             <!---->
         </form>
-        @else
-            <form class="new-comment"><a class="avatar"><img src="//cdn2.jianshu.io/assets/default_avatar/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="/index" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form>
-            @endif
+      @else
+            <form class="new-comment"><a class="avatar"><img src="../homes/picture/3d1108d79ee943bc86eb65961e3290f7.gif"></a> <div class="sign-container"><a href="/index" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form>
+      @endif
         <!---->
     </div>
     <div id="normal-comment-list" class="normal-comment-list">
-        <div>
+        <div id="ping">
             <!---->
             <!---->
             
             @foreach($com as $k=>$v)
-            <div id="comment-17814686" class="comment">
+            <div id="comment-{{$v->id}}" class="comment">
                 <div>
                     <div class="author">
                         <a href="/info/{{$v->user_id}}" target="_blank" class="avatar">
@@ -145,32 +143,86 @@
                         <p>
                             {{$v->content}}
                         </p>
-                        <div class="tool-group">
-                            <a class="">
-                                <i class="iconfont ic-zan">
-                                </i>
-                                <span>
-                                    赞
-                                </span>
+                        <div class="tool-group pingzan"> 
+                          @if(session('uid'))
+                            <a id="lid" class="active" onclick="dzan({{$v->id}},$(this))">
+                              <i class="iconfont ic-zan"></i>
+                              <span id="review_zan">{{$v->review_zan}}</span>
                             </a>
-                            <a class="wocao">
-                                <i class="iconfont ic-comment">
-                                </i>
-                                <span>
-                                    回复
-                                </span>
+                          @else
+                            <a id="lid" href="/index">
+                              <i class="iconfont ic-zan"></i>
+                              <span id="review_zan">{{$v->review_zan}}</span>
                             </a>
+                          @endif    
+
+                          @if(session('uid'))
+                              <a class="wocao" onclick="show({{$v->id}})">
+                                <i class="iconfont ic-comment"></i>
+                                <span>回复</span>
+                              </a>
+                          @else
+                            <a id="lid" href="/index">
+                              <i class="iconfont ic-comment"></i>
+                              <span>回复</span>
+                            </a>
+                          @endif  
+
                             <a class="report">
-                                <span>
-                                    举报
-                                </span>
                             </a>
                             <!---->
                         </div>
                     </div>
                 </div>
+                <div class="sub-comment-list">
+                  @foreach($review as $key=>$val)
+                  @if($v->id==$val->comment_id)
+                  <div id="comment-{{$val->id}}" class="sub-comment">
+                      <p>
+                          <div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;">
+                              <div class="v-tooltip-content">
+                                  <a href="/info/{{$val->user_id}}" target="_blank">
+                                      {{$val->uname}}
+                                  </a>
+                                  ：
+                                  <span>
+                                    <a href="/info/{{$val->uid}}" class="maleskine-author" target="_blank"
+                                    data-user-slug="55569f43db1e">
+                                        <span>@</span>{{$v->uname}}
+                                    </a>
+                                    {{$val->content}}
+                                </span>
+                              </div>
+                              <!---->
+                          </div>
+                          
+                      </p>
+                      <div class="sub-tool-group">
+                          <span>
+                              {{$val->rtime}}
+                          </span>
+                          <a class="">
+                              <i class="iconfont ic-comment">
+                              </i>
+                              <span>
+                                  回复
+                              </span>
+                          </a>
+                          <a class="report">
+                              <span>
+                                  举报
+                              </span>
+                          </a>
+                          <!---->
+                      </div>
+                  </div>
+                  @endif
+                  @endforeach
+              </div>
+
+                <!---->
             </div>
-            <div class="sub-comment-list hide"> 
+            <div id="{{$v->id}}" class="sub-comment-list hide"> 
               <div>
                 <form class="new-comment"><!----> 
                   <textarea placeholder="写下你的评论..."></textarea> 
@@ -180,16 +232,15 @@
                         <i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i>
                       </a> <!---->
                     </div> 
-                    <div class="hint">Ctrl+Return 发表
-                    </div> 
-                    <a class="btn btn-send">发送</a> 
-                      <a class="cancel">取消</a>
+                    <div class="hint">发表</div> 
+                    <a class="btn btn-send {{$v->id}}" onclick="plun({{$v->id}},$(this))">发送</a> 
                   </div>
-                </form> <!---->
+                </form> 
+                <!---->
               </div>
             </div>
             @endforeach
-
+            
         </div>
     </div>
     <!---->
@@ -202,7 +253,9 @@
   <div class="vue-side-tool" props-data-props-show-qr-code="0"></div>
 </div>
 <div class="note-bottom">
-  <div class="js-included-collections"></div>
+  <div class="js-included-collections">
+    
+  </div>
   
 </div>
 @endsection
@@ -217,10 +270,37 @@
           lid:'{{$ls->id}}',
           content:content  
         },
-        function(data){$('#comment-17814686').after('<div id="comment-17814686" class="comment"><div><div class="author"><a href="/info/'+data.user_id+'" target="_blank" class="avatar"><img src="'+data.img+'"></a><div class="info"><a href="/info/'+data.user_id+'" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class=""><i class="iconfont ic-zan"></i><span>赞</span></a><a class="wocao"><i class="iconfont ic-comment"></i><span>回复</span></a><a class="report"><span>举报</span></a><!----></div></div></div></div><div class="sub-comment-list hide"> <div><form class="new-comment"><!----> <textarea placeholder="写下你的评论..."></textarea> <div class="write-function-block"><div data-v-b36e9416="" class="emoji-modal-wrap"><a data-v-b36e9416="" class="emoji"><i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i></a> <!----></div> <div class="hint">Ctrl+Return 发表</div> <a class="btn btn-send">发送</a> <a class="cancel">取消</a></div></form> <!----></div></div>');
+        function(data)
+        {
+          $('#ping:last').after('<div id="comment-'+data.id+'" class="comment"><div><div class="author"><a href="/info/'+data.user_id+'" target="_blank" class="avatar"><img src="'+data.img+'"></a><div class="info"><a href="/info/'+data.user_id+'" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class="" onclick="dzan({{$v->id}})"><i class="iconfont ic-zan"></i><span>0</span></a><a class="wocao"><i class="iconfont ic-comment"></i><span>回复</span></a><a class="report"><span>举报</span></a><!----></div></div></div></div><div class="sub-comment-list hide"> <div><form class="new-comment"><!----> <textarea placeholder="写下你的评论..."></textarea> <div class="write-function-block"><div data-v-b36e9416="" class="emoji-modal-wrap"><a data-v-b36e9416="" class="emoji"><i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i></a> <!----></div> <div class="hint">Ctrl+Return 发表</div> <a class="btn btn-send">发送</a> <a class="cancel">取消</a></div></form> <!----></div></div>');
       });
       return false;
     })
+  </script>
+  <script type="text/javascript">
+
+    function show(id){
+      if($('#'+id).hasClass('hide')){
+        $('#'+id).removeClass('hide');
+      }else{
+        $('#'+id).addClass('hide');
+      }
+    };
+
+    function plun(id,obj){
+      var content = obj.parent().parent().find("textarea").val();
+      $.post("{{ url('/review/ping')}}",
+      {
+          _token:'{{csrf_token()}}',
+          user_id:'{{session("uid")}}',
+          comment_id:id,
+          content:content
+      },function(data)
+        {
+          $('#comment-'+id).find('div').eq(0).after('<div class="sub-comment-list"><div id="comment-17952621" class="sub-comment"><p><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="/info/'+data[0].user_id+'" target="_blank">'+data[0].uname+'</a>：<span><a href="/info/'+data[1].user_id+'" class="maleskine-author" target="_blank" data-user-slug="33479e9f01d7">@'+data[1].uname+'</a> '+data[0].content+'</span></p> <div class="sub-tool-group"><span>'+data[0].rtime+'</span><a class="report"><span>举报</span></a> <!----></div></div></div>');
+          $('#'+id).addClass('hide');
+      });
+    }
   </script>
   <script type="text/javascript">
     //文赞
@@ -236,21 +316,37 @@
           parent.location.reload(); 
           $('#conts').html(parseInt(data)+1);
           $('#zi').html('已');
-
+          $('#zan').setAttr('class','active');
         }else{
           alert(data);
         }
       });
-      
     });
   </script>
+
   <script type="text/javascript">
-    $('.wocao').on('click',function(){
-      if($('.sub-comment-list').hasClass('hide')){
-        $('.sub-comment-list').removeClass('hide');
-      }else{
-        $('.sub-comment-list').addClass('hide');
-      }
-    })
+    //评赞
+    function dzan(id,obj){
+      
+      $.post("{{ url('/like/review_zan')}}",
+      {
+        _token:'{{csrf_token()}}',
+        list_id:'{{$ls->id}}',
+        review_id:id,
+        uid:'{{Session::get("uid")}}'
+      },
+      function(data){
+        if (data.info==1) {
+          obj.find('span').text(data.msg);
+        }else{
+          layer.msg('点赞成功!');
+          obj.find('span').text(data.msg);
+        }
+      });
+    };
+  </script>
+
+  <script type="text/javascript">
+    
   </script>
 @endsection
