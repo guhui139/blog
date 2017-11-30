@@ -80,7 +80,7 @@ class LoginController extends Controller
                         ->get();
         $user = info::where('user_id',session('uid'))->first();
         Session::put('info',$user);
-        return view('home.index',['type'=>$type,'user'=>$user,'cont'=>$cont]);
+        return redirect('')->with(['type'=>$type,'user'=>$user,'cont'=>$cont]);
     }
 
     /**

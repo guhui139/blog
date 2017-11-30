@@ -106,6 +106,7 @@
 @endforeach
         </ul>
         <!-- 文章列表模块 -->
+        {!! $cont->render() !!}
       </div>
     </div>
     <div class="col-xs-7 col-xs-offset-1 aside">
@@ -147,14 +148,7 @@
 </div>
 <div data-vcomp="side-tool"></div>
 
-    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"other","read_mode":"day","read_font":"font2"}</script>
     
-    <script src="../homes/js/babel-polyfill-676833c6a4d68573b4c3.js" crossorigin="anonymous"></script>
-    <script src="../homes/js/web-base-0c13a3e9d81eb5c87721.js" crossorigin="anonymous"></script>
-    <script src="../homes/js/web-d6d7a6e261affc6b480d.js" crossorigin="anonymous"></script>
-    <script src="../homes/js/entry-bd7b9f60dcf73b957304.js" crossorigin="anonymous">
-      
-    </script>
   </body>
 </html>
 @endsection

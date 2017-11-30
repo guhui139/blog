@@ -12,6 +12,7 @@ use App\Http\Model\Type;
 use App\Http\Model\info;
 use App\Http\Model\comment;
 use App\Http\Model\zan;
+use App\Http\Model\review;
 use Session;
 use DB;
 class ListController extends Controller
@@ -90,39 +91,32 @@ class ListController extends Controller
         
         $cont = count(comment::where('lid',$id)->get());
         $request->session()->put('count',$cont);
+
         $com = comment::join('info', 'info.user_id', '=', 'comment.uid')
                         ->join('lists','comment.lid','=','lists.id')
                         ->select('info.uname','info.img','comment.*','info.user_id')
                         ->where('lid',$id)
                         ->get();
-        
+
         $zan = zan::join('info', 'info.user_id', '=', 'zan.uid')
                         ->join('lists','zan.list_id','=','lists.id')
                         ->select('zan.*')
                         ->where('list_id',$id)
                         ->first();
+
+        $review = review::join('info','info.user_id','=','review.user_id')
+                        ->join('comment','comment.id','=','review.comment_id')
+                        ->select('info.uname','info.img','review.*','info.user_id','comment.uid')
+                        ->orderBy('id','desc')
+                        ->get();
+
         $pres = list_content::where('list_id',$id-1)->first();
         $pls = lists::where(['id'=>$id-1,'type_id'=>$tp->id])->first();
 
         $nres = list_content::where('list_id',$id+1)->first();
         $nls = lists::where(['id'=>$id+1,'type_id'=>$tp->id])->first();
-        // dd($com);
-        if($pres=null and $pls=null){
-            if($nres=null and $nls=null){
-                if($com=null){
-                    if($user=null){
-                        $user = 0;
-                    }
-                    $com = 0;
-                }
-                $nres = 0;
-                $nls = 0;
-            }
-            $pres = 0;
-            $pls = 0;
-        }
-        
-        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls,'user'=>$user,'cont'=>$cont,'com'=>$com,'zan'=>$zan]);
+// dd($user);
+        return view('home.content',['res'=>$res,'ls'=>$ls,'tp'=>$tp,'nres'=>$nres,'nls'=>$nls,'pres'=>$pres,'pls'=>$pls,'user'=>$user,'cont'=>$cont,'com'=>$com,'zan'=>$zan,'review'=>$review]);
     }
 
     /**

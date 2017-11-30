@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Http\Model\Type;
+use App\Http\Model\type;
 use App\Http\Model\info;
 use App\Http\Model\list_content;
 use App\Http\Model\lists;
@@ -20,17 +20,16 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
-        $type = Type::get();
-        $request->session()->put('type',$type);
+        $type = type::get();
         $user = info::where('user_id',session('uid'))->first();
-        Session::put('info',$user);
         $cont = lists::join('list_content','list_content.list_id','=','lists.id')
                         ->join('info','info.user_id','=','lists.info_id')
                         ->join('type','type.id','=','lists.type_id')
                         ->select('info.uname','info.img','lists.*','list_content.content','type.name')
                         ->orderBy('lists.zan','desc')
-                        ->get();
+                        ->paginate(5);
         return view('home.index', ['type' => $type,'user'=> $user,'cont'=>$cont]);
+
     }
 
     /**
@@ -109,6 +108,6 @@ class BlogController extends Controller
                         ->select('info.uname','info.img','lists.*','list_content.content','type.name')
                         ->orderBy('lists.zan','desc')
                         ->get();
-        return view('home.index',['type'=>$type,'cont'=>$cont]);
+        return redirect('/')->with(['type'=>$type,'cont'=>$cont]);
     }
 }

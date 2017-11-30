@@ -10,6 +10,7 @@ use App\Http\Model\Type;
 use App\Http\Model\info;
 use App\Http\Model\comment;
 use App\Http\Model\lists;
+use App\Http\Model\review;
 
 class CommentController extends Controller
 {
@@ -33,6 +34,37 @@ class CommentController extends Controller
                         ->first();
             $data['cont'] = $cont;
 	        return  $data;
+	    } else {
+
+	        return Redirect::back()->withInput()->withErrors('保存失败！');
+	    }
+    	
+    }
+
+    public function ping(Request $request)
+    {
+ 		$data = $request->except('_token');
+		$data['rtime'] = date('Y-m-d H:i:s',time());
+
+ 		$res = review::insertGetId($data);
+	    if ($res) {
+
+ 			$comm = review::where('id',$res)->first();
+
+	        $data = review::join('info', 'review.user_id', '=', 'info.user_id')
+	        			->join('comment','review.comment_id','=','comment.id')
+                        ->select('info.uname','info.img','review.*','info.user_id')
+                        ->where('review.id',$res)
+                        ->first();
+
+            $coms = comment::where('id',$data->comment_id)->first();
+
+           	$info = info::where('user_id',$coms->uid)->first();
+
+           	$zu[0] = $data;
+           	$zu[1] = $info;
+
+	        return  $zu;
 	    } else {
 
 	        return Redirect::back()->withInput()->withErrors('保存失败！');

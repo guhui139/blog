@@ -66,8 +66,8 @@ class RegisterController extends Controller
         //$request->session()->put('uid',$phones->id);
         $ress = $request->except('_token','repassword','code');
         $ress['password'] = Hash::make($ress['password']);
-        $data = DB::table('user')->insert($ress);
-
+        $data = DB::table('user')->insertGetId($ress);
+        DB::table('info')->insert(['user_id'=>$data]);
         return redirect('/')->with('msg','注册成功,请登录');
         
         
