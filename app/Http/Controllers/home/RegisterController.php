@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Flc\Dysms\Client;
 use Flc\Dysms\Request\SendSms;
 use Hash;
+use DB;
 use Cookie;
 
 class RegisterController extends Controller

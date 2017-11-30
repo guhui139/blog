@@ -27,9 +27,9 @@
   <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" />
   <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" />
   <meta http-equiv="mobile-agent" content="format=html5; url=http://localhost/">
-    <link rel="stylesheet" href="../homes/css/amazeui.min.css" />
-    <link rel="stylesheet" href="../homes/css/admin.css">
-    <link rel="stylesheet" href="../homes/css/app.css">
+    <link rel="stylesheet" href="/homes/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/homes/css/admin.css">
+    <link rel="stylesheet" href="/homes/css/app.css">
   <!-- Apple -->
   <meta name="apple-mobile-web-app-title" content="简书">
   <title>@yield("title")</title>
@@ -38,11 +38,12 @@
 <meta name="csrf-token" content="cKUPNOs4CPPtw1Mi7bZT1scNV6Tv1AbkDQOB+O3gK1saPB5okJv/P8Ty4Gf9/5kHUZjED0Yq9J3f4aklnJhJkg==" />
 
 
-  <link rel="stylesheet" media="all" href="../homes/css/web-fa63c74b17a87d74afb5.css" />
-  
-  <link rel="stylesheet" media="all" href="../homes/css/entry-c39de320ab2c85be4ee5.css" />
-  <link rel="stylesheet" media="all" href="../homes/css/entry-355d9da965e3c43206d6.css" />
-  <link rel="stylesheet" media="all" href="../homes/css/entry-842a8f71e15edbd1cb5d.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/web-fa63c74b17a87d74afb5.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/entry-c39de320ab2c85be4ee5.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/entry-355d9da965e3c43206d6.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/entry-842a8f71e15edbd1cb5d.css" />
+  <link rel="stylesheet" media="all" href="/homes/review/web-fa63c74b17a87d74afb5.css">
+  <link rel="stylesheet" media="all" href="/homes/review/entry-4022a9cdb8df13d630ea.css">
 
   <link href="//cdn2.jianshu.io/assets/favicons/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">
       <link rel="apple-touch-icon-precomposed" href="//cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57" />
@@ -57,6 +58,30 @@
   <script src="../homes/js/theme.js"></script>
   <script src="/homes/js/silder.js"></script>
   <script src="../layer/layer.js"></script>
+  <script src="/homes/review/push.js"></script><script src="/homes/review/hm.js"></script><script async="" src="/homes/review/analytics.js"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','/homes/review/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+  </script>
+
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "/homes/review/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+  <script>
+    $('.avatar').click(function(){
+        alert(124);
+    })
+  </script>
 
   <!-- End of 访问统计 -->
 </head>
@@ -66,7 +91,7 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="width-limit">
     <!-- 左上方 Logo -->
-    <a class="logo" href="/"><img src="../homes/picture/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo" /></a>
+    <a class="logo" href="/"><img src="/homes/picture/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo" /></a>
     <!-- 右上角 -->
       <!-- 未登录显示登录/注册/写文章 -->
     @if(Session::get('uid')==null)

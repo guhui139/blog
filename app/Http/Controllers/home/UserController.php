@@ -31,13 +31,14 @@ class UserController extends Controller
                     ->select('info.uname','info.img','lists.*','comment.review_zan')
                     ->where('info_id',Session::get('uid'))
                     ->paginate(3);
+        $user = info::where('user_id',session('uid'))->first();
         //dd($res);
         //获取用户头像
        
         $ress = info::where('user_id',session('uid'))->first();
         //dd($ress);
         
-        return view('home.user.mainpage',['res'=>$res,'ress'=>$ress]);
+        return view('home.user.mainpage',['res'=>$res,'ress'=>$ress,'user'=>$user]);
     }
 
     /**
@@ -48,7 +49,7 @@ class UserController extends Controller
     public function create()
     {
         $res = info::where('user_id',session('uid'))->first();
-        return view('home.user.info',['res'=>$res]);
+        return view('home.user.info',['user'=>$res]);
     }
 
     /**
@@ -92,7 +93,7 @@ class UserController extends Controller
         
         $res['user_id'] = session('uid');
         
-        //dd($res);
+
         $datas = info::where('user_id',$res['user_id'])->update($res);
 
         if($datas){
@@ -181,9 +182,11 @@ class UserController extends Controller
     public function account()
     {
 
+        $user = info::where('user_id',session('uid'))->first();
+
         $res = user::where('id',session('uid'))->first();
         //dd($res);
-        return view('home.user.account',['res'=>$res]);
+        return view('home.user.account',['res'=>$res,'user'=>$user]);
     }
 
   

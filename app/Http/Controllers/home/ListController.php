@@ -35,7 +35,9 @@ class ListController extends Controller
     public function create()
     {
         $res = Type::get();
-        return view('/home.add',['res'=>$res]);
+        $user = info::where('user_id',session('uid'))->first();
+
+        return view('/home.add',['res'=>$res,'user'=>$user]);
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('home.layout.homes')
+@extends('layout.home')
 
 @section('title','文章详情')
 

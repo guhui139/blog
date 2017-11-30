@@ -20,7 +20,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('home.type');
+        $user = info::where('user_id',session('uid'))->first();
+
+        return view('home.type',['user'=>$user]);
     }
 
     /**
@@ -63,7 +65,9 @@ class TypeController extends Controller
                         ->get();
         // $cont = list_content::where('list_id',$id)->first();
         // var_dump($cont);
-        return view('home.list',['tp'=>$tp,'res'=>$res,'cont'=>$cont]);
+        $user = info::where('user_id',session('uid'))->first();
+
+        return view('home.list',['tp'=>$tp,'res'=>$res,'cont'=>$cont,'user'=>$user]);
     }
 
     /**

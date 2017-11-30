@@ -1,4 +1,4 @@
-@extends('home.layout.homes')
+@extends('layout.home')
 
 @section('title','个人资料')
 
@@ -38,31 +38,30 @@
             <div class="mws-form-row">
               <label class="mws-form-label">用户名:</label>
               <div class="mws-form-item">
-                <input type="text" class="form-control" name='uname' value="{{isset($res->uname) ? $res->uname : '' }} ">
+                <input type="text" class="form-control" name='uname' value="{{isset($user->uname)?$user->uname:null}}">
               </div>
             </div><br/>
             <div class="mws-form-row">
               <label class="mws-form-label">邮箱:</label>
               <div class="mws-form-item">
-                <input type="text" class="form-control" name='email' value="{{isset($res->email) ? $res->email : '' }} ">
+                <input type="text" class="form-control" name='email' value="{{isset($user->email)?$user->email:null}}">
               </div>
             </div><br/>  
             <div class="mws-form-row">
               <label class="mws-form-label">头像:</label>
               <div class="mws-form-item">
-                <input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="文件上传" name='img' value="{{isset($res->img) ? $res->img : '' }} ">
+                <input type="file" readonly="readonly" style="width: 100%; padding-right: 85px;" class="fileinput-preview" placeholder="文件上传" name='img' value="{{isset($user->img) ? $user->img : '' }} ">
               </div>
             </div>
           </div><br/>
           <div class="mws-button-row">
             {{ csrf_field()}}
-         
+                     
             <input type="submit" class="btn btn-danger" id ="btns" value="设置">
             <a href="/home/user" class="btn btn-danger">返回主页</a>   
           </div>
         </form>
 
-        <div><tr><td class="setting-title setting-input pull-left">社交帐号</td> <td class="social-bind"><p>你可以通过绑定的社交帐号登录博客。出于安全因素, 你最初用来创建账户的社交帐号不能移除。</p> <ul class="social-bind-list"><li><div class="bind-name"><i class="iconfont ic-weibo"></i> <a href="http://www.jianshu.com/users/auth/weibo">绑定微博</a></div></li><li><div class="bind-name"><i class="iconfont ic-wechat"></i> <a href="http://www.jianshu.com/users/auth/wechat">绑定微信</a></div></li><li class="has-bind"><div class="bind-name"><i class="iconfont ic-qq_connect"></i>  <span>已绑定</span> <a class="cancel-bind">解除绑定</a></div> <!----></li><li><div class="bind-name"><i class="iconfont ic-douban"></i> <a href="http://www.jianshu.com/users/auth/douban">绑定豆瓣</i></a></div></li><li><div class="bind-name"><i class="iconfont ic-google_oauth2"></i> <a href="http://www.jianshu.com/users/auth/google_oauth2">绑定 Google+</a></div></li></ul></td></tr></tbody></table></div> 
       
     </div>
   </div>      

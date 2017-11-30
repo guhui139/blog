@@ -38,14 +38,15 @@
   <meta name="csrf-param" content="authenticity_token">
   <meta name="csrf-token" content="InzyhOE1W+mybk65D9ckyzFH/b00YFgWxPiMKOCPCYTgGPAiVVAAESUXygeZeMkJKDiaYByq5gOzXgWD5VWIXQ==">
 
-  <link rel="stylesheet" media="all" href="../homes/review/web-fa63c74b17a87d74afb5.css">
+  <link rel="stylesheet" media="all" href="/homes/review/web-fa63c74b17a87d74afb5.css">
   
-  <link rel="stylesheet" media="all" href="../homes/review/entry-4022a9cdb8df13d630ea.css">
-  <link rel="stylesheet" media="all" href="../homes/css/web-fa63c74b17a87d74afb5.css" />
+  <link rel="stylesheet" media="all" href="/homes/review/entry-4022a9cdb8df13d630ea.css">
+  <link rel="stylesheet" media="all" href="/homes/css/web-fa63c74b17a87d74afb5.css" />
   
-  <link rel="stylesheet" media="all" href="../homes/css/entry-c39de320ab2c85be4ee5.css" />
-  <link rel="stylesheet" media="all" href="../homes/css/entry-355d9da965e3c43206d6.css" />
-  <link rel="stylesheet" media="all" href="../homes/css/entry-842a8f71e15edbd1cb5d.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/entry-c39de320ab2c85be4ee5.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/entry-355d9da965e3c43206d6.css" />
+  <link rel="stylesheet" media="all" href="/homes/css/entry-842a8f71e15edbd1cb5d.css" />
+
 
   <link href="/homes/review/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">
   <link rel="apple-touch-icon-precomposed" href="/homes/review/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57">
@@ -105,7 +106,7 @@
         <div class="user">
 
           <div data-hover="dropdown" class="closed">
-            <a class="avatar" href=""> <img src="/homes/review/3-9a2bcc21a5d89e21dafc73b39dc5f582.jpg" alt="" style="width:100%;"></a> 
+            <a class="avatar" href=""> <img src="/" alt="" style="width:100%;"></a> 
 
           </div>
           <ul class="dropdown-menu">

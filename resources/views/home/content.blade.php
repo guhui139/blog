@@ -37,8 +37,11 @@
 </div>
 <div class="image-caption">{{$ls->abstract}}</div>
 </div>
-{{$res->content}}
+     {!! $res->content !!}    
 </div>
+
+
+ 
         <!--  -->
 
         <div class="show-foot">
@@ -120,7 +123,7 @@
         <div id="ping">
             <!---->
             <!---->
-            
+            @if($com!=null)
             @foreach($com as $k=>$v)
             <div id="comment-{{$v->id}}" class="comment">
                 <div>
@@ -240,7 +243,7 @@
               </div>
             </div>
             @endforeach
-            
+            @endif
         </div>
     </div>
     <!---->
@@ -272,7 +275,8 @@
         },
         function(data)
         {
-          $('#ping:last').after('<div id="comment-'+data.id+'" class="comment"><div><div class="author"><a href="/info/'+data.user_id+'" target="_blank" class="avatar"><img src="'+data.img+'"></a><div class="info"><a href="/info/'+data.user_id+'" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class="" onclick="dzan({{$v->id}})"><i class="iconfont ic-zan"></i><span>0</span></a><a class="wocao"><i class="iconfont ic-comment"></i><span>回复</span></a><a class="report"><span>举报</span></a><!----></div></div></div></div><div class="sub-comment-list hide"> <div><form class="new-comment"><!----> <textarea placeholder="写下你的评论..."></textarea> <div class="write-function-block"><div data-v-b36e9416="" class="emoji-modal-wrap"><a data-v-b36e9416="" class="emoji"><i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i></a> <!----></div> <div class="hint">Ctrl+Return 发表</div> <a class="btn btn-send">发送</a> <a class="cancel">取消</a></div></form> <!----></div></div>');
+          console.log(data);
+          $('#ping:last').after('<div id="comment-'+data.id+'" class="comment"><div><div class="author"><a href="/info/'+data.user_id+'" target="_blank" class="avatar"><img src="'+data.img+'"></a><div class="info"><a href="/info/'+data.user_id+'" target="_blank" class="name">'+data.uname+'</a><div class="meta"><span>'+data.time+'</span></div></div></div><div class="comment-wrap"><p>'+data.content+'</p><div class="tool-group"><a class="" onclick="dzan('+data.id+')"><i class="iconfont ic-zan"></i><span>0</span></a><a class="wocao"><i class="iconfont ic-comment"></i><span>回复</span></a><a class="report"><span>举报</span></a><!----></div></div></div></div><div class="sub-comment-list hide"> <div><form class="new-comment"><!----> <textarea placeholder="写下你的评论..."></textarea> <div class="write-function-block"><div data-v-b36e9416="" class="emoji-modal-wrap"><a data-v-b36e9416="" class="emoji"><i data-v-b36e9416="" class="iconfont ic-comment-emotions"></i></a> <!----></div> <div class="hint">Ctrl+Return 发表</div> <a class="btn btn-send">发送</a> <a class="cancel">取消</a></div></form> <!----></div></div>');
       });
       return false;
     })

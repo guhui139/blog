@@ -1,4 +1,4 @@
-@extends('home.layout.homes')
+@extends('layout.home')
 
 @section('title','我的个人中心')
 
@@ -20,7 +20,7 @@
           	<div class="mws-form-row">   	
 	              <label class="mws-form-label" style="padding:50px">删除帐号:</label>
 	              <label class="mws-form-label">
-	              	<input type="submit" class="btn btn-delete" value="删除帐号">
+	              	<input  id="shanchu" type="submit" class="btn btn-delete" value="删除帐号">
 	              </label>
 	              {{ csrf_field()}}
 	              {{ method_field('DELETE')}}
@@ -57,9 +57,9 @@
 	})();
 </script>
 <script>
-    $('.btn').click(function(){
+    $('#shanchu').click(function(){
         
-        layer.alert('恭喜,删除成功');
+		alert('恭喜,删除成功');
         
     })   
 </script>

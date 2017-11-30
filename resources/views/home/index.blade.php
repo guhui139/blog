@@ -94,7 +94,7 @@
                 {{$val->abstract}}
               </p>
               <div class="meta">
-                <a class="collection-tag" target="_blank" href='{{url("/type/$val->type_id")}}'>{{$v->name}}</a>
+                <a class="collection-tag" target="_blank" href='{{url("/type/$val->type_id")}}'>{{$val->name}}</a>
                 <a target="_blank" href='{{url("/list/$val->id")}}'>
                     <i class="iconfont ic-list-comments"></i> 
                     {{$val->review}}
