@@ -94,13 +94,41 @@
                         <a href="/admin/review/{{$v->id}}/edit">
                             <button> 修改</button>
                         </a>
-                        <form method="post" action="/admin/review/{{$v->id}}" style="display:inline;">
-                            <button>删除</button>
+                        <!-- <form method="post" action="/admin/review/{{$v->id}}" style="display:inline;">
+                            <button id="del">删除</button>
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                        </form>
+                        </form> -->
+                        <button onclick="func({{$v->id}})">删除</button>
                     </td>
                 </tr>
+                @section('js')
+                
+                <script src="/layer/layer.js"></script>
+                <script>
+                    function func(id){
+                        layer.confirm('你确定要删除吗?',{
+                            btn:['确定','取消'],
+                            btn1: function(index, layero){
+                               
+                                $.ajax({
+                                    url: '/admin/review/'+id,   
+                                    data: {id:id,_token:'{{ csrf_token() }}',_method:'delete'}, 
+                                    type: 'post', 
+                                    success:function(data){
+                                        if(data){
+                                            layer.alert('删除成功');
+                                            return redirect('/admin/review');
+                                        }
+                                        
+                                    }   
+                             
+                                });       
+                            },
+                        });
+                   } 
+                </script>
+                @endsection
             @endforeach
             </tbody>
         </table>

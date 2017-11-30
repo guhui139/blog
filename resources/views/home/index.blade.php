@@ -68,41 +68,42 @@
             <a class="more-hot-collection" target="_blank" href="{{url('/type')}}">
               更多热门专题 <i class="iconfont ic-link"></i>
             </a>        
-          </div>
-      <div class="split-line"></div>
+        </div>
+
+      
       <div id="list-container">
         <!-- 文章列表模块 -->
         <ul class="note-list" infinite-scroll-url="/">
           
-@foreach($cont as $key=>$val)
-<li id="note-20127267" data-note-id="20127267" class="have-img">
-    <a class="wrap-img" href='{{url("/list/$val->id")}}' target="_blank">
-      <img data-echo="//upload-images.jianshu.io/upload_images/2631784-d79d1d0126029f38.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" class="img-blur-done" src="..{{$val->cimg}}" alt="120" />
-    </a>
-  <div class="content">
-    <div class="author">
-      <a class="avatar" target="_blank" href='{{url("/info/$val->info_id")}}'>
-        <img src="{{$val->img}}" alt="64" />
-</a>      <div class="info">
-        <a class="nickname" target="_blank" href='{{url("/info/$val->info_id")}}'>{{$val->uname}}</a>
-        <span class="time" data-shared-at="">{{$val->time}}</span>
-      </div>
-    </div>
-    <a class="title" target="_blank" href='{{url("/list/$val->id")}}'>{{$val->title}}</a>
-    <p class="abstract">
-      {{$val->abstract}}
-    </p>
-    <div class="meta">
-      <a class="collection-tag" target="_blank" href='{{url("/type/$val->type_id")}}'>{{$v->name}}</a>
-      <a target="_blank" href='{{url("/list/$val->id")}}'>
-          <i class="iconfont ic-list-comments"></i> 
-          {{$val->review}}
-      </a>      
-      <span><i class="iconfont ic-list-like"></i>{{$val->zan}}</span>
-    </div>
-  </div>
-</li>
-@endforeach
+          @foreach($cont as $key=>$val)
+          <li id="note-20127267" data-note-id="20127267" class="have-img">
+              <a class="wrap-img" href='{{url("/list/$val->id")}}' target="_blank">
+                <img data-echo="//upload-images.jianshu.io/upload_images/2631784-d79d1d0126029f38.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240" class="img-blur-done" src="..{{$val->cimg}}" alt="120" />
+              </a>
+            <div class="content">
+              <div class="author">
+                <a class="avatar" target="_blank" href='{{url("/info/$val->info_id")}}'>
+                  <img src="{{$val->img}}" alt="64">
+          </a>      <div class="info">
+                  <a class="nickname" target="_blank" href='{{url("/info/$val->info_id")}}'>{{$val->uname}}</a>
+                  <span class="time" data-shared-at="">{{$val->time}}</span>
+                </div>
+              </div>
+              <a class="title" target="_blank" href='{{url("/list/$val->id")}}'>{{$val->title}}</a>
+              <p class="abstract">
+                {{$val->abstract}}
+              </p>
+              <div class="meta">
+                <a class="collection-tag" target="_blank" href='{{url("/type/$val->type_id")}}'>{{$v->name}}</a>
+                <a target="_blank" href='{{url("/list/$val->id")}}'>
+                    <i class="iconfont ic-list-comments"></i> 
+                    {{$val->review}}
+                </a>      
+                <span><i class="iconfont ic-list-like"></i>{{$val->zan}}</span>
+              </div>
+            </div>
+          </li>
+          @endforeach
         </ul>
         <!-- 文章列表模块 -->
       </div>
@@ -113,7 +114,7 @@
             <img src="../homes/picture/banner-s-1-b8ff9ec59f72ea88ecc8c42956f41f78.png" alt="Banner s 1" />
 </a>        <a target="_blank" href="/trending/weekly?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-3-7123fd94750759acf7eca05b871e9d17.png" alt="Banner s 3" /></a>
         <a target="_blank" href="/trending/monthly?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-4-b70da70d679593510ac93a172dfbaeaa.png" alt="Banner s 4" /></a>
-        <a utm_medium="index-banner-s" target="_blank" href="/publications"><img src="../homes/picture/banner-s-5-291e00e9156f30791fe24e3de9c39171.png" alt="Banner s 5" /></a>
+        <a target="_blank" href="/publications"><img src="../homes/picture/banner-s-5-291e00e9156f30791fe24e3de9c39171.png" alt="Banner s 5" /></a>
         <a target="_blank" href="/c/e048f1a72e3d?utm_medium=index-banner-s&amp;utm_source=desktop"><img src="../homes/picture/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png" alt="Banner s 6" /></a>
       </div>
 
@@ -152,12 +153,10 @@
     <script src="../homes/js/babel-polyfill-676833c6a4d68573b4c3.js" crossorigin="anonymous"></script>
     <script src="../homes/js/web-base-0c13a3e9d81eb5c87721.js" crossorigin="anonymous"></script>
     <script src="../homes/js/web-d6d7a6e261affc6b480d.js" crossorigin="anonymous"></script>
-    <script src="../homes/js/entry-bd7b9f60dcf73b957304.js" crossorigin="anonymous">
-      
-    </script>
-  </body>
-</html>
+    <script src="../homes/js/entry-bd7b9f60dcf73b957304.js" crossorigin="anonymous"></script>
+  
 @endsection
+
 @section('js')
 <script type="text/javascript">
  

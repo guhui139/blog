@@ -110,7 +110,10 @@ class ReviewController extends Controller
         //
         $res = DB::table('comment')->where('id',$id)->delete();
         if($res){
-            return redirect('admin/review')->with('msg','删除成功');
+            /*return redirect('admin/review')->with('msg','删除成功');*/
+            return $res;
         }
+        
+        
     }
 }

@@ -21,6 +21,7 @@ class CommentController extends Controller
 		$cont = count(comment::where('lid',$data['lid'])->get());
 
  		$res = comment::insertGetId($data);
+ 		dd($data);
 	    if ($res) {
 
  			$comm = comment::where('id',$res)->first();

@@ -293,7 +293,7 @@
                       <li>
                         <a href="#"><i class="icon-feather"></i>评论管理</a>
                         <ul class="closed">
-                            <li><a href="/admin/review">评论列表列表</a></li>
+                            <li><a href="/admin/review">评论列表</a></li>
                         </ul>
                     </li>
                     <li>
@@ -363,6 +363,9 @@
 
     <!-- Demo Scripts (remove if not needed) -->
     <script src="/admins/js/demo/demo.dashboard.js"></script>
+   
+@section('js')
 
+@show
 </body>
 </html>
